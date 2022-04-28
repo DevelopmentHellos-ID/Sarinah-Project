@@ -1,0 +1,8 @@
+.swal2-styled.swal2-confirm {
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #00acac;
+    color: #fff;
+    font-size: 1.0625em;
+}
