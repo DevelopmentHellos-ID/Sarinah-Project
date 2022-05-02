@@ -16,12 +16,12 @@
 		<li class="navbar-form">
 			<form action="" method="POST" name="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Enter keyword" />
+					<input type="text" class="form-control" placeholder="Cari Data TPB ..." />
 					<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
 				</div>
 			</form>
 		</li>
-		<li class="dropdown">
+		<!-- <li class="dropdown">
 			<a href="#" data-toggle="dropdown" class="dropdown-toggle f-s-14">
 				<i class="fa fa-bell"></i>
 				<span class="label">5</span>
@@ -82,17 +82,17 @@
 					<a href="javascript:;">View more</a>
 				</div>
 			</div>
-		</li>
+		</li> -->
 		<li class="dropdown navbar-user">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<img src="assets/img/user/user-13.jpg" alt="" />
-				<span class="d-none d-md-inline">Adam Schwartz</span> <b class="caret"></b>
+				<span class="d-none d-md-inline"><?= $_SESSION['username'] ?></span> <b class="caret"></b>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
 				<a href="javascript:;" class="dropdown-item">Edit Profile</a>
-				<a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
-				<a href="javascript:;" class="dropdown-item">Calendar</a>
-				<a href="javascript:;" class="dropdown-item">Setting</a>
+				<!-- <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a> -->
+				<!-- <a href="javascript:;" class="dropdown-item">Calendar</a> -->
+				<!-- <a href="javascript:;" class="dropdown-item">Setting</a> -->
 				<div class="dropdown-divider"></div>
 				<a href="sign-out.php" class="dropdown-item">Sign Out</a>
 			</div>

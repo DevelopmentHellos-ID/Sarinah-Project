@@ -82,6 +82,17 @@
     box-shadow: 2px 3px 4px rgb(0 0 0 / 52%);
 }
 
+.announcement {
+    background: #ffe65a;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.text-announcement {
+    margin: 10px 0px 5px 0px;
+}
+
 .rowGrid {
     display: grid;
 }

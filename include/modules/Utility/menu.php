@@ -72,7 +72,7 @@
             <a href="javascript:;"><b class="caret"></b> Setting</a>
             <ul class="sub-menu">
                 <li class="<?= $uriSegments[1] == 'uti_set_notgl_aju.php' ? 'active' : '' ?>">
-                    <a href="uti_set_notgl_aju.php">Update No/Tanggal Aju</a>
+                    <a href="uti_set_notgl_aju.php">Update No/Tgl Aju</a>
                 </li>
                 <li class="<?= $uriSegments[1] == 'uti_set_dokumen.php' ? 'active' : '' ?>">
                     <a href="uti_set_dokumen.php">Dokumen</a>

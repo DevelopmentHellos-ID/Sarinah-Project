@@ -26,8 +26,8 @@ include "include/sidebar.php";
 	<!-- begin row -->
 	<div class="row">
 		<div class="col-xl-8 col-md-8">
-			<div class="m-b-10 f-s-10 m-t-10">
-				<b class="text-inverse">TPB Sarinah Persero</b>
+			<div class="announcement">
+				<marquee class="text-announcement"><b><i class="fas fa-bullhorn"></i> Informasi TPB:</b> ...</marquee>
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
