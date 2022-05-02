@@ -14,9 +14,6 @@
 	<!-- begin header-nav -->
 	<ul class="navbar-nav navbar-right">
 		<li class="navbar-form">
-			<div id="ct" class="ct-css"></div>
-		</li>
-		<li class="navbar-form">
 			<form action="" method="POST" name="search">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Enter keyword" />

@@ -51,28 +51,28 @@ function date_indo($date, $print_day = false)
 {
 	$day = array(
 		1 =>
-		'Monday',
-		'Tuesday',
-		'Wednesday',
-		'Thursday',
-		'Friday',
-		'Saturday',
-		'Sunday'
+		'Senin',
+		'Selasa',
+		'Rabu',
+		'Kamis',
+		'Jumat',
+		'Sabtu',
+		'Minggu'
 	);
 	$month = array(
 		1 =>
-		'January',
-		'February',
-		'March',
+		'Januari',
+		'Februari',
+		'Maret',
 		'April',
-		'May',
-		'June',
-		'July',
-		'August',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Augustus',
 		'September',
-		'October',
+		'Oktober',
 		'November',
-		'December'
+		'Desember'
 	);
 	$split    = explode('-', $date);
 	$tgl_indo = $split[2] . ' ' . $month[(int)$split[1]] . ' ' . $split[0];

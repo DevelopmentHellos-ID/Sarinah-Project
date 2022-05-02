@@ -7,16 +7,13 @@
     font-size: 1.0625em;
 }
 
-.ct-css {
-    margin-top: 8px;
-}
-
-@media (max-width:1067.5px) {
-    .ct-css {
-        display: none;
-        margin-top: 0px;
-
-    }
+.page-header-css {
+    font-size: 24px;
+    margin: 0 0 0px;
+    padding: 0;
+    border: 0;
+    line-height: 32px;
+    font-weight: 500;
 }
 
 .icon-page {
@@ -25,6 +22,25 @@
     border-radius: 5px;
     color: #fff;
     box-shadow: 0 5px 25px rgb(0 0 0 / 30%);
+}
+
+.text-page {
+    font-weight: 800;
+    text-transform: uppercase;
+    text-shadow: 2px 3px 4px rgb(0 0 0 / 30%);
+}
+
+.page-title-css {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width:992.5px) {
+    .page-title-css {
+        display: grid;
+        margin-bottom: 10px;
+    }
 }
 
 .dev-by-hellos {
@@ -50,4 +66,27 @@
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 5px 25px rgb(0 0 0 / 66%);
+}
+
+.btn-primary-css {
+    color: #2d353c;
+    border-color: #2d353c;
+    -webkit-box-shadow: 0;
+    box-shadow: 0;
+}
+
+.line-page {
+    height: 1.5px;
+    margin: 0px 0px 15px 0px;
+    background: #444e66;
+    box-shadow: 2px 3px 4px rgb(0 0 0 / 52%);
+}
+
+.rowGrid {
+    display: grid;
+}
+
+/* PICTURE */
+.picture-w-550 {
+    width: 550px;
 }

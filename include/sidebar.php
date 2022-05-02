@@ -34,16 +34,22 @@
 			</li>
 		</ul>
 		<ul class="nav">
-			<li class="nav-header">Navigation</li>
+			<li class="nav-header">NAVIGATION</li>
 			<li class="<?= $uriSegments[1] == '' || 'index.php' ? 'active' : '' ?>">
 				<a href="index.php"><i class="fas fa-chart-pie"></i> <span>Dashboard</span></a>
 			</li>
-			<!-- Manajemen Users -->
-			<?php include 'modules/ManageUsers/menu.php' ?>
-			<!-- Manajemen Aplikasi / Seeting Aplikasi -->
-			<?php include 'modules/AppSettings/menu.php' ?>
-			<!-- Manajemen Table TBP -->
-			<?php include 'modules/ManageTPBDB/menu.php' ?>
+			<!-- Dokumen Pabean -->
+			<?php include 'modules/DokumenPabean/menu.php' ?>
+			<!-- Gate Mandiri -->
+			<?php include 'modules/GateMandiri/menu.php' ?>
+			<!-- Komunikasi -->
+			<?php include 'modules/Komunikasi/menu.php' ?>
+			<!-- Referensi -->
+			<?php include 'modules/Referensi/menu.php' ?>
+			<!-- Utility -->
+			<?php include 'modules/Utility/menu.php' ?>
+			<!-- Database -->
+			<?php include 'modules/Database/menu.php' ?>
 			<!-- Do not delete! "begin sidebar minify button" -->
 			<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
 			<!-- End Do not delete! "begin sidebar minify button" -->
