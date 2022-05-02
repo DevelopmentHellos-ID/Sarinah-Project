@@ -10,6 +10,7 @@
 		background-size: cover;
 	}
 </style>
+<?php $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)); ?>
 <div id="sidebar" class="sidebar">
 	<div data-scrollbar="true" data-height="100%">
 		<ul class="nav">
@@ -34,8 +35,8 @@
 		</ul>
 		<ul class="nav">
 			<li class="nav-header">Navigation</li>
-			<li>
-				<a href="calendar.html"><i class="fas fa-chart-pie"></i> <span>Dashboard</span></a>
+			<li class="<?= $uriSegments[1] == '' || 'index.php' ? 'active' : '' ?>">
+				<a href="index.php"><i class="fas fa-chart-pie"></i> <span>Dashboard</span></a>
 			</li>
 			<!-- Manajemen Users -->
 			<?php include 'modules/ManageUsers/menu.php' ?>

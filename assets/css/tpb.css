@@ -7,6 +7,26 @@
     font-size: 1.0625em;
 }
 
+.ct-css {
+    margin-top: 8px;
+}
+
+@media (max-width:1067.5px) {
+    .ct-css {
+        display: none;
+        margin-top: 0px;
+
+    }
+}
+
+.icon-page {
+    background: linear-gradient(45deg, #00acac, #8753de);
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 0 5px 25px rgb(0 0 0 / 30%);
+}
+
 .dev-by-hellos {
     display: flex;
     justify-content: center;

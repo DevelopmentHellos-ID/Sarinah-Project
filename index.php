@@ -18,7 +18,7 @@ include "include/sidebar.php";
 	<!-- begin page-header -->
 	<div>
 		<h1 class="page-header">
-			<i class="fas fa-chart-pie"></i>
+			<i class="fas fa-chart-pie icon-page"></i>
 			Dashboard v2 <small>header small text goes here...</small>
 		</h1>
 	</div>

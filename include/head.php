@@ -28,7 +28,66 @@
 	<script src="assets/sweet/sweetalert2.min.js"></script>
 </head>
 
-<body>
+<script type="text/javascript">
+	function display_c() {
+		var refresh = 1;
+		mytime = setTimeout('display_ct()', refresh)
+	}
+
+	function display_ct() {
+		var strcount
+		var x = new Date()
+		document.getElementById('ct').innerHTML = x;
+		tt = display_c();
+	}
+</script>
+<?php
+// DATE
+function date_indo($date, $print_day = false)
+{
+	$day = array(
+		1 =>
+		'Monday',
+		'Tuesday',
+		'Wednesday',
+		'Thursday',
+		'Friday',
+		'Saturday',
+		'Sunday'
+	);
+	$month = array(
+		1 =>
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	);
+	$split    = explode('-', $date);
+	$tgl_indo = $split[2] . ' ' . $month[(int)$split[1]] . ' ' . $split[0];
+
+	if ($print_day) {
+		$num = date('N', strtotime($date));
+		return $day[$num] . ', ' . $tgl_indo;
+	}
+	return $tgl_indo;
+}
+// RUPIAH
+function Rupiah($angka)
+{
+	$hasil = "Rp. " . number_format($angka, 2, ',', '.');
+	return $hasil;
+}
+?>
+
+<body onload="display_ct()">
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
 	<!-- end #page-loader -->
