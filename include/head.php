@@ -26,6 +26,10 @@
 	<script src="assets/sweet/sweetalert2.all.min.js"></script>
 	<script src="assets/sweet/sweetalert2.js"></script>
 	<script src="assets/sweet/sweetalert2.min.js"></script>
+	<!-- Font Poppins -->
+	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <script type="text/javascript">

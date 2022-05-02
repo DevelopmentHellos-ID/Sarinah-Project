@@ -145,7 +145,7 @@ if (isset($_POST['submit'])) {
 			Swal.fire({
 				title: 'Gagal Sign In!',
 				icon: 'error',
-				html: '<font style="font-size: 14px;font-weight: 500;">Username atau password anda salah! Periksa kembali atau hubungungi Administrator!</font>',
+				html: '<font style="font-size: 14px;font-weight: 500;">Username atau password anda salah! Periksa kembali atau contact Administrator!</font>',
 				text: '',
 			})
 			history.replaceState({}, '', './sign-in.php');
@@ -155,7 +155,7 @@ if (isset($_POST['submit'])) {
 			Swal.fire({
 				title: 'Tidak Ada Akses!',
 				icon: 'error',
-				text: 'Hubungungi Administrator!',
+				text: 'Contact Administrator!',
 			})
 			history.replaceState({}, '', './sign-in.php');
 		}
