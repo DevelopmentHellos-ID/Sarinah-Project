@@ -68,7 +68,7 @@ include "include/sidebar.php";
 						<div class="stats-content">
 							<div class="stats-title">TOTAL PENGGUNA</div>
 							<?php
-							$jumlah_pengguna = $dbcon->query("SELECT COUNT(*) pengguna FROM user_manajemen");
+							$jumlah_pengguna = $dbcon->query("SELECT COUNT(*) pengguna FROM view_privileges");
 							$jp_query = mysqli_fetch_array($jumlah_pengguna);
 							?>
 							<div class="stats-number"><?= $jp_query['pengguna'] ?> Pengguna</div>

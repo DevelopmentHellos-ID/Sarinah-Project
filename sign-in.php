@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 	$log_browser = $detailbrowser;
 	// END IF FAILED SIGN-IN
 
-	$query_signin = $dbcon->query("SELECT * FROM user_manajemen WHERE USER_NAME='$user' AND PASSWORD='$pass'");
+	$query_signin = $dbcon->query("SELECT * FROM view_privileges WHERE USER_NAME='$user' AND PASSWORD='$pass'");
 	if (mysqli_num_rows($query_signin) == 1) {
 		// START SESSION
 		session_start();
