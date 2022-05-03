@@ -31,13 +31,16 @@ include "include/sidebar.php";
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[Content] Coming Soon</h4>
+                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Info Aktifasi] About</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">
-                    <center>
-                        <img class="picture-w-550" src="assets/images/coming-soon/01.jpg" alt="coming-soon">
-                    </center>
+                    <fieldset>
+                        <div class="form-group row m-b-15">
+                            <label class="col-md-3 col-form-label">Bahasa</label>
+                            <label class="col-md-7 col-form-label">PHP Version 5.6.28</label>
+                        </div>
+                    </fieldset>
                 </div>
             </div>
         </div>
