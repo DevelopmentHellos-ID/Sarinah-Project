@@ -1,5 +1,6 @@
 <?php
-$dbhost = "localhost";
+// $dbhost = "localhost";
+$dbhost = "117.54.102.106";
 $dbusername = "beacukai";
 $dbpassword = "beacukai";
 $dbname = "tpbdb";
