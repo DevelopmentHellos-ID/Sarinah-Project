@@ -35,7 +35,7 @@
 		</ul>
 		<ul class="nav">
 			<li class="nav-header">NAVIGATION</li>
-			<li class="<?= $uriSegments[1] == '' || 'index.php' ? 'active' : '' ?>">
+			<li class="<?= $uriSegments[1] == 'index.php' ? 'active' : '' ?>">
 				<a href="index.php"><i class="fas fa-chart-pie"></i> <span>Dashboard</span></a>
 			</li>
 			<!-- Dokumen Pabean -->
