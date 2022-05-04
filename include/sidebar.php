@@ -29,7 +29,7 @@
 			</li>
 			<li>
 				<ul class="nav nav-profile">
-					<li><a href="javascript:;"><i class="fa fa-cog"></i> Profil</a></li>
+					<li><a href="usr_profile.php"><i class="fa-solid fa-user-gear"></i> Profile</a></li>
 				</ul>
 			</li>
 		</ul>

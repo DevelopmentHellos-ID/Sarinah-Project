@@ -35,7 +35,7 @@ include "include/sidebar.php";
 					<a href="#" class="widget-card widget-card-rounded m-b-20" data-id="widget">
 						<div class="widget-card-cover" style="background-image: url('assets/images/dahboard-bg/ds-bg.png')"></div>
 						<div class="widget-card-content">
-							<b class="text-white">Sistem Informasi Tempat Penimbunan Berikat (S-TPB) Sarinah Persero.</b>
+							<b class="text-white">Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero.</b>
 						</div>
 						<div class="widget-card-content bottom">
 							<i class="fab fa-pushed fa-5x text-indigo"></i>
@@ -100,6 +100,7 @@ include "include/sidebar.php";
 		</div>
 	</div>
 	<!-- end row -->
+	<?php include "include/creator.php"; ?>
 </div>
 <!-- end #content -->
 <?php include "include/panel.php"; ?>

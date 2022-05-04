@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
 				<div class="news-image" style="background-image: url(assets/images/bg-signin/bg-01.png)"></div>
 				<div class="news-caption">
 					<h4 class="caption-title"><b>TPB</b> Sarinah Persero</h4>
-					<p>Sistem Informasi Tempat Penimbunan Berikat (S-TPB) Sarinah Persero | Gedung Sarinah, Jl. M. H. Thamrin No. 11, RT.8/RW.4, Gondangdia, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10350.</p>
+					<p>Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero | Gedung Sarinah, Jl. M. H. Thamrin No. 11, RT.8/RW.4, Gondangdia, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10350.</p>
 				</div>
 			</div>
 			<div class="right-content">

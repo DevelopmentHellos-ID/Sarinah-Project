@@ -13,7 +13,7 @@
 	// 	setTimeout(function() {
 	// 		$.gritter.add({
 	// 			title: 'Selamat datang, <?= $_SESSION['username']; ?>!',
-	// 			text: 'Sistem Informasi Tempat Penimbunan Berikat (S-TPB) Sarinah Persero.',
+	// 			text: 'Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero.',
 	// 			image: 'assets/img/user/user-12.jpg',
 	// 			sticky: true,
 	// 			time: '',
@@ -28,7 +28,7 @@
 			imageWidth: 350,
 			imageHeight: 115,
 			imageAlt: 'Custom image',
-			html: '<font style="font-size: 20px;font-weight: 500;">Sistem Informasi Tempat Penimbunan Berikat (S-TPB) Sarinah Persero</font>',
+			html: '<font style="font-size: 20px;font-weight: 500;">Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero</font>',
 		})
 		history.replaceState({}, '', './index.php');
 	}

@@ -42,6 +42,7 @@ include "include/sidebar.php";
         </div>
     </div>
     <!-- end row -->
+    <?php include "include/creator.php"; ?>
 </div>
 <!-- end #content -->
 <?php include "include/panel.php"; ?>

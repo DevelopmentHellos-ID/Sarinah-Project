@@ -89,12 +89,12 @@
 				<span class="d-none d-md-inline"><?= $_SESSION['username'] ?></span> <b class="caret"></b>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a href="javascript:;" class="dropdown-item">Edit Profile</a>
+				<a href="usr_profile.php" class="dropdown-item"><i class="fa-solid fa-user-gear"></i> Profile</a>
 				<!-- <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a> -->
 				<!-- <a href="javascript:;" class="dropdown-item">Calendar</a> -->
 				<!-- <a href="javascript:;" class="dropdown-item">Setting</a> -->
 				<div class="dropdown-divider"></div>
-				<a href="sign-out.php" class="dropdown-item">Sign Out</a>
+				<a href="sign-out.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Sign Out</a>
 			</div>
 		</li>
 	</ul>
