@@ -7,6 +7,14 @@ include "include/header.php";
 include "include/sidebar.php";
 include "include/cssDatatables.php";
 include "include/cssForm.php";
+
+// SEARCH
+$TableName = '';
+if (isset($_GET['find'])) {
+    $TableName = $_GET['TableName'];
+}
+// END SEARCH
+
 ?>
 <!-- begin #content -->
 <div id="content" class="content">
@@ -35,12 +43,12 @@ include "include/cssForm.php";
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">
-                    <form action="/" method="POST">
+                    <form action="tbl_tpb.php" method="GET">
                         <fieldset>
                             <div class="form-group row m-b-15">
                                 <label class="col-md-3 col-form-label">Pilih Tabel</label>
                                 <div class="col-md-7">
-                                    <select class="default-select2 form-control">
+                                    <select class="default-select2 form-control" name="TableName">
                                         <option value="">-- Pilih Tabel --</option>
                                         <?php
                                         $result = $dbcon->query("SELECT TABLE_NAME FROM view_select_table ORDER BY TABLE_NAME ASC");
@@ -53,7 +61,7 @@ include "include/cssForm.php";
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-7 offset-md-3">
-                                    <button type="submit" class="btn btn-sm btn-info m-r-5">
+                                    <button type="submit" name="find" class="btn btn-sm btn-info m-r-5">
                                         <i class="fa fa-search"></i> Search
                                     </button>
                                     <a href="tbl_tpb.php" type="button" class="btn btn-sm btn-yellow m-r-5">
@@ -89,25 +97,43 @@ include "include/cssForm.php";
                     <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
                         <thead>
                             <tr>
-                                <th width="1%"></th>
-                                <th width="1%" data-orderable="false"></th>
-                                <th class="text-nowrap">Rendering engine</th>
-                                <th class="text-nowrap">Browser</th>
-                                <th class="text-nowrap">Platform(s)</th>
-                                <th class="text-nowrap">Engine version</th>
-                                <th class="text-nowrap">CSS grade</th>
+                                <?php
+                                if (isset($_GET['find'])) { ?>
+                                    <?php
+                                    $columns = $dbcon->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE TABLE_NAME='aktivasi_aplikasi'");
+                                    foreach ($columns as $columns_name) {
+                                    ?>
+                                        <th class="text-nowrap"><?= $columns_name['COLUMN_NAME'] ?></th>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <!-- <th class="text-nowrap"></th> -->
+                                <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd gradeX">
-                                <td width="1%" class="f-s-600 text-inverse">1</td>
-                                <td width="1%" class="with-img"><img src="../assets/img/user/user-1.jpg" class="img-rounded height-30" /></td>
-                                <td>Trident</td>
-                                <td>Internet Explorer 4.0</td>
-                                <td>Win 95+</td>
-                                <td>4</td>
-                                <td>X</td>
-                            </tr>
+                            <?php if (isset($_GET['find'])) { ?>
+                                <?php $data = $dbcon->query("SELECT * FROM aktivasi_aplikasi");  ?>
+                                <?php if (mysqli_num_rows($data) > 0) {
+                                    while ($row_data = mysqli_fetch_array($data)) {
+                                ?>
+                                        <tr class="odd gradeX">
+                                            <td style="display:grid;text-align: center;">
+                                                <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                <?php
+                                }
+                                mysqli_close($dbcon);
+                                ?>
+                            <?php } else { ?>
+                                <tr class="odd gradeX">
+                                    <td style="display:grid;text-align: center;">
+                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
