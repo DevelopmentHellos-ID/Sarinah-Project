@@ -114,3 +114,11 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.css-button {
+    margin-bottom: 15px;
+}
+
+.btn-primary:focus {
+    color: #fff;
+}

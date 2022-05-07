@@ -117,7 +117,16 @@ if (isset($_GET['find'])) {
                                     while ($row_data = mysqli_fetch_array($data)) {
                                 ?>
                                         <tr class="odd gradeX">
-                                            <td style="display:grid;text-align: center;">
+                                            <td style="text-align: center;">
+                                                <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                            </td>
+                                            <td style="text-align: center;">
                                                 <i class="far fa-times-circle no-data"></i> Tidak ada data
                                             </td>
                                         </tr>
@@ -129,6 +138,18 @@ if (isset($_GET['find'])) {
                                 ?>
                             <?php } else { ?>
                                 <tr class="odd gradeX">
+                                    <td style="display:grid;text-align: center;">
+                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                    </td>
+                                    <td style="display:grid;text-align: center;">
+                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                    </td>
+                                    <td style="display:grid;text-align: center;">
+                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                    </td>
+                                    <td style="display:grid;text-align: center;">
+                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                    </td>
                                     <td style="display:grid;text-align: center;">
                                         <i class="far fa-times-circle no-data"></i> Tidak ada data
                                     </td>

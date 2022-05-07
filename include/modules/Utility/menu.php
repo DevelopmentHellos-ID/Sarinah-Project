@@ -19,7 +19,8 @@
                         $uriSegments[1] == 'uti_set_database.php' ||
                         $uriSegments[1] == 'uti_set_server.php' ||
                         // User Manajemen
-                        $uriSegments[1] == 'uti_user_manajemen.php'
+                        $uriSegments[1] == 'uti_user_manajemen_desktop.php' ||
+                        $uriSegments[1] == 'uti_user_manajemen_web.php'
                         ? 'active' : '' ?>">
     <a href="javascript:;">
         <b class="caret"></b>
@@ -85,8 +86,22 @@
                 </li>
             </ul>
         </li>
-        <li class="<?= $uriSegments[1] == 'uti_user_manajemen.php' ? 'active' : '' ?>">
-            <a href="uti_user_manajemen.php">User Manajemen</a>
+        <li class="has-sub <?=
+                            // User Manajemen
+                            $uriSegments[1] == 'uti_user_manajemen_desktop.php' ||
+                                $uriSegments[1] == 'uti_user_manajemen_web.php' ||
+                                $uriSegments[1] == 'uti_set_database.php' ||
+                                $uriSegments[1] == 'uti_set_server.php'
+                                ? 'active' : '' ?>">
+            <a href="javascript:;"><b class="caret"></b> User Manajemen</a>
+            <ul class="sub-menu">
+                <li class="<?= $uriSegments[1] == 'uti_user_manajemen_desktop.php' ? 'active' : '' ?>">
+                    <a href="uti_user_manajemen_desktop.php">User Default</a>
+                </li>
+                <li class="<?= $uriSegments[1] == 'uti_user_manajemen_web.php' ? 'active' : '' ?>">
+                    <a href="uti_user_manajemen_web.php">User Web Sytem</a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>
