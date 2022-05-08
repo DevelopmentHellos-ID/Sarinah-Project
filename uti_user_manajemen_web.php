@@ -120,6 +120,15 @@ if (isset($_POST["add_manajemen_user_web"])) {
                         <?php include "modal/m_uti_user_manajemen_web.php"; ?>
                     </div>
                     <!-- end css-button -->
+                    <!-- Alert -->
+                    <div class="note note-secondary">
+                        <div class="note-icon"><i class="fas fa-info"></i></div>
+                        <div class="note-content">
+                            <h4><b>Informasi!</b></h4>
+                            <p> Jika users telah mengganti password, maka sistem akan menampilkan data <i>encrypt</i> <b>********</b>!</p>
+                        </div>
+                    </div>
+                    <!-- End Alert -->
                     <div class="table-responsive">
                         <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
                             <thead>
@@ -153,10 +162,14 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                             </td>
                                             <td><?= $row['USER_NAME'] ?></td>
                                             <td>
-                                                <?php if ($row['PASSWORD'] == NULL) { ?>
-                                                    <font style="color: red;"><i>Empty</i></font>
+                                                <?php if ($row['PASSWORD'] == 'changeme' || $row['PASSWORD'] == NULL) { ?>
+                                                    <?php if ($row['PASSWORD'] == NULL) { ?>
+                                                        <font style="color: red;"><i>Empty</i></font>
+                                                    <?php } else { ?>
+                                                        <?= $row['PASSWORD'] ?>
+                                                    <?php } ?>
                                                 <?php } else { ?>
-                                                    <?= $row['PASSWORD'] ?>
+                                                    ********
                                                 <?php } ?>
                                             </td>
                                             <td>detail</td>
@@ -176,13 +189,17 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                                 <?php } ?>
                                             </td>
                                             <td>
-                                                <a href="#updateData<?= $row['ID'] ?>" class="btn btn-sm btn-warning" data-toggle="modal" title="Update Data"><i class="fas fa-edit"></i></a>
-                                                <a href="#deleteData<?= $row['ID'] ?>" class="btn btn-sm btn-danger" data-toggle="modal" title="Hapus Data"><i class="fas fa-trash"></i></a>
-                                                <a href="#passwordData<?= $row['ID'] ?>" class="btn btn-sm btn-info" data-toggle="modal" title="Ganti Password"><i class="fas fa-lock"></i></a>
-                                                <?php if ($row['status'] == 0) { ?>
-                                                    <a href="#disabledData<?= $row['ID'] ?>" class="btn btn-sm btn-inverse" data-toggle="modal" title="Non-Aktif Users"><i class="fas fa-ban"></i></a>
-                                                <?php } else if ($row['status'] == 1) { ?>
-                                                    <a href="#enabledData<?= $row['ID'] ?>" class="btn btn-sm btn-success" data-toggle="modal" title="Aktif Users"><i class="fas fa-check"></i></a>
+                                                <?php if ($access['USER_NAME'] == $row['USER_NAME']) { ?>
+                                                    <i>Lakukan perubahan pada halaman profile anda!</i> <a href="usr_profile.php"><b>Klik disini!</b></a>
+                                                <?php } else { ?>
+                                                    <a href="#updateData<?= $row['ID'] ?>" class="btn btn-sm btn-warning" data-toggle="modal" title="Update Data"><i class="fas fa-edit"></i></a>
+                                                    <a href="#deleteData<?= $row['ID'] ?>" class="btn btn-sm btn-danger" data-toggle="modal" title="Hapus Data"><i class="fas fa-trash"></i></a>
+                                                    <a href="#passwordData<?= $row['ID'] ?>" class="btn btn-sm btn-info" data-toggle="modal" title="Ganti Password"><i class="fas fa-lock"></i></a>
+                                                    <?php if ($row['status'] == 0) { ?>
+                                                        <a href="#disabledData<?= $row['ID'] ?>" class="btn btn-sm btn-inverse" data-toggle="modal" title="Non-Aktif Users"><i class="fas fa-ban"></i></a>
+                                                    <?php } else if ($row['status'] == 1) { ?>
+                                                        <a href="#enabledData<?= $row['ID'] ?>" class="btn btn-sm btn-success" data-toggle="modal" title="Aktif Users"><i class="fas fa-check"></i></a>
+                                                    <?php } ?>
                                                 <?php } ?>
                                             </td>
                                         </tr>

@@ -25,6 +25,17 @@ include "include/sidebar.php";
 	<div class="line-page"></div>
 	<!-- begin row -->
 	<div class="row">
+		<div class="col-xl-12 col-md-12">
+			<!-- Alert -->
+			<div class="note note-danger">
+				<div class="note-icon"><i class="fas fa-id-badge"></i></div>
+				<div class="note-content">
+					<h4><b>Lengkapi Profile Anda!</b></h4>
+					<p> Anda belum melengkapi profile anda! <a href="usr_profile.php" style="color:#bd0500;"><b>Klik disini!</b></a> untuk melengkapi data profile anda!</p>
+				</div>
+			</div>
+		</div>
+		<!-- End Alert -->
 		<div class="col-xl-8 col-md-8">
 			<div class="announcement">
 				<marquee class="text-announcement"><b><i class="fas fa-bullhorn"></i> Informasi TPB:</b> ...</marquee>
