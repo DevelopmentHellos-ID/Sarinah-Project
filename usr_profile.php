@@ -3,7 +3,7 @@ include "include/connection.php";
 include "include/restrict.php";
 include "include/head.php";
 include "include/alert.php";
-include "include/header.php";
+include "include/top-header.php";
 include "include/sidebar.php";
 ?>
 <link rel="stylesheet" href="assets/profile/css/profile.css">

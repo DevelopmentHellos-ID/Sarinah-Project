@@ -3,7 +3,7 @@
 <div class="modal fade" id="modal-User-Web-System">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/" method="POST">
+            <form action="uti_user_manajemen_web.php" method="POST">
                 <div class="modal-header">
                     <h4 class="modal-title">[Tambah Data] User Web System</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -18,14 +18,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="IDUsername">Username</label>
-                                    <input type="text" class="form-control" id="IDUsername" placeholder="Username ..." />
+                                    <label for="IDUsername">Username <font style="color: red;">*</font></label>
+                                    <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." required />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="IDPassword">Password</label>
-                                    <input type="password" class="form-control" id="IDPassword" placeholder="Password ..." />
+                                    <input type="password" class="form-control" id="IDPassword" placeholder="Password ..." readonly />
                                 </div>
                             </div>
                             <!-- <div class="col-md-12">
@@ -164,8 +164,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="IDRole">Hak Akses</label>
-                                    <select type="text" class="form-control" name="" id="IDRole">
+                                    <label for="IDRole">Hak Akses <font style="color: red;">*</font></label>
+                                    <select type="text" class="form-control" name="HakAkses" id="IDRole" required>
                                         <option value="">-- Pilih Hak Akses --</option>
                                         <?php
                                         $result = $dbcon->query("SELECT role FROM tbl_role ORDER BY role ASC");
@@ -180,35 +180,38 @@
                                 <label class="col-md-3 col-form-label">Privileges</label>
                                 <div class="col-md-9">
                                     <div class="form-check form-check-inline">
-                                        <input type="checkbox" value="" id="checkbox-inline-1" class="form-check-input" />
+                                        <input type="checkbox" name="able_add" value="Y" id="checkbox-inline-1" class="form-check-input" />
                                         <label class="form-check-label" for="checkbox-inline-1">Insert Data</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input type="checkbox" value="" id="checkbox-inline-2" class="form-check-input" />
+                                        <input type="checkbox" name="able_edit" value="Y" id="checkbox-inline-2" class="form-check-input" />
                                         <label class="form-check-label" for="checkbox-inline-2">Update Data</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input type="checkbox" value="" id="checkbox-inline-3" class="form-check-input" />
+                                        <input type="checkbox" name="able_delete" value="Y" id="checkbox-inline-3" class="form-check-input" />
                                         <label class="form-check-label" for="checkbox-inline-3">Hapus Data</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input type="checkbox" value="" id="checkbox-inline-4" class="form-check-input" />
+                                        <input type="checkbox" name="able_send" value="Y" id="checkbox-inline-4" class="form-check-input" />
                                         <label class="form-check-label" for="checkbox-inline-4">Kirim Data</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkbox checkbox-css m-b-20">
-                                    <input type="checkbox" id="nf_checkbox_css_1" />
+                                    <input type="checkbox" id="nf_checkbox_css_1" name="able_password" value="Y" />
                                     <label for="nf_checkbox_css_1">Klik jika User dapat melakukan update password secara mandiri.</label>
                                 </div>
+                            </div>
+                            <div class="col-md-12">
+                                <font style="color: red;">*</font> <i>Wajib diisi.</i>
                             </div>
                         </div>
                     </fieldset>
                 </div>
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
-                    <a href="javascript:;" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</a>
+                    <button type="submit" name="add_manajemen_user_web" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
                 </div>
             </form>
         </div>
