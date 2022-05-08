@@ -85,6 +85,7 @@ if (isset($_POST["add_manajemen_user_web"])) {
     }
 }
 // END CREATE NEW USER WEB
+
 ?>
 <!-- begin #content -->
 <div id="content" class="content">
@@ -194,7 +195,7 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                                 <?php } else { ?>
                                                     <a href="#updateData<?= $row['ID'] ?>" class="btn btn-sm btn-warning" data-toggle="modal" title="Update Data"><i class="fas fa-edit"></i></a>
                                                     <a href="#deleteData<?= $row['ID'] ?>" class="btn btn-sm btn-danger" data-toggle="modal" title="Hapus Data"><i class="fas fa-trash"></i></a>
-                                                    <a href="#passwordData<?= $row['ID'] ?>" class="btn btn-sm btn-info" data-toggle="modal" title="Ganti Password"><i class="fas fa-lock"></i></a>
+                                                    <a href="uti_user_manajemen_web_resetpassword.php?USER=<?= $row['USER_NAME'] ?>" class="btn btn-sm btn-info" target="_blank" title="Reset Password"><i class="fas fa-lock"></i></a>
                                                     <?php if ($row['status'] == 0) { ?>
                                                         <a href="#disabledData<?= $row['ID'] ?>" class="btn btn-sm btn-inverse" data-toggle="modal" title="Non-Aktif Users"><i class="fas fa-ban"></i></a>
                                                     <?php } else if ($row['status'] == 1) { ?>
@@ -207,47 +208,6 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                         <!-- End Update Data -->
                                         <!-- Delete Data -->
                                         <!-- End Delete Data -->
-                                        <!-- Password Data -->
-                                        <div class="modal fade" id="passwordData<?= $row['ID'] ?>">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <form action="uti_user_manajemen_web.php" method="POST">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">[Ganti Passowrd] User Web System - <?= $row['ID'] ?></h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <fieldset>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div style="margin-bottom: 10px;">
-                                                                            <font style="font-size: 20px;font-weight: 700;"><i class="fas fa-user-check"></i> Sign In Detail</font>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="IDUsername">Username</label>
-                                                                            <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." value="<?= $row['USER_NAME'] ?>" readonly />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="IDPassword">Password</label>
-                                                                            <input type="password" class="form-control" name="Nupdatepassword" id="IDPassword" placeholder="Password ..." required />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </fieldset>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
-                                                            <button type="submit" name="updatepassword" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Password Data -->
                                         <!-- Enabled Data -->
                                         <!-- End Enabled Data -->
                                         <!-- Disbaled Data -->
@@ -292,6 +252,25 @@ if (isset($_POST["add_manajemen_user_web"])) {
             title: 'Data gagal disimpan!',
             icon: 'error',
             text: 'Data gagal disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+
+    // RESET PASSWORD SUCCESS
+    if (window?.location?.href?.indexOf('ResetPasswordSuccess') > -1) {
+        Swal.fire({
+            title: 'Password berhasil direset!',
+            icon: 'success',
+            text: 'Password berhasil direset didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+    // RESET PASSWORD FAILED
+    if (window?.location?.href?.indexOf('ResetPasswordFailed') > -1) {
+        Swal.fire({
+            title: 'Password gagal direset!',
+            icon: 'error',
+            text: 'Password gagal direset didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
