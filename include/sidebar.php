@@ -10,6 +10,11 @@
 		background-size: cover;
 	}
 </style>
+<?php
+$user = $_SESSION['username'];
+$roleSidebar = $dbcon->query("SELECT * FROM view_privileges WHERE USER_NAME='$user' ");
+$accessSidebar = mysqli_fetch_array($roleSidebar);
+?>
 <?php $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)); ?>
 <div id="sidebar" class="sidebar">
 	<div data-scrollbar="true" data-height="100%">
@@ -18,18 +23,31 @@
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
 					<div class="image">
-						<img src="assets/img/user/user-13.jpg" alt="" />
+						<?php if ($accessSidebar['foto'] == NULL || $accessSidebar['foto'] == 'default-user-imge.jpeg') { ?>
+							<img src="assets/images/users/default-user-imge.jpeg" alt="Foto Profile" />
+						<?php } else { ?>
+							<img src="assets/images/users/<?= $accessSidebar['foto'] ?>" alt="Foto Profile" />
+						<?php } ?>
 					</div>
 					<div class="info">
 						<b class="caret pull-right"></b>
-						<?= $_SESSION['username']; ?>
-						<small><?= $_SESSION['username']; ?></small>
+						<!-- NAMA LENGKAP -->
+						<?php if ($accessSidebar['nama_lengkap'] == NULL) { ?>
+							Belum dilengkapi!
+						<?php } else { ?>
+							<?= $accessSidebar['nama_lengkap'] ?>
+						<?php } ?>
+						<!-- END NAMA LENGKAP -->
+						<!-- HAK AKSES -->
+						<small><?= $accessSidebar['role'] ?></small>
+						<!-- END HAK AKSES -->
 					</div>
 				</a>
 			</li>
 			<li>
 				<ul class="nav nav-profile">
 					<li><a href="usr_profile.php"><i class="fa-solid fa-user-gear"></i> Profile</a></li>
+					<li><a href="usr_password.php"><i class="fa-solid fas fa-lock"></i> Ganti Password</a></li>
 				</ul>
 			</li>
 		</ul>

@@ -2,11 +2,12 @@
 include "include/connection.php";
 include "include/restrict.php";
 include "include/head.php";
-// include "include/alert.php";
 include "include/top-header.php";
 include "include/sidebar.php";
 include "include/cssDatatables.php";
+?>
 
+<?php
 // CREATE NEW USER WEB
 if (isset($_POST["add_manajemen_user_web"])) {
 
@@ -15,7 +16,7 @@ if (isset($_POST["add_manajemen_user_web"])) {
     $vald_d = mysqli_fetch_array($cekQuery);
 
     if ($vald_d != NULL) {
-        header("Location: ./uti_user_manajemen_web.php?InputFailed=true");
+        echo "<script>window.location.href='uti_user_manajemen_web.php?UUMWInputFailed=true';</script>";
     } else {
         if ($_POST['able_add'] != 'Y') {
             $able_add = 'N';
@@ -48,6 +49,7 @@ if (isset($_POST["add_manajemen_user_web"])) {
         }
 
         // tbl_users
+        $UNIQ                 = $_POST['UNIQ'];
         $username             = $_POST['username'];
         $password             = 'changeme';
         $DOKUMENBC23          = 'Y';
@@ -63,22 +65,22 @@ if (isset($_POST["add_manajemen_user_web"])) {
         $role                 = $_POST['HakAkses'];
         $status               = '0';
         $created_by           = $_SESSION['username'];
-        $created_date         = date('Y-m-d h:m:a');
+        $created_date         = date('Y-m-d h:m:i');
 
-        $insertData = $dbcon->query("INSERT INTO tbl_users
-                               (ID,USER_NAME,PASSWORD,DOKUMENBC23,DOKUMENBC25,INSERT_DATA,UPDATE_DATA,DELETE_DATA,KIRIM_DATA,UPDATE_PASSWORD)
+        $query = $dbcon->query("INSERT INTO tbl_users
+                               (ID,IDUNIQ,USER_NAME,PASSWORD,DOKUMENBC23,DOKUMENBC25,INSERT_DATA,UPDATE_DATA,DELETE_DATA,KIRIM_DATA,UPDATE_PASSWORD)
                                VALUES
-                               ('','$username','$password','$DOKUMENBC23','$DOKUMENBC25','$able_add','$able_edit','$able_delete','$able_send','$able_password')");
+                               ('','$UNIQ','$username','$password','$DOKUMENBC23','$DOKUMENBC25','$able_add','$able_edit','$able_delete','$able_send','$able_password')");
 
-        $insertData .= $dbcon->query("INSERT INTO tbl_pegawai
-                               (id_pegawai,foto,username,role,status,created_by,created_date)
+        $query .= $dbcon->query("INSERT INTO tbl_pegawai
+                               (id_pegawai,foto,IDUNIQ,username,role,status,created_by,created_date)
                                VALUES
-                               ('','$foto','$username','$role','$status','$created_by','$created_date')");
+                               ('','$foto','$UNIQ','$username','$role','$status','$created_by','$created_date')");
 
-        if ($insertData) {
-            header("Location: ./uti_user_manajemen_web.php?InputSuccess=true");
+        if ($query) {
+            echo "<script>window.location.href='uti_user_manajemen_web.php?UUMWInputSuccess=true';</script>";
         } else {
-            header("Location: ./uti_user_manajemen_web.php?InputFailed=true");
+            echo "<script>window.location.href='uti_user_manajemen_web.php?UUMWInputFailed=true';</script>";
         }
     }
 }
@@ -126,8 +128,6 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                     <th width="1%" data-orderable="false"></th>
                                     <th class="text-nowrap">Username</th>
                                     <th class="text-nowrap">Password</th>
-                                    <th class="text-nowrap">NIP/NIK</th>
-                                    <th class="text-nowrap">Nama Lengkap</th>
                                     <th class="text-nowrap">Detail</th>
                                     <th class="text-nowrap">Status</th>
                                     <th class="text-nowrap">Aksi</th>
@@ -135,6 +135,7 @@ if (isset($_POST["add_manajemen_user_web"])) {
                             </thead>
                             <tbody>
                                 <?php
+                                $UserLogin = $_SESSION['username'];
                                 $result = $dbcon->query("SELECT * FROM view_privileges ORDER BY ID DESC LIMIT 50");
                                 if (mysqli_num_rows($result) > 0) {
                                     $no = 0;
@@ -143,23 +144,106 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                 ?>
                                         <tr class="odd gradeX">
                                             <td width="1%" class="f-s-600 text-inverse"><?= $no ?></td>
-                                            <td width="1%" class="with-img"><img src="assets/img/user/user-1.jpg" class="img-rounded height-30" /></td>
+                                            <td width="1%" class="with-img">
+                                                <?php if ($row['foto'] == NULL || $row['foto'] == 'default-user-imge.jpeg') { ?>
+                                                    <img src="assets/images/users/default-user-imge.jpeg" alt="Foto Profile" class="img-rounded height-30" />
+                                                <?php } else { ?>
+                                                    <img src="assets/images/users/<?= $row['foto'] ?>" alt="Foto Profile" class="img-rounded height-30" />
+                                                <?php } ?>
+                                            </td>
                                             <td><?= $row['USER_NAME'] ?></td>
-                                            <td><?= $row['PASSWORD'] ?></td>
-                                            <td><?= $row['NIP'] ?>/<?= $row['NIK'] ?></td>
-                                            <td><?= $row['nama_lengkap'] ?></td>
+                                            <td>
+                                                <?php if ($row['PASSWORD'] == NULL) { ?>
+                                                    <font style="color: red;"><i>Empty</i></font>
+                                                <?php } else { ?>
+                                                    <?= $row['PASSWORD'] ?>
+                                                <?php } ?>
+                                            </td>
                                             <td>detail</td>
-                                            <td>status</td>
-                                            <td>aksi</td>
+                                            <td>
+                                                <!-- 0 = User Baru/Aktif -->
+                                                <!-- 1 = User Non-Aktif -->
+                                                <!-- 2 = User Resign -->
+                                                <?php if ($row['status'] == 0) { ?>
+                                                    <label class="label label-success">User Baru/Aktif</label>
+                                                    <font style="font-size: 10px;"><?= $row['created_by'] ?> - <?= $row['created_date'] ?></font>
+                                                <?php } else if ($row['status'] == 1) { ?>
+                                                    <label class="label label-inverse">User Non-Aktif</label>
+                                                    <font style="font-size: 10px;"><?= $row['created_by'] ?> - <?= $row['created_date'] ?></font>
+                                                <?php } else if ($row['status'] == 2) { ?>
+                                                    <label class="label label-info">User Resign - Out Date <?= $row['out_tgl'] ?></label>
+                                                    <font style="font-size: 10px;"><?= $row['created_by'] ?> - <?= $row['created_date'] ?></font>
+                                                <?php } ?>
+                                            </td>
+                                            <td>
+                                                <a href="#updateData<?= $row['ID'] ?>" class="btn btn-sm btn-warning" data-toggle="modal" title="Update Data"><i class="fas fa-edit"></i></a>
+                                                <a href="#deleteData<?= $row['ID'] ?>" class="btn btn-sm btn-danger" data-toggle="modal" title="Hapus Data"><i class="fas fa-trash"></i></a>
+                                                <a href="#passwordData<?= $row['ID'] ?>" class="btn btn-sm btn-info" data-toggle="modal" title="Ganti Password"><i class="fas fa-lock"></i></a>
+                                                <?php if ($row['status'] == 0) { ?>
+                                                    <a href="#disabledData<?= $row['ID'] ?>" class="btn btn-sm btn-inverse" data-toggle="modal" title="Non-Aktif Users"><i class="fas fa-ban"></i></a>
+                                                <?php } else if ($row['status'] == 1) { ?>
+                                                    <a href="#enabledData<?= $row['ID'] ?>" class="btn btn-sm btn-success" data-toggle="modal" title="Aktif Users"><i class="fas fa-check"></i></a>
+                                                <?php } ?>
+                                            </td>
                                         </tr>
+                                        <!-- Update Data -->
+                                        <!-- End Update Data -->
+                                        <!-- Delete Data -->
+                                        <!-- End Delete Data -->
+                                        <!-- Password Data -->
+                                        <div class="modal fade" id="passwordData<?= $row['ID'] ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="uti_user_manajemen_web.php" method="POST">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">[Ganti Passowrd] User Web System - <?= $row['ID'] ?></h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <fieldset>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div style="margin-bottom: 10px;">
+                                                                            <font style="font-size: 20px;font-weight: 700;"><i class="fas fa-user-check"></i> Sign In Detail</font>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="IDUsername">Username</label>
+                                                                            <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." value="<?= $row['USER_NAME'] ?>" readonly />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="IDPassword">Password</label>
+                                                                            <input type="password" class="form-control" name="Nupdatepassword" id="IDPassword" placeholder="Password ..." required />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
+                                                            <button type="submit" name="updatepassword" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Password Data -->
+                                        <!-- Enabled Data -->
+                                        <!-- End Enabled Data -->
+                                        <!-- Disbaled Data -->
+                                        <!-- End Disbaled Data -->
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <tr>
+                                        <td colspan="6" style="display:grid;text-align: center;">
+                                            <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                        </td>
+                                    </tr>
                                 <?php }
-                                } else {
-                                    echo "<tr>";
-                                    echo "<td colspan='4' align='center'><b><i>" . "No Available Record" . "</i></b></td>";
-                                    echo "</tr>";
-                                }
-                                mysqli_close($dbcon);
-                                ?>
+                                mysqli_close($dbcon); ?>
                             </tbody>
                         </table>
                     </div>
@@ -176,7 +260,8 @@ if (isset($_POST["add_manajemen_user_web"])) {
 <?php include "include/jsDatatables.php"; ?>
 <!-- Add Success -->
 <script type="text/javascript">
-    if (window?.location?.href?.indexOf('InputSuccess') > -1) {
+    // INSERT SUCCESS
+    if (window?.location?.href?.indexOf('UUMWInputSuccess') > -1) {
         Swal.fire({
             title: 'Data berhasil disimpan!',
             icon: 'success',
@@ -184,8 +269,8 @@ if (isset($_POST["add_manajemen_user_web"])) {
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
-
-    if (window?.location?.href?.indexOf('InputFailed') > -1) {
+    // INSERT FAILED
+    if (window?.location?.href?.indexOf('UUMWInputFailed') > -1) {
         Swal.fire({
             title: 'Data gagal disimpan!',
             icon: 'error',

@@ -48,7 +48,11 @@ include "include/sidebar.php";
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="assets/images/users/tpb/user.png" class="rounded-circle">
+                                    <?php if ($accessSidebar['foto'] == NULL || $accessSidebar['foto'] == 'default-user-imge.jpeg') { ?>
+                                        <img src="assets/images/users/default-user-imge.jpeg" class="rounded-circle" alt="Foto Profile" />
+                                    <?php } else { ?>
+                                        <img src="assets/images/users/<?= $accessSidebar['foto'] ?>" class="rounded-circle" alt="Foto Profile" />
+                                    <?php } ?>
                                 </a>
                             </div>
                         </div>
@@ -85,7 +89,7 @@ include "include/sidebar.php";
                         <div class="row align-items-center">
                             <div class="col-8">
                                 <h3 class="mb-0">
-                                    <font style="font-weight: 200;">Ubah</font> Profil
+                                    <font style="font-weight: 200;">Perbarui</font> Profile
                                 </h3>
                             </div>
                             <div class="col-4 text-right">
@@ -96,20 +100,20 @@ include "include/sidebar.php";
                     <div class="card-body">
                         <form action="#!" method="POST">
                             <div class="pl-lg-4">
-                                <h6 class="heading-small text-muted mb-4">Akun</h6>
+                                <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Username</label>
-                                            <input type="text" id="input-username" class="form-control" placeholder="Username" name="user_name" value="<?= $_SESSION['username'] ?>" disabled>
+                                            <input type="text" class="form-control" placeholder="Username" name="user_name" id="input-username" value="<?= $access['USER_NAME'] ?>" disabled>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-email">Email <font style="color: red;">*</font></label>
-                                            <!-- Jika Email Diisi telah diverifikasi menggungg verifikasi dari token -->
+                                            <!-- Jika Email Diisi telah diverifikasi menunggu verifikasi dari token -->
                                             <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
-                                                <input type="email" id="input-email" class="form-control" name="user_email" value="<?= $_SESSION['username'] ?>">
+                                                <input type="email" class="form-control" name="user_email" id="input-email" value="<?= $access['email'] ?>" placeholder="Email ...">
                                                 <span class="input-group-btn input-group-append">
                                                     <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
                                                 </span>
@@ -122,13 +126,13 @@ include "include/sidebar.php";
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-nama-lengkap">Nama Lengkap</label>
-                                            <input type="text" id="input-nama-lengkap" class="form-control" placeholder="Nama Lengkap" name="nama" value="<?= $_SESSION['username'] ?>" disabled>
+                                            <input type="text" class="form-control" name="nama" id="input-nama-lengkap" value="<?= $access['nama_lengkap'] ?>" placeholder="Nama Lengkap ..." disabled>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-akses-dias">Akses TPB</label>
-                                            <input type="text" id="input-akses-dias" class="form-control" disabled placeholder="Akses DIAS" value="...">
+                                            <label class="form-control-label" for="input-akses-dias">Hak Akses TPB</label>
+                                            <input type="text" class="form-control" id="input-akses-dias" placeholder="Hak Akses TPB" value="<?= $access['role'] ?>" disabled>
                                         </div>
                                     </div>
                                 </div>

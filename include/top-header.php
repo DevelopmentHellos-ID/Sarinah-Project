@@ -1,4 +1,8 @@
-<!-- begin #header -->
+<?php
+$user = $_SESSION['username'];
+$role = $dbcon->query("SELECT * FROM view_privileges WHERE USER_NAME='$user' ");
+$access = mysqli_fetch_array($role);
+?>
 <div id="header" class="header navbar-default">
 	<!-- begin navbar-header -->
 	<div class="navbar-header">
@@ -85,13 +89,17 @@
 		</li> -->
 		<li class="dropdown navbar-user">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<img src="assets/img/user/user-13.jpg" alt="" />
-				<span class="d-none d-md-inline"><?= $_SESSION['username'] ?></span> <b class="caret"></b>
+				<?php if ($access['foto'] == NULL || $access['foto'] == 'default-user-imge.jpeg') { ?>
+					<img src="assets/images/users/default-user-imge.jpeg" alt="Foto Profile" />
+				<?php } else { ?>
+					<img src="assets/images/users/<?= $access['foto'] ?>" alt="Foto Profile" />
+				<?php } ?>
+				<span class="d-none d-md-inline"><?= $access['USER_NAME'] ?></span> <b class="caret"></b>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
 				<a href="usr_profile.php" class="dropdown-item"><i class="fa-solid fa-user-gear"></i> Profile</a>
 				<!-- <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a> -->
-				<!-- <a href="javascript:;" class="dropdown-item">Calendar</a> -->
+				<a href="usr_password.php" class="dropdown-item"><i class="fa-solid fas fa-lock"></i> Ganti Password</a>
 				<!-- <a href="javascript:;" class="dropdown-item">Setting</a> -->
 				<div class="dropdown-divider"></div>
 				<a href="sign-out.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Sign Out</a>

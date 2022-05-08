@@ -39,7 +39,7 @@ if (isset($_GET['find'])) {
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> DB Tabel TPB</h4>
+                    <h4 class="panel-title"><i class="fas fa-filter"></i> Filter DB Tabel TPB</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">
@@ -48,13 +48,24 @@ if (isset($_GET['find'])) {
                             <div class="form-group row m-b-15">
                                 <label class="col-md-3 col-form-label">Pilih Tabel</label>
                                 <div class="col-md-7">
-                                    <select class="default-select2 form-control" name="TableName">
-                                        <option value="">-- Pilih Tabel --</option>
-                                        <?php
-                                        $result = $dbcon->query("SELECT TABLE_NAME FROM view_select_table ORDER BY TABLE_NAME ASC");
-                                        foreach ($result as $row) {
-                                        ?>
-                                            <option value="<?= $row['TABLE_NAME'] ?>"><?= $row['TABLE_NAME'] ?></option>
+                                    <select class="default-select2 form-control" name="TableName" required>
+                                        <?php if ($TableName == NULL) { ?>
+                                            <option value="">-- Pilih Tabel --</option>
+                                            <?php
+                                            $result = $dbcon->query("SELECT TABLE_NAME FROM view_select_table ORDER BY TABLE_NAME ASC");
+                                            foreach ($result as $row) {
+                                            ?>
+                                                <option value="<?= $row['TABLE_NAME'] ?>"><?= $row['TABLE_NAME'] ?></option>
+                                            <?php } ?>
+                                        <?php } else { ?>
+                                            <option value="<?= $TableName ?>"><?= $TableName ?></option>
+                                            <option value="">-- Pilih Tabel --</option>
+                                            <?php
+                                            $result = $dbcon->query("SELECT TABLE_NAME FROM view_select_table ORDER BY TABLE_NAME ASC");
+                                            foreach ($result as $row) {
+                                            ?>
+                                                <option value="<?= $row['TABLE_NAME'] ?>"><?= $row['TABLE_NAME'] ?></option>
+                                            <?php } ?>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -67,15 +78,6 @@ if (isset($_GET['find'])) {
                                     <a href="tbl_tpb.php" type="button" class="btn btn-sm btn-yellow m-r-5">
                                         <i class="fa fa-refresh"></i> Reset
                                     </a>
-                                    <!-- <button type="submit" class="btn btn-sm btn-primary m-r-5">
-                                        <i class="fa fa-eye"></i> View
-                                    </button>
-                                    <button type="submit" class="btn btn-sm btn-info m-r-5">
-                                        <i class="fa-solid fa-file-excel"></i> Export Excel
-                                    </button>
-                                    <button type="submit" class="btn btn-sm btn-dark m-r-5">
-                                        <i class="fa-solid fa-print"></i> Print
-                                    </button> -->
                                 </div>
                             </div>
                         </fieldset>
@@ -90,73 +92,67 @@ if (isset($_GET['find'])) {
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> DB Tabel TPB</h4>
+                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Data Tabel]
+                        <font style="text-transform: uppercase;"><?= $TableName ?></font>
+                    </h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">
-                    <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
-                        <thead>
-                            <tr>
-                                <?php
-                                if (isset($_GET['find'])) { ?>
+                    <div class="table-responsive">
+                        <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
+                            <thead>
+                                <tr>
                                     <?php
-                                    $columns = $dbcon->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE TABLE_NAME='aktivasi_aplikasi'");
-                                    foreach ($columns as $columns_name) {
-                                    ?>
-                                        <th class="text-nowrap"><?= $columns_name['COLUMN_NAME'] ?></th>
+                                    if (isset($_GET['find'])) { ?>
+                                        <th class="text-nowrap">#</th>
+                                        <?php
+                                        $TableName = $_GET['TableName'];
+                                        $columns = $dbcon->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE TABLE_NAME='$TableName'");
+                                        foreach ($columns as $columns_name) {
+                                        ?>
+                                            <th class="text-nowrap"><?= $columns_name['COLUMN_NAME'] ?></th>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <!-- <th class="text-nowrap"></th> -->
                                     <?php } ?>
-                                <?php } else { ?>
-                                    <!-- <th class="text-nowrap"></th> -->
-                                <?php } ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (isset($_GET['find'])) { ?>
-                                <?php $data = $dbcon->query("SELECT * FROM aktivasi_aplikasi");  ?>
-                                <?php if (mysqli_num_rows($data) > 0) {
-                                    while ($row_data = mysqli_fetch_array($data)) {
-                                ?>
-                                        <tr class="odd gradeX">
-                                            <td style="text-align: center;">
-                                                <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                            </td>
-                                            <td style="text-align: center;">
-                                                <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                <?php } else { ?>
-                                <?php
-                                }
-                                mysqli_close($dbcon);
-                                ?>
-                            <?php } else { ?>
-                                <tr class="odd gradeX">
-                                    <td style="display:grid;text-align: center;">
-                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                    </td>
-                                    <td style="display:grid;text-align: center;">
-                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                    </td>
-                                    <td style="display:grid;text-align: center;">
-                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                    </td>
-                                    <td style="display:grid;text-align: center;">
-                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                    </td>
-                                    <td style="display:grid;text-align: center;">
-                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                    </td>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php if (isset($_GET['find'])) { ?>
+                                    <?php
+                                    $TableName = $_GET['TableName'];
+                                    $data = $dbcon->query("SELECT * FROM $TableName");
+                                    ?>
+                                    <?php if (mysqli_num_rows($data) > 0) {
+                                        $no = 0;
+                                        while ($row_data = mysqli_fetch_array($data)) {
+                                            $no++;
+                                    ?>
+                                            <tr class="odd gradeX">
+                                                <td width="1%" class="f-s-600 text-inverse"><?= $no ?>.</td>
+                                                <?php
+                                                $columns = $dbcon->query("SELECT COLUMN_NAME FROM information_schema.columns WHERE TABLE_NAME='$TableName'");
+                                                foreach ($columns as $columns_name) {
+                                                ?>
+                                                    <td class="text-nowrap"><?= $row_data[$columns_name['COLUMN_NAME']] ?></td>
+                                                <?php } ?>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                    <?php
+                                    }
+                                    mysqli_close($dbcon);
+                                    ?>
+                                <?php } else { ?>
+                                    <tr class="odd gradeX">
+                                        <td style="display:grid;text-align: center;">
+                                            <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

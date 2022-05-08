@@ -1,5 +1,5 @@
 <!-- Add Users -->
-<a href="#modal-User-Web-System" class="btn btn-sm btn-primary" data-toggle="modal"><i class="fas fa-plus-circle"></i> Tambah Data</a>
+<a href="#modal-User-Web-System" class="btn btn-sm btn-primary" data-toggle="modal" title="Tambah Data"><i class="fas fa-plus-circle"></i> Tambah Data</a>
 <div class="modal fade" id="modal-User-Web-System">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -20,6 +20,7 @@
                                 <div class="form-group">
                                     <label for="IDUsername">Username <font style="color: red;">*</font></label>
                                     <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." required />
+                                    <input type="hidden" name="UNIQ" value="USR<?= date('my') ?><?= substr(uniqid(), 5); ?>" />
                                 </div>
                             </div>
                             <div class="col-md-6">

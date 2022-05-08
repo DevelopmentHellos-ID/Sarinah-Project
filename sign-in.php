@@ -30,9 +30,10 @@ if (isset($_POST['submit'])) {
 		$_SESSION['username'] = $user;
 		// END START SESSION
 
-		$query = $dbcon->query("INSERT INTO tbl_log (id,log_username,log_type,log_date,log_devicename,log_ip,log_browser)
-											VALUES
-													('','$log_user','$log_type','$log_date','$log_device','$log_ip','$log_browser')");
+		$query = $dbcon->query("INSERT INTO tbl_log 
+								(id,log_username,log_type,log_date,log_devicename,log_ip,log_browser)
+								VALUES
+								('','$log_user','$log_type','$log_date','$log_device','$log_ip','$log_browser')");
 		if ($query) {
 			header("Location: ./index.php?SignInsuccess=true");
 		} else {
@@ -141,6 +142,7 @@ if (isset($_POST['submit'])) {
 	</script>
 	<!-- End Show Password -->
 	<script type="text/javascript">
+		// Gagal Sign In
 		if (window?.location?.href?.indexOf('error') > -1) {
 			Swal.fire({
 				title: 'Gagal Sign In!',
@@ -151,11 +153,21 @@ if (isset($_POST['submit'])) {
 			history.replaceState({}, '', './sign-in.php');
 		}
 
-		if (window?.location?.href?.indexOf('errorAccess') > -1) {
+		// Tidak Ada Akses
+		if (window?.location?.href?.indexOf('NoAccess') > -1) {
 			Swal.fire({
 				title: 'Tidak Ada Akses!',
-				icon: 'error',
-				text: 'Contact Administrator!',
+				icon: 'info',
+				text: 'Hubungi Administrator TPB Sarinah Persero!',
+			})
+			history.replaceState({}, '', './sign-in.php');
+		}
+
+		if (window?.location?.href?.indexOf('OutAccess') > -1) {
+			Swal.fire({
+				title: 'Berhasil Sign Out!',
+				icon: 'success',
+				text: 'Anda telah mengakhiri Session anda pada Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero!',
 			})
 			history.replaceState({}, '', './sign-in.php');
 		}

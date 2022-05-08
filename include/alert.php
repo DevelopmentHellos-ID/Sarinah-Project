@@ -32,4 +32,14 @@
 		})
 		history.replaceState({}, '', './index.php');
 	}
+
+	// UPDATE PASSWORD SUCCESS
+	if (window?.location?.href?.indexOf('SUpdatePasswordSuccessCC') > -1) {
+		Swal.fire({
+			title: 'Password berhasil diupdate!',
+			icon: 'success',
+			text: 'Password berhasil diupdate didalam sistem TPB Sarinah Persero!'
+		})
+		history.replaceState({}, '', './index.php');
+	}
 </script>
