@@ -205,8 +205,29 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                             </td>
                                         </tr>
                                         <!-- Update Data -->
+
                                         <!-- End Update Data -->
                                         <!-- Delete Data -->
+                                        <div class="modal fade" id="deleteData<?= $row['ID'] ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">[Hapus Data] User Web System - <?= $row['ID'] ?></h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="alert alert-danger m-b-0">
+                                                            <h5><i class="fa fa-info-circle"></i> [Hapus Data] User Web System - <?= $row['ID'] ?></h5>
+                                                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a href="javascript:;" class="btn btn-warning" data-dismiss="modal">Tidak</a>
+                                                        <a href="javascript:;" class="btn btn-danger" data-dismiss="modal">Ya</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- End Delete Data -->
                                         <!-- Enabled Data -->
                                         <!-- End Enabled Data -->
