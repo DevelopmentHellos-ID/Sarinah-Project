@@ -86,6 +86,21 @@ if (isset($_POST["add_manajemen_user_web"])) {
 }
 // END CREATE NEW USER WEB
 
+// DELETE NEW USER WEB
+if (isset($_POST["NDeleteData"])) {
+
+    $ID             = $_POST['uid'];
+
+    $query = mysql_query("DELETE FROM tb_cnee WHERE user_id='$ID'");
+
+    if ($query) {
+        header("Location: ./iou_adm_cnee.php?DeleteSuccess=true");
+    } else {
+        header("Location: ./iou_adm_cnee.php?DeleteFailed=true");
+    }
+}
+// END DELETE NEW USER WEB
+
 ?>
 <!-- begin #content -->
 <div id="content" class="content">
@@ -211,20 +226,22 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                         <div class="modal fade" id="deleteData<?= $row['ID'] ?>">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">[Hapus Data] User Web System - <?= $row['ID'] ?></h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="alert alert-danger m-b-0">
-                                                            <h5><i class="fa fa-info-circle"></i> [Hapus Data] User Web System - <?= $row['ID'] ?></h5>
-                                                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                                    <form action="" method="POST">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">[Hapus Data] User Web System - <?= $row['ID'] ?></h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <a href="javascript:;" class="btn btn-warning" data-dismiss="modal">Tidak</a>
-                                                        <a href="javascript:;" class="btn btn-danger" data-dismiss="modal">Ya</a>
-                                                    </div>
+                                                        <div class="modal-body">
+                                                            <div class="alert alert-danger m-b-0">
+                                                                <h5><i class="fa fa-info-circle"></i> Anda yakin akan menghapus data ini?</h5>
+                                                                <p>Anda tidak akan melihat data ini lagi, data akan di hapus secara permanen pada sistem informasi TPB!<br><i>"Silahkan klik <b>Ya</b> untuk melanjutkan proses penghapusan data."</i></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="javascript:;" class="btn btn-warning" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tidak</a>
+                                                            <button type="submit" class="btn btn-danger" name="NDeleteData"><i class="fas fa-check-circle"></i> Ya</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
