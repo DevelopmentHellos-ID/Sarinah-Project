@@ -130,8 +130,8 @@
                                     <select type="text" class="form-control" name="" id="IDDepartment">
                                         <option value="">-- Pilih Departemen --</option>
                                         <?php
-                                        $result = $dbcon->query("SELECT department FROM tbl_department ORDER BY department ASC");
-                                        foreach ($result as $RowDepartment) {
+                                        $resultDepartment = $dbcon->query("SELECT department FROM tbl_department ORDER BY department ASC");
+                                        foreach ($resultDepartment as $RowDepartment) {
                                         ?>
                                             <option value="<?= $RowDepartment['department'] ?>"><?= $RowDepartment['department'] ?></option>
                                         <?php } ?>
@@ -144,8 +144,8 @@
                                     <select type="text" class="form-control" name="" id="IDJabatan">
                                         <option value="">-- Pilih Jabatan --</option>
                                         <?php
-                                        $result = $dbcon->query("SELECT jabatan FROM tbl_jabatan ORDER BY jabatan ASC");
-                                        foreach ($result as $RowJabatan) {
+                                        $resultJabatan = $dbcon->query("SELECT jabatan FROM tbl_jabatan ORDER BY jabatan ASC");
+                                        foreach ($resultJabatan as $RowJabatan) {
                                         ?>
                                             <option value="<?= $RowJabatan['jabatan'] ?>"><?= $RowJabatan['jabatan'] ?></option>
                                         <?php } ?>
@@ -169,10 +169,10 @@
                                     <select type="text" class="form-control" name="HakAkses" id="IDRole" required>
                                         <option value="">-- Pilih Hak Akses --</option>
                                         <?php
-                                        $result = $dbcon->query("SELECT role FROM tbl_role ORDER BY role ASC");
-                                        foreach ($result as $HakAkses) {
+                                        $resultHakAkses = $dbcon->query("SELECT role FROM tbl_role ORDER BY role ASC");
+                                        foreach ($resultHakAkses as $rowHakAkses) {
                                         ?>
-                                            <option value="<?= $HakAkses['role'] ?>"><?= $HakAkses['role'] ?></option>
+                                            <option value="<?= $rowHakAkses['role'] ?>"><?= $rowHakAkses['role'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

@@ -6,7 +6,6 @@ include "include/top-header.php";
 include "include/sidebar.php";
 include "include/cssDatatables.php";
 ?>
-
 <?php
 // CREATE NEW USER WEB
 if (isset($_POST["add_manajemen_user_web"])) {
@@ -89,14 +88,16 @@ if (isset($_POST["add_manajemen_user_web"])) {
 // DELETE NEW USER WEB
 if (isset($_POST["NDeleteData"])) {
 
-    $ID             = $_POST['uid'];
+    $IDUNIQ             = $_POST['IDUNIQ'];
 
-    $query = mysql_query("DELETE FROM tb_cnee WHERE user_id='$ID'");
+    $query = $dbcon->query("DELETE FROM tbl_users WHERE IDUNIQ='$IDUNIQ'");
+
+    $query .= $dbcon->query("DELETE FROM tbl_pegawai WHERE IDUNIQ='$IDUNIQ'");
 
     if ($query) {
-        header("Location: ./iou_adm_cnee.php?DeleteSuccess=true");
+        echo "<script>window.location.href='uti_user_manajemen_web.php?DeleteSuccess=true';</script>";
     } else {
-        header("Location: ./iou_adm_cnee.php?DeleteFailed=true");
+        echo "<script>window.location.href='uti_user_manajemen_web.php?DeleteFailed=true';</script>";
     }
 }
 // END DELETE NEW USER WEB
@@ -124,13 +125,15 @@ if (isset($_POST["NDeleteData"])) {
     <div class="line-page"></div>
     <!-- begin row -->
     <div class="row">
+        <!-- begin col-6 -->
         <div class="col-xl-12">
-            <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
+            <!-- begin panel -->
+            <div class="panel panel-inverse" data-sortable-id="ui-modal-notification-2">
                 <div class="panel-heading">
                     <h4 class="panel-title"><i class="fas fa-info-circle"></i> [User Manajemen] User Web System</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
-                <div class="panel-body text-inverse">
+                <div class="panel-body">
                     <!-- css-button -->
                     <div class="css-button">
                         <?php include "modal/m_uti_user_manajemen_web.php"; ?>
@@ -153,7 +156,6 @@ if (isset($_POST["NDeleteData"])) {
                                     <th width="1%" data-orderable="false"></th>
                                     <th class="text-nowrap">Username</th>
                                     <th class="text-nowrap">Password</th>
-                                    <th class="text-nowrap">Detail</th>
                                     <th class="text-nowrap">Status</th>
                                     <th class="text-nowrap">Aksi</th>
                                 </tr>
@@ -161,14 +163,14 @@ if (isset($_POST["NDeleteData"])) {
                             <tbody>
                                 <?php
                                 $UserLogin = $_SESSION['username'];
-                                $result = $dbcon->query("SELECT * FROM view_privileges ORDER BY ID DESC LIMIT 50");
-                                if (mysqli_num_rows($result) > 0) {
+                                $dataTable = $dbcon->query("SELECT * FROM view_privileges ORDER BY ID DESC LIMIT 50");
+                                if (mysqli_num_rows($dataTable) > 0) {
                                     $no = 0;
-                                    while ($row = mysqli_fetch_array($result)) {
+                                    while ($row = mysqli_fetch_array($dataTable)) {
                                         $no++;
                                 ?>
                                         <tr class="odd gradeX">
-                                            <td width="1%" class="f-s-600 text-inverse"><?= $no ?></td>
+                                            <td width="1%" class="f-s-600 text-inverse"><?= $no ?>.</td>
                                             <td width="1%" class="with-img">
                                                 <?php if ($row['foto'] == NULL || $row['foto'] == 'default-user-imge.jpeg') { ?>
                                                     <img src="assets/images/users/default-user-imge.jpeg" alt="Foto Profile" class="img-rounded height-30" />
@@ -188,7 +190,6 @@ if (isset($_POST["NDeleteData"])) {
                                                     ********
                                                 <?php } ?>
                                             </td>
-                                            <td>detail</td>
                                             <td>
                                                 <!-- 0 = User Baru/Aktif -->
                                                 <!-- 1 = User Non-Aktif -->
@@ -205,7 +206,7 @@ if (isset($_POST["NDeleteData"])) {
                                                 <?php } ?>
                                             </td>
                                             <td>
-                                                <?php if ($access['USER_NAME'] == $row['USER_NAME']) { ?>
+                                                <?php if ($_SESSION['username'] == $row['USER_NAME']) { ?>
                                                     <i>Lakukan perubahan pada halaman profile anda!</i> <a href="usr_profile.php"><b>Klik disini!</b></a>
                                                 <?php } else { ?>
                                                     <a href="#updateData<?= $row['ID'] ?>" class="btn btn-sm btn-warning" data-toggle="modal" title="Update Data"><i class="fas fa-edit"></i></a>
@@ -220,8 +221,98 @@ if (isset($_POST["NDeleteData"])) {
                                             </td>
                                         </tr>
                                         <!-- Update Data -->
-
+                                        <!-- Add Users -->
+                                        <div class="modal fade" id="updateData<?= $row['ID'] ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="uti_user_manajemen_web.php" method="POST">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">[Tambah Data] User Web System</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <fieldset>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div style="margin-bottom: 10px;">
+                                                                            <font style="font-size: 20px;font-weight: 700;"><i class="fas fa-user-check"></i> Sign In Detail</font>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="IDUsername">Username <font style="color: red;">*</font></label>
+                                                                            <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." required />
+                                                                            <input type="hidden" name="UNIQ" value="USR<?= date('my') ?><?= substr(uniqid(), 5); ?>" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="IDPassword">Password</label>
+                                                                            <input type="password" class="form-control" id="IDPassword" placeholder="Password ..." readonly />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div style="margin-bottom: 10px;">
+                                                                            <font style="font-size: 20px;font-weight: 700;"><i class="fas fa-user-cog"></i> Hak Akses</font>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="IDRole">Hak Akses <font style="color: red;">*</font></label>
+                                                                            <select type="text" class="form-control" name="HakAkses" id="IDRole" required>
+                                                                                <option value="">-- Pilih Hak Akses --</option>
+                                                                                <?php
+                                                                                $resultHakAkses = $dbcon->query("SELECT role FROM tbl_role ORDER BY role ASC");
+                                                                                foreach ($resultHakAkses as $rowHakAkses) {
+                                                                                ?>
+                                                                                    <option value="<?= $rowHakAkses['role'] ?>"><?= $rowHakAkses['role'] ?></option>
+                                                                                <?php } ?>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label class="col-md-3 col-form-label">Privileges</label>
+                                                                        <div class="col-md-9">
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input type="checkbox" name="able_add" value="Y" id="checkbox-inline-1" class="form-check-input" />
+                                                                                <label class="form-check-label" for="checkbox-inline-1">Insert Data</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input type="checkbox" name="able_edit" value="Y" id="checkbox-inline-2" class="form-check-input" />
+                                                                                <label class="form-check-label" for="checkbox-inline-2">Update Data</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input type="checkbox" name="able_delete" value="Y" id="checkbox-inline-3" class="form-check-input" />
+                                                                                <label class="form-check-label" for="checkbox-inline-3">Hapus Data</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input type="checkbox" name="able_send" value="Y" id="checkbox-inline-4" class="form-check-input" />
+                                                                                <label class="form-check-label" for="checkbox-inline-4">Kirim Data</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="checkbox checkbox-css m-b-20">
+                                                                            <input type="checkbox" id="nf_checkbox_css_1" name="able_password" value="Y" />
+                                                                            <label for="nf_checkbox_css_1">Klik jika User dapat melakukan update password secara mandiri.</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <font style="color: red;">*</font> <i>Wajib diisi.</i>
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
+                                                            <button type="submit" name="add_manajemen_user_web" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- End Update Data -->
+
                                         <!-- Delete Data -->
                                         <div class="modal fade" id="deleteData<?= $row['ID'] ?>">
                                             <div class="modal-dialog">
@@ -235,10 +326,11 @@ if (isset($_POST["NDeleteData"])) {
                                                             <div class="alert alert-danger m-b-0">
                                                                 <h5><i class="fa fa-info-circle"></i> Anda yakin akan menghapus data ini?</h5>
                                                                 <p>Anda tidak akan melihat data ini lagi, data akan di hapus secara permanen pada sistem informasi TPB!<br><i>"Silahkan klik <b>Ya</b> untuk melanjutkan proses penghapusan data."</i></p>
+                                                                <input type="hidden" name="IDUNIQ" value="<?= $row['USRIDUNIQ'] ?>">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <a href="javascript:;" class="btn btn-warning" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tidak</a>
+                                                            <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tidak</button>
                                                             <button type="submit" class="btn btn-danger" name="NDeleteData"><i class="fas fa-check-circle"></i> Ya</button>
                                                         </div>
                                                     </form>
@@ -246,8 +338,10 @@ if (isset($_POST["NDeleteData"])) {
                                             </div>
                                         </div>
                                         <!-- End Delete Data -->
+
                                         <!-- Enabled Data -->
                                         <!-- End Enabled Data -->
+
                                         <!-- Disbaled Data -->
                                         <!-- End Disbaled Data -->
                                     <?php } ?>
@@ -264,10 +358,11 @@ if (isset($_POST["NDeleteData"])) {
                     </div>
                 </div>
             </div>
+            <!-- end panel -->
         </div>
+        <!-- end col-12 -->
     </div>
     <!-- end row -->
-    <?php include "include/creator.php"; ?>
 </div>
 <!-- end #content -->
 <?php include "include/panel.php"; ?>
@@ -309,6 +404,25 @@ if (isset($_POST["NDeleteData"])) {
             title: 'Password gagal direset!',
             icon: 'error',
             text: 'Password gagal direset didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+
+    // DELETE SUCCESS
+    if (window?.location?.href?.indexOf('DeleteSuccess') > -1) {
+        Swal.fire({
+            title: 'Data berhasil dihapus!',
+            icon: 'success',
+            text: 'Data berhasil dihapus didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+    // DELETE FAILED
+    if (window?.location?.href?.indexOf('DeleteFailed') > -1) {
+        Swal.fire({
+            title: 'Data gagal dihapus!',
+            icon: 'error',
+            text: 'Data gagal dihapus didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }

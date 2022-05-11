@@ -93,7 +93,8 @@ if (isset($_POST["ResetPassword"])) {
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" name="ResetPassword" class="btn btn-info"><i class="fas fa-lock"></i> Reset Password</button>
+                            <a href="javascript:window.open('','_self').close();" class="btn btn-default"><i class="fas fa-times-circle"></i> Batal</a>
+                            <button type="submit" class="btn btn-info" name="ResetPassword"><i class="fas fa-lock"></i> Reset Password</button>
                         </div>
                     </form>
                 </div>
