@@ -144,11 +144,31 @@ if (isset($_GET['find'])) {
                                     mysqli_close($dbcon);
                                     ?>
                                 <?php } else { ?>
-                                    <tr class="odd gradeX">
-                                        <td style="display:grid;text-align: center;">
-                                            <i class="far fa-times-circle no-data"></i> Tidak ada data
-                                        </td>
-                                    </tr>
+                                    <?php if (isset($_GET['find'])) { ?>
+                                        <?php
+                                        $count_column = $dbcon->query("SELECT COUNT(COLUMN_NAME) AS total_count_column FROM information_schema.columns WHERE TABLE_NAME='$TableName'");
+                                        $result_count_column = mysqli_fetch_array($count_column);
+                                        ?>
+                                        <tr>
+                                            <td colspan="<?= $result_count_column['total_count_column'] ?>">
+                                                <center>
+                                                    <div style="display: grid;">
+                                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                                    </div>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <td colspan="12">
+                                                <center>
+                                                    <div style="display: grid;">
+                                                        <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                                    </div>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 <?php } ?>
                             </tbody>
                         </table>

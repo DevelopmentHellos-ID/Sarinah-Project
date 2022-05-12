@@ -160,6 +160,59 @@ if (isset($_POST["NDeleteData"])) {
 }
 // END DELETE NEW USER WEB
 
+// ENABLED NEW USER WEB
+if (isset($_POST["NEnabledData"])) {
+
+    $IDUNIQ             = $_POST['IDUNIQ'];
+    $status             = $_POST['status'];
+
+    $query .= $dbcon->query("UPDATE tbl_pegawai SET status='$status'
+                                                    WHERE IDUNIQ='$IDUNIQ'");
+
+    if ($query) {
+        echo "<script>window.location.href='uti_user_manajemen_web.php?EnabledSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='uti_user_manajemen_web.php?EnabledFailed=true';</script>";
+    }
+}
+// END ENABLED NEW USER WEB
+
+// DISABLED NEW USER WEB
+if (isset($_POST["NDisabledData"])) {
+
+    $IDUNIQ             = $_POST['IDUNIQ'];
+    $status             = $_POST['status'];
+
+    $query .= $dbcon->query("UPDATE tbl_pegawai SET status='$status'
+                                                    WHERE IDUNIQ='$IDUNIQ'");
+
+    if ($query) {
+        echo "<script>window.location.href='uti_user_manajemen_web.php?DisabledSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='uti_user_manajemen_web.php?DisabledFailed=true';</script>";
+    }
+}
+// END DISABLED NEW USER WEB
+
+// RESIGN NEW USER WEB
+if (isset($_POST["NResignData"])) {
+
+    $IDUNIQ             = $_POST['IDUNIQ'];
+    $status             = $_POST['status'];
+    $out_tgl            = $_POST['out_tgl'];
+
+    $query .= $dbcon->query("UPDATE tbl_pegawai SET status='$status',
+                                                    out_tgl='$out_tgl'
+                                                    WHERE IDUNIQ='$IDUNIQ'");
+
+    if ($query) {
+        echo "<script>window.location.href='uti_user_manajemen_web.php?ResignSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='uti_user_manajemen_web.php?ResignFailed=true';</script>";
+    }
+}
+// END RESIGN NEW USER WEB
+
 ?>
 <!-- begin #content -->
 <div id="content" class="content">
@@ -214,6 +267,7 @@ if (isset($_POST["NDeleteData"])) {
                                     <th width="1%" data-orderable="false"></th>
                                     <th class="text-nowrap">Username</th>
                                     <th class="text-nowrap">Password</th>
+                                    <th class="text-nowrap" style="text-align: center;">Hak Akses</th>
                                     <th class="text-nowrap">Status</th>
                                     <th class="text-nowrap">Aksi</th>
                                 </tr>
@@ -221,7 +275,10 @@ if (isset($_POST["NDeleteData"])) {
                             <tbody>
                                 <?php
                                 $UserLogin = $_SESSION['username'];
-                                $dataTable = $dbcon->query("SELECT * FROM view_privileges ORDER BY ID DESC LIMIT 50");
+                                $dataTable = $dbcon->query("SELECT usr.ID,usr.ID_MODUL,peg.id_pegawai,usr.DOKUMENBC23,usr.DOKUMENBC25,peg.foto,usr.IDUNIQ AS USRIDUNIQ,usr.USER_NAME,peg.username,usr.PASSWORD,peg.NIP,peg.NIK,peg.role,peg.nama_lengkap,peg.tempat_lahir,peg.tgl_lahir,peg.usia,peg.jenis_kelamin,peg.agama,peg.alamat,peg.no_hp,peg.email,peg.departemen,peg.jabatan,peg.join_tgl,peg.out_tgl,peg.status,usr.INSERT_DATA,usr.UPDATE_DATA,usr.DELETE_DATA,usr.KIRIM_DATA,usr.UPDATE_PASSWORD,peg.created_by,peg.created_date
+                                                            FROM tbl_users AS usr
+                                                            LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                            ORDER BY usr.ID DESC");
                                 if (mysqli_num_rows($dataTable) > 0) {
                                     $no = 0;
                                     while ($row = mysqli_fetch_array($dataTable)) {
@@ -247,6 +304,9 @@ if (isset($_POST["NDeleteData"])) {
                                                 <?php } else { ?>
                                                     ********
                                                 <?php } ?>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <?= $row['role'] ?>
                                             </td>
                                             <td>
                                                 <!-- 0 = User Baru/Aktif -->
@@ -275,11 +335,11 @@ if (isset($_POST["NDeleteData"])) {
                                                     <?php } else if ($row['status'] == 1) { ?>
                                                         <a href="#enabledData<?= $row['ID'] ?>" class="btn btn-sm btn-success" data-toggle="modal" title="Aktif Users"><i class="fas fa-check"></i></a>
                                                     <?php } ?>
+                                                    <a href="#resignData<?= $row['ID'] ?>" class="btn btn-sm btn-secondary" data-toggle="modal" title="Resign Users"><i class="fas fa-user-minus"></i></a>
                                                 <?php } ?>
                                             </td>
                                         </tr>
                                         <!-- Update Data -->
-                                        <!-- Add Users -->
                                         <div class="modal fade" id="updateData<?= $row['ID'] ?>">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -299,7 +359,7 @@ if (isset($_POST["NDeleteData"])) {
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="IDUsername">Username</label>
-                                                                            <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." value="<?= $row['username'] ?>" />
+                                                                            <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." value="<?= $row['username'] ?>" readonly />
                                                                             <input type="hidden" name="IDUNIQ" value="<?= $row['USRIDUNIQ'] ?>">
                                                                         </div>
                                                                     </div>
@@ -422,15 +482,106 @@ if (isset($_POST["NDeleteData"])) {
                                         <!-- End Delete Data -->
 
                                         <!-- Enabled Data -->
+                                        <div class="modal fade" id="enabledData<?= $row['ID'] ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="" method="POST">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">[Aktif Data] User Web System - <?= $row['ID'] ?></h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="alert alert-warning m-b-0">
+                                                                <h5><i class="fa fa-info-circle"></i> Anda yakin akan melakukan aktif user ini?</h5>
+                                                                <p>Jika anda melakukan aktif user, user akan dapat memulai <i>session</i> pada sistem informasi TPB!<br><i>"Silahkan klik <b>Aktif</b> untuk melanjutkan proses."</i></p>
+                                                                <input type="hidden" name="status" value="0">
+                                                                <input type="hidden" name="IDUNIQ" value="<?= $row['USRIDUNIQ'] ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fas fa-times-circle"></i> Batal</button>
+                                                            <button type="submit" class="btn btn-dark" name="NEnabledData"><i class="fas fa-check-circle"></i> Aktif</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- End Enabled Data -->
 
                                         <!-- Disbaled Data -->
+                                        <div class="modal fade" id="disabledData<?= $row['ID'] ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="" method="POST">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">[Non-Aktif Data] User Web System - <?= $row['ID'] ?></h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="alert alert-warning m-b-0">
+                                                                <h5><i class="fa fa-info-circle"></i> Anda yakin akan melakukan non-aktif user ini?</h5>
+                                                                <p>Jika anda melakukan non-aktif user, user tidak akan dapat memulai <i>session</i> pada sistem informasi TPB!<br><i>"Silahkan klik <b>Non-Aktif</b> untuk melanjutkan proses."</i></p>
+                                                                <input type="hidden" name="status" value="1">
+                                                                <input type="hidden" name="IDUNIQ" value="<?= $row['USRIDUNIQ'] ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fas fa-times-circle"></i> Batal</button>
+                                                            <button type="submit" class="btn btn-danger" name="NDisabledData"><i class="fas fa-check-circle"></i> Non-Aktif</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- End Disbaled Data -->
+
+                                        <!-- Resign Data -->
+                                        <div class="modal fade" id="resignData<?= $row['ID'] ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="" method="POST">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">[Resign Users] User Web System - <?= $row['ID'] ?></h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <fieldset>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="IDUsername">Username</label>
+                                                                            <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." value="<?= $row['username'] ?>" readonly />
+                                                                            <input type="hidden" name="IDUNIQ" value="<?= $row['USRIDUNIQ'] ?>">
+                                                                            <input type="hidden" name="status" value="2">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="IDOUtDate">Tanggal Resign</label>
+                                                                            <input type="date" class="form-control" name="out_tgl" id="IDOUtDate" placeholder="Tanggal Resign ..." required />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
+                                                            <button type="submit" name="NResignData" class="btn btn-secondary"><i class="fas fa-user-minus"></i> Resign</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Resign Data -->
                                     <?php } ?>
                                 <?php } else { ?>
                                     <tr>
-                                        <td colspan="6" style="display:grid;text-align: center;">
-                                            <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                        <td colspan="7">
+                                            <center>
+                                                <div style="display: grid;">
+                                                    <i class="far fa-times-circle no-data"></i> Tidak ada data
+                                                </div>
+                                            </center>
                                         </td>
                                     </tr>
                                 <?php }
@@ -524,6 +675,63 @@ if (isset($_POST["NDeleteData"])) {
             title: 'Password gagal direset!',
             icon: 'error',
             text: 'Password gagal direset didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+
+    // ENABLED SUCCESS
+    if (window?.location?.href?.indexOf('EnabledSuccess') > -1) {
+        Swal.fire({
+            title: 'Data berhasil diaktifkan!',
+            icon: 'success',
+            text: 'Data berhasil diaktifkan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+    // ENABLED FAILED
+    if (window?.location?.href?.indexOf('EnabledFailed') > -1) {
+        Swal.fire({
+            title: 'Data gagal diaktifkan!',
+            icon: 'error',
+            text: 'Data gagal diaktifkan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+
+    // DISABLED SUCCESS
+    if (window?.location?.href?.indexOf('DisabledSuccess') > -1) {
+        Swal.fire({
+            title: 'Data berhasil dinon-aktifkan!',
+            icon: 'success',
+            text: 'Data berhasil dinon-aktifkan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+    // DISABLED FAILED
+    if (window?.location?.href?.indexOf('DisabledFailed') > -1) {
+        Swal.fire({
+            title: 'Data gagal dinon-aktifkan!',
+            icon: 'error',
+            text: 'Data gagal dinon-aktifkan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+
+    // RESIGN SUCCESS
+    if (window?.location?.href?.indexOf('ResignSuccess') > -1) {
+        Swal.fire({
+            title: 'Status Resign user berhasil disimpan!',
+            icon: 'success',
+            text: 'Data Resign user berhasil disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+    // RESIGN FAILED
+    if (window?.location?.href?.indexOf('ResignFailed') > -1) {
+        Swal.fire({
+            title: 'Status Resign user gagal disimpan!',
+            icon: 'error',
+            text: 'Data Resign user gagal disimpan didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
