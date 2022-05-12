@@ -85,6 +85,64 @@ if (isset($_POST["add_manajemen_user_web"])) {
 }
 // END CREATE NEW USER WEB
 
+// UPDATE NEW USER WEB
+if (isset($_POST["NUpdateData"])) {
+
+    if ($_POST['able_add'] != 'Y') {
+        $able_add = 'N';
+    } else {
+        $able_add = 'Y';
+    }
+
+    if ($_POST['able_edit'] != 'Y') {
+        $able_edit = 'N';
+    } else {
+        $able_edit = 'Y';
+    }
+
+    if ($_POST['able_delete'] != 'Y') {
+        $able_delete = 'N';
+    } else {
+        $able_delete = 'Y';
+    }
+
+    if ($_POST['able_send'] != 'Y') {
+        $able_send = 'N';
+    } else {
+        $able_send = 'Y';
+    }
+
+    if ($_POST['able_password'] != 'Y') {
+        $able_password = 'N';
+    } else {
+        $able_password = 'Y';
+    }
+
+    $IDUNIQ               = $_POST['IDUNIQ'];
+    $role                 = $_POST['HakAkses'];
+    $able_add             = $able_add;
+    $able_edit            = $able_edit;
+    $able_delete          = $able_delete;
+    $able_send            = $able_send;
+    $able_password        = $able_password;
+
+    $query = $dbcon->query("UPDATE tbl_users SET INSERT_DATA='$able_add',
+                                                 UPDATE_DATA='$able_edit',
+                                                 DELETE_DATA='$able_delete',
+                                                 KIRIM_DATA='$able_send',
+                                                 UPDATE_PASSWORD='$able_password'
+                                                 WHERE IDUNIQ='$IDUNIQ'");
+
+    $query .= $dbcon->query("UPDATE tbl_pegawai SET role='$role'
+                                                    WHERE IDUNIQ='$IDUNIQ'");
+    if ($query) {
+        echo "<script>window.location.href='uti_user_manajemen_web.php?UpdateSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='uti_user_manajemen_web.php?UpdateFailed=true';</script>";
+    }
+}
+// END UPDATE NEW USER WEB
+
 // DELETE NEW USER WEB
 if (isset($_POST["NDeleteData"])) {
 
@@ -225,9 +283,9 @@ if (isset($_POST["NDeleteData"])) {
                                         <div class="modal fade" id="updateData<?= $row['ID'] ?>">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <form action="uti_user_manajemen_web.php" method="POST">
+                                                    <form action="" method="POST">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">[Tambah Data] User Web System</h4>
+                                                            <h4 class="modal-title">[Update Data] User Web System - <?= $row['ID'] ?></h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
@@ -240,15 +298,15 @@ if (isset($_POST["NDeleteData"])) {
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label for="IDUsername">Username <font style="color: red;">*</font></label>
-                                                                            <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." required />
-                                                                            <input type="hidden" name="UNIQ" value="USR<?= date('my') ?><?= substr(uniqid(), 5); ?>" />
+                                                                            <label for="IDUsername">Username</label>
+                                                                            <input type="text" class="form-control" name="username" id="IDUsername" placeholder="Username ..." value="<?= $row['username'] ?>" />
+                                                                            <input type="hidden" name="IDUNIQ" value="<?= $row['USRIDUNIQ'] ?>">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="IDPassword">Password</label>
-                                                                            <input type="password" class="form-control" id="IDPassword" placeholder="Password ..." readonly />
+                                                                            <input type="password" class="form-control" id="IDPassword" placeholder="Password ..." value="<?= $row['PASSWORD'] ?>" readonly />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-12">
@@ -258,8 +316,9 @@ if (isset($_POST["NDeleteData"])) {
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label for="IDRole">Hak Akses <font style="color: red;">*</font></label>
+                                                                            <label for="IDRole">Hak Akses</label>
                                                                             <select type="text" class="form-control" name="HakAkses" id="IDRole" required>
+                                                                                <option value="<?= $row['role'] ?>"><?= $row['role'] ?></option>
                                                                                 <option value="">-- Pilih Hak Akses --</option>
                                                                                 <?php
                                                                                 $resultHakAkses = $dbcon->query("SELECT role FROM tbl_role ORDER BY role ASC");
@@ -272,40 +331,63 @@ if (isset($_POST["NDeleteData"])) {
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <label class="col-md-3 col-form-label">Privileges</label>
+                                                                        <!-- INSERT_DATA,UPDATE_DATA,DELETE_DATA,KIRIM_DATA,UPDATE_PASSWORD -->
                                                                         <div class="col-md-9">
                                                                             <div class="form-check form-check-inline">
-                                                                                <input type="checkbox" name="able_add" value="Y" id="checkbox-inline-1" class="form-check-input" />
-                                                                                <label class="form-check-label" for="checkbox-inline-1">Insert Data</label>
+                                                                                <?php if ($row['INSERT_DATA'] == 'Y') { ?>
+                                                                                    <?php $insert_checked = 'checked'; ?>
+                                                                                <?php } else if ($row['INSERT_DATA'] == 'N') { ?>
+                                                                                    <?php $insert_checked = ''; ?>
+                                                                                <?php } ?>
+                                                                                <input type="checkbox" name="able_add" value="Y" id="checkbox-inline-c-1" class="form-check-input" <?= $insert_checked; ?> />
+                                                                                <label class="form-check-label" for="checkbox-inline-c-1">Insert Data</label>
                                                                             </div>
                                                                             <div class="form-check form-check-inline">
-                                                                                <input type="checkbox" name="able_edit" value="Y" id="checkbox-inline-2" class="form-check-input" />
-                                                                                <label class="form-check-label" for="checkbox-inline-2">Update Data</label>
+                                                                                <?php if ($row['UPDATE_DATA'] == 'Y') { ?>
+                                                                                    <?php $update_checked = 'checked'; ?>
+                                                                                <?php } else if ($row['UPDATE_DATA'] == 'N') { ?>
+                                                                                    <?php $update_checked = ''; ?>
+                                                                                <?php } ?>
+                                                                                <input type="checkbox" name="able_edit" value="Y" id="checkbox-inline-c-2" class="form-check-input" <?= $update_checked; ?> />
+                                                                                <label class="form-check-label" for="checkbox-inline-c-2">Update Data</label>
                                                                             </div>
                                                                             <div class="form-check form-check-inline">
-                                                                                <input type="checkbox" name="able_delete" value="Y" id="checkbox-inline-3" class="form-check-input" />
-                                                                                <label class="form-check-label" for="checkbox-inline-3">Hapus Data</label>
+                                                                                <?php if ($row['DELETE_DATA'] == 'Y') { ?>
+                                                                                    <?php $delete_checked = 'checked'; ?>
+                                                                                <?php } else if ($row['DELETE_DATA'] == 'N') { ?>
+                                                                                    <?php $delete_checked = ''; ?>
+                                                                                <?php } ?>
+                                                                                <input type="checkbox" name="able_delete" value="Y" id="checkbox-inline-c-3" class="form-check-input" <?= $delete_checked; ?> />
+                                                                                <label class="form-check-label" for="checkbox-inline-c-3">Hapus Data</label>
                                                                             </div>
                                                                             <div class="form-check form-check-inline">
-                                                                                <input type="checkbox" name="able_send" value="Y" id="checkbox-inline-4" class="form-check-input" />
-                                                                                <label class="form-check-label" for="checkbox-inline-4">Kirim Data</label>
+                                                                                <?php if ($row['KIRIM_DATA'] == 'Y') { ?>
+                                                                                    <?php $send_checked = 'checked'; ?>
+                                                                                <?php } else if ($row['KIRIM_DATA'] == 'N') { ?>
+                                                                                    <?php $send_checked = ''; ?>
+                                                                                <?php } ?>
+                                                                                <input type="checkbox" name="able_send" value="Y" id="checkbox-inline-c-4" class="form-check-input" <?= $send_checked; ?> />
+                                                                                <label class="form-check-label" for="checkbox-inline-c-4">Kirim Data</label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-12">
                                                                         <div class="checkbox checkbox-css m-b-20">
-                                                                            <input type="checkbox" id="nf_checkbox_css_1" name="able_password" value="Y" />
-                                                                            <label for="nf_checkbox_css_1">Klik jika User dapat melakukan update password secara mandiri.</label>
+                                                                            <?php if ($row['UPDATE_PASSWORD'] == 'Y') { ?>
+                                                                                <?php $pass_checked = 'checked'; ?>
+                                                                            <?php } else if ($row['UPDATE_PASSWORD'] == 'N') { ?>
+                                                                                <?php $pass_checked = ''; ?>
+                                                                            <?php } ?>
+                                                                            <input type="checkbox" id="nf_checkbox_css_c_1" name="able_password" value="Y" <?= $pass_checked; ?> />
+                                                                            <label for="nf_checkbox_css_c_1">Klik jika User dapat melakukan update password secara mandiri.</label>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <font style="color: red;">*</font> <i>Wajib diisi.</i>
                                                                     </div>
                                                                 </div>
                                                             </fieldset>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
-                                                            <button type="submit" name="add_manajemen_user_web" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                                                            <button type="submit" name="NUpdateData" class="btn btn-warning"><i class="fas fa-edit"></i> Update</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -389,21 +471,21 @@ if (isset($_POST["NDeleteData"])) {
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
 
-    // RESET PASSWORD SUCCESS
-    if (window?.location?.href?.indexOf('ResetPasswordSuccess') > -1) {
+    // UPDATE SUCCESS
+    if (window?.location?.href?.indexOf('UpdateSuccess') > -1) {
         Swal.fire({
-            title: 'Password berhasil direset!',
+            title: 'Data berhasil diupdate!',
             icon: 'success',
-            text: 'Password berhasil direset didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil diupdate didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
-    // RESET PASSWORD FAILED
-    if (window?.location?.href?.indexOf('ResetPasswordFailed') > -1) {
+    // UPDATE FAILED
+    if (window?.location?.href?.indexOf('UpdateFailed') > -1) {
         Swal.fire({
-            title: 'Password gagal direset!',
+            title: 'Data gagal diupdate!',
             icon: 'error',
-            text: 'Password gagal direset didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal diupdate didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -423,6 +505,25 @@ if (isset($_POST["NDeleteData"])) {
             title: 'Data gagal dihapus!',
             icon: 'error',
             text: 'Data gagal dihapus didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+
+    // RESET PASSWORD SUCCESS
+    if (window?.location?.href?.indexOf('ResetPasswordSuccess') > -1) {
+        Swal.fire({
+            title: 'Password berhasil direset!',
+            icon: 'success',
+            text: 'Password berhasil direset didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './uti_user_manajemen_web.php');
+    }
+    // RESET PASSWORD FAILED
+    if (window?.location?.href?.indexOf('ResetPasswordFailed') > -1) {
+        Swal.fire({
+            title: 'Password gagal direset!',
+            icon: 'error',
+            text: 'Password gagal direset didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
