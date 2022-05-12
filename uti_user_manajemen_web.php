@@ -213,6 +213,59 @@ if (isset($_POST["NResignData"])) {
 }
 // END RESIGN NEW USER WEB
 
+// FUNCTION SEARCHING
+$fusername = '';
+if (isset($_GET['findOne'])) {
+    $fusername = $_GET['fusername'];
+}
+
+$fHakAkses = '';
+if (isset($_GET['findTwo'])) {
+    $fHakAkses = $_GET['fHakAkses'];
+}
+
+$startdate = '';
+$enddate = '';
+if (isset($_GET['findThree'])) {
+    $startdate = $_GET['startdate'];
+    $enddate = $_GET['enddate'];
+}
+// END FUNCTION SEARCHING
+
+if (isset($_GET['findOne']) != '') {
+    $displayOne = 'show';
+    $displayTwo = 'none';
+    $displayThree = 'none';
+
+    $selectOne = 'selected';
+    $selectTwo = '';
+    $selectThree = '';
+} else if (isset($_GET['findTwo']) != '') {
+    $displayOne = 'none';
+    $displayTwo = 'show';
+    $displayThree = 'none';
+
+    $selectOne = '';
+    $selectTwo = 'selected';
+    $selectThree = '';
+} else if (isset($_GET['findThree']) != '') {
+    $displayOne = 'none';
+    $displayTwo = 'none';
+    $displayThree = 'show';
+
+    $selectOne = '';
+    $selectTwo = '';
+    $selectThree = 'selected';
+} else {
+    $displayOne = 'show';
+    $displayTwo = 'none';
+    $displayThree = 'none';
+
+    $selectOne = 'selected';
+    $selectTwo = '';
+    $selectThree = '';
+}
+
 ?>
 <!-- begin #content -->
 <div id="content" class="content">
@@ -234,6 +287,106 @@ if (isset($_POST["NResignData"])) {
         </div>
     </div>
     <div class="line-page"></div>
+
+    <!-- begin Search -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
+                <div class="panel-heading">
+                    <h4 class="panel-title"><i class="fas fa-filter"></i> Filter User Web System - by
+                        <select type="text" id="findby" style="background: transparent;border-color: transparent;color:#fff;">
+                            <option value="opone" style="color: #1d2226;" <?= $selectOne ?>>Username</option>
+                            <option value="optwo" style="color: #1d2226;" <?= $selectTwo ?>>Hak Akses</option>
+                            <option value="opthree" style="color: #1d2226;" <?= $selectThree ?>>Tanggal Created</option>
+                        </select>
+                    </h4>
+                    <?php include "include/panel-row.php"; ?>
+                </div>
+                <div class="panel-body text-inverse">
+                    <form action="" id="fformone" method="GET" style="display: <?= $displayOne ?>;">
+                        <fieldset>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-3 col-form-label">Username</label>
+                                <div class="col-md-7">
+                                    <?php if ($fusername == '') { ?>
+                                        <input type="text" class="form-control" name="fusername" placeholder="Username ...">
+                                    <?php } else { ?>
+                                        <input type="text" class="form-control" name="fusername" placeholder="Username ..." value="<?= $fusername; ?>">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-7 offset-md-3">
+                                    <button type="submit" class="btn btn-sm btn-info m-r-5" name="findOne">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
+                                    <a href="uti_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow m-r-5">
+                                        <i class="fa fa-refresh"></i> Reset
+                                    </a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <form action="" id="fformtwo" method="GET" style="display: <?= $displayTwo ?>;">
+                        <fieldset>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-3 col-form-label">Hak Akses</label>
+                                <div class="col-md-7">
+                                    <select class="form-control" name="fHakAkses">
+                                        <?php if ($fHakAkses == '') { ?>
+                                            <option value="">-- Pilih Hak Akses --</option>
+                                        <?php } else { ?>
+                                            <option value="<?= $fHakAkses; ?>"><?= $fHakAkses; ?></option>
+                                            <option value="">-- Pilih Hak Akses --</option>
+                                        <?php } ?>
+                                        <?php
+                                        $findresultHakAkses = $dbcon->query("SELECT role FROM tbl_role ORDER BY role ASC");
+                                        foreach ($findresultHakAkses as $findrowHakAkses) {
+                                        ?>
+                                            <option value="<?= $findrowHakAkses['role'] ?>"><?= $findrowHakAkses['role'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-7 offset-md-3">
+                                    <button type="submit" class="btn btn-sm btn-info m-r-5" name="findTwo">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
+                                    <a href="uti_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow m-r-5">
+                                        <i class="fa fa-refresh"></i> Reset
+                                    </a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <form action="" id="fformthree" class="form-inline" style="justify-content: center; display: <?= $displayThree ?>" method="GET">
+                        <div class="form-group m-r-10">
+                            <?php if ($startdate == '') { ?>
+                                <input type="date" name="startdate" class="form-control" required>
+                            <?php } else { ?>
+                                <input type="date" name="startdate" class="form-control" value="<?= $startdate ?>">
+                            <?php } ?>
+                        </div>
+                        <div class="form-check m-r-10">
+                            <label class="form-check-label" for="inline_form_checkbox">s/d</label>
+                        </div>
+                        <div class="form-group m-r-10">
+                            <?php if ($enddate == '') { ?>
+                                <input type="date" name="enddate" class="form-control" required>
+                            <?php } else { ?>
+                                <input type="date" name="enddate" class="form-control" value="<?= $enddate ?>">
+                            <?php } ?>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-info m-r-5" name="findThree"><i class="fa fa-search"></i> Search</button>
+                        <a href="uti_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow"><i class="fa fa-refresh"></i> Reset</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Search -->
+
     <!-- begin row -->
     <div class="row">
         <!-- begin col-6 -->
@@ -275,10 +428,37 @@ if (isset($_POST["NResignData"])) {
                             <tbody>
                                 <?php
                                 $UserLogin = $_SESSION['username'];
-                                $dataTable = $dbcon->query("SELECT usr.ID,usr.ID_MODUL,peg.id_pegawai,usr.DOKUMENBC23,usr.DOKUMENBC25,peg.foto,usr.IDUNIQ AS USRIDUNIQ,usr.USER_NAME,peg.username,usr.PASSWORD,peg.NIP,peg.NIK,peg.role,peg.nama_lengkap,peg.tempat_lahir,peg.tgl_lahir,peg.usia,peg.jenis_kelamin,peg.agama,peg.alamat,peg.no_hp,peg.email,peg.departemen,peg.jabatan,peg.join_tgl,peg.out_tgl,peg.status,usr.INSERT_DATA,usr.UPDATE_DATA,usr.DELETE_DATA,usr.KIRIM_DATA,usr.UPDATE_PASSWORD,peg.created_by,peg.created_date
-                                                            FROM tbl_users AS usr
-                                                            LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
-                                                            ORDER BY usr.ID DESC");
+                                if (isset($_GET['findOne'])) {
+                                    // SEARCH BY USERNAME
+                                    $fusername = $_GET['fusername'];
+                                    $dataTable = $dbcon->query("SELECT usr.ID,usr.ID_MODUL,peg.id_pegawai,usr.DOKUMENBC23,usr.DOKUMENBC25,peg.foto,usr.IDUNIQ AS USRIDUNIQ,usr.USER_NAME,peg.username,usr.PASSWORD,peg.NIP,peg.NIK,peg.role,peg.nama_lengkap,peg.tempat_lahir,peg.tgl_lahir,peg.usia,peg.jenis_kelamin,peg.agama,peg.alamat,peg.no_hp,peg.email,peg.departemen,peg.jabatan,peg.join_tgl,peg.out_tgl,peg.status,usr.INSERT_DATA,usr.UPDATE_DATA,usr.DELETE_DATA,usr.KIRIM_DATA,usr.UPDATE_PASSWORD,peg.created_by,peg.created_date
+                                                                FROM tbl_users AS usr
+                                                                LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                                WHERE usr.USER_NAME LIKE '%$fusername%'
+                                                                ORDER BY usr.ID DESC");
+                                } else if (isset($_GET['findTwo'])) {
+                                    // SEARCH BY HAK AKSES
+                                    $fHakAkses = $_GET['fHakAkses'];
+                                    $dataTable = $dbcon->query("SELECT usr.ID,usr.ID_MODUL,peg.id_pegawai,usr.DOKUMENBC23,usr.DOKUMENBC25,peg.foto,usr.IDUNIQ AS USRIDUNIQ,usr.USER_NAME,peg.username,usr.PASSWORD,peg.NIP,peg.NIK,peg.role,peg.nama_lengkap,peg.tempat_lahir,peg.tgl_lahir,peg.usia,peg.jenis_kelamin,peg.agama,peg.alamat,peg.no_hp,peg.email,peg.departemen,peg.jabatan,peg.join_tgl,peg.out_tgl,peg.status,usr.INSERT_DATA,usr.UPDATE_DATA,usr.DELETE_DATA,usr.KIRIM_DATA,usr.UPDATE_PASSWORD,peg.created_by,peg.created_date
+                                                                FROM tbl_users AS usr
+                                                                LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                                WHERE peg.role LIKE '%$fHakAkses%'
+                                                                ORDER BY usr.ID DESC");
+                                } else if (isset($_GET['findThree'])) {
+                                    // SEARCH BY TANGGAL USER DIBUAT
+                                    $startdate = $_GET['startdate'];
+                                    $enddate   = $_GET['enddate'];
+                                    $dataTable = $dbcon->query("SELECT usr.ID,usr.ID_MODUL,peg.id_pegawai,usr.DOKUMENBC23,usr.DOKUMENBC25,peg.foto,usr.IDUNIQ AS USRIDUNIQ,usr.USER_NAME,peg.username,usr.PASSWORD,peg.NIP,peg.NIK,peg.role,peg.nama_lengkap,peg.tempat_lahir,peg.tgl_lahir,peg.usia,peg.jenis_kelamin,peg.agama,peg.alamat,peg.no_hp,peg.email,peg.departemen,peg.jabatan,peg.join_tgl,peg.out_tgl,peg.status,usr.INSERT_DATA,usr.UPDATE_DATA,usr.DELETE_DATA,usr.KIRIM_DATA,usr.UPDATE_PASSWORD,peg.created_by,peg.created_date
+                                                                FROM tbl_users AS usr
+                                                                LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                                WHERE peg.created_date BETWEEN '$startdate' AND '$enddate'
+                                                                ORDER BY usr.ID DESC");
+                                } else {
+                                    $dataTable = $dbcon->query("SELECT usr.ID,usr.ID_MODUL,peg.id_pegawai,usr.DOKUMENBC23,usr.DOKUMENBC25,peg.foto,usr.IDUNIQ AS USRIDUNIQ,usr.USER_NAME,peg.username,usr.PASSWORD,peg.NIP,peg.NIK,peg.role,peg.nama_lengkap,peg.tempat_lahir,peg.tgl_lahir,peg.usia,peg.jenis_kelamin,peg.agama,peg.alamat,peg.no_hp,peg.email,peg.departemen,peg.jabatan,peg.join_tgl,peg.out_tgl,peg.status,usr.INSERT_DATA,usr.UPDATE_DATA,usr.DELETE_DATA,usr.KIRIM_DATA,usr.UPDATE_PASSWORD,peg.created_by,peg.created_date
+                                                                FROM tbl_users AS usr
+                                                                LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                                ORDER BY usr.ID DESC");
+                                }
                                 if (mysqli_num_rows($dataTable) > 0) {
                                     $no = 0;
                                     while ($row = mysqli_fetch_array($dataTable)) {
@@ -735,4 +915,28 @@ if (isset($_POST["NResignData"])) {
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $("#findby").change(function() {
+            if ($(this).val() == "opone") {
+                $("#fformone").show();
+                $("#fformtwo").hide();
+                $("#fformthree").hide();
+            } else if ($(this).val() == "optwo") {
+                $("#fformtwo").show();
+                $("#fformone").hide();
+                $("#fformthree").hide();
+            } else if ($(this).val() == "opthree") {
+                $("#fformthree").show();
+                $("#fformone").hide();
+                $("#fformtwo").hide();
+            } else {
+                $("#fformone").hide();
+                $("#fformtwo").hide();
+                $("#fformthree").hide();
+            }
+        });
+    });
 </script>
