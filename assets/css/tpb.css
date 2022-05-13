@@ -123,3 +123,48 @@
 .btn-primary:focus {
     color: #fff;
 }
+
+/* Panel Data Count */
+.count-table-data {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #002765;
+    background-clip: border-box;
+    border: 0 solid rgb(0 39 101);
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    margin-bottom: 10px;
+}
+
+#bg-all-record {
+    background: linear-gradient(161deg, rgb(29 34 38), #33393f);
+    color: #fff;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.card-box,
+.da-card {
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 28px rgb(0 0 0 / 8%);
+    box-shadow: 0 0 28px rgb(0 0 0 / 8%);
+    padding: 20px;
+}
+
+.all-record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.all-record-detail {
+    display: grid;
+    margin-bottom: 0px;
+}
+/* End Panel Data Count */

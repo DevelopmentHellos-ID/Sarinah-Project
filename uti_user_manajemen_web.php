@@ -412,6 +412,85 @@ if (isset($_GET['findOne']) != '') {
                         </div>
                     </div>
                     <!-- End Alert -->
+                    <!-- Data Count -->
+                    <style>
+                        @media (max-width: 1157px) {
+                            #bg-all-record {
+                                background-image: url('assets/images/users/92ru.gif');
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                background-position: center;
+                                color: #fff;
+                            }
+
+                            .all-record {
+                                display: grid;
+                                justify-content: space-between;
+                                align-items: center;
+                            }
+
+                            .all-record-detail {
+                                display: grid;
+                                margin-bottom: 15px;
+                            }
+                        }
+                    </style>
+                    <div class="card-box" id="bg-all-record">
+                        <div class="all-record">
+                            <div class="all-record-detail">
+                                <font style="font-size: 25px;font-weight: 600;"><i class="fas fa-users" style="font-weight: 800;"></i> Total Data</font>
+                                <!-- QUERY -->
+                                <?php
+                                $q_count_total = $dbcon->query("SELECT COUNT(*) AS total_qct FROM tbl_users AS usr
+                                                                LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                                ORDER BY usr.ID DESC");
+                                $result_qct = mysqli_fetch_array($q_count_total);
+                                ?>
+                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qct['total_qct'] ?> User Web System</font>
+                            </div>
+                            <div class="all-record-detail">
+                                <font style="font-size: 16px;font-weight: 600;"><?= date('Y') ?></font>
+                                <div class="card_divider"></div>
+                                <font style="font-size: 10px;font-weight: 300;"><?= date_indo(date('Y-m-d'), TRUE); ?></font>
+                            </div>
+                            <div class="all-record-detail">
+                                <font style="font-size: 25px;font-weight: 600;"><i class="fas fa-user-check" style="font-weight: 800;"></i> Aktif</font>
+                                <!-- QUERY -->
+                                <?php
+                                $q_count_aktif = $dbcon->query("SELECT COUNT(*) AS total_qca FROM tbl_users AS usr
+                                                                LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                                WHERE peg.status='0'
+                                                                ORDER BY usr.ID DESC");
+                                $result_qca = mysqli_fetch_array($q_count_aktif);
+                                ?>
+                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qca['total_qca'] ?> User Web System</font>
+                            </div>
+                            <div class="all-record-detail">
+                                <font style="font-size: 25px;font-weight: 600;"><i class="fas fa-user-slash" style="font-weight: 800;"></i> Non-Aktif</font>
+                                <!-- QUERY -->
+                                <?php
+                                $q_count_nonaktif = $dbcon->query("SELECT COUNT(*) AS total_qcn FROM tbl_users AS usr
+                                                                LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                                WHERE peg.status='1'
+                                                                ORDER BY usr.ID DESC");
+                                $result_qcn = mysqli_fetch_array($q_count_nonaktif);
+                                ?>
+                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qcn['total_qcn'] ?> User Web System</font>
+                            </div>
+                            <div class="all-record-detail">
+                                <font style="font-size: 25px;font-weight: 600;"><i class="fas fa-user-minus" style="font-weight: 800;"></i> Resign</font>
+                                <?php
+                                $q_count_resign = $dbcon->query("SELECT COUNT(*) AS total_qcr FROM tbl_users AS usr
+                                                                LEFT JOIN tbl_pegawai AS peg ON usr.USER_NAME=peg.username
+                                                                WHERE peg.status='2'
+                                                                ORDER BY usr.ID DESC");
+                                $result_qcr = mysqli_fetch_array($q_count_resign);
+                                ?>
+                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qcr['total_qcr'] ?> User Web System</font>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Data Count -->
                     <div class="table-responsive">
                         <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
                             <thead>
@@ -511,9 +590,9 @@ if (isset($_GET['findOne']) != '') {
                                                     <a href="#deleteData<?= $row['ID'] ?>" class="btn btn-sm btn-danger" data-toggle="modal" title="Hapus Data"><i class="fas fa-trash"></i></a>
                                                     <a href="uti_user_manajemen_web_resetpassword.php?USER=<?= $row['USER_NAME'] ?>" class="btn btn-sm btn-info" target="_blank" title="Reset Password"><i class="fas fa-lock"></i></a>
                                                     <?php if ($row['status'] == 0) { ?>
-                                                        <a href="#disabledData<?= $row['ID'] ?>" class="btn btn-sm btn-inverse" data-toggle="modal" title="Non-Aktif Users"><i class="fas fa-ban"></i></a>
+                                                        <a href="#disabledData<?= $row['ID'] ?>" class="btn btn-sm btn-inverse" data-toggle="modal" title="Non-Aktif Users"><i class="fas fa-user-slash"></i></a>
                                                     <?php } else if ($row['status'] == 1) { ?>
-                                                        <a href="#enabledData<?= $row['ID'] ?>" class="btn btn-sm btn-success" data-toggle="modal" title="Aktif Users"><i class="fas fa-check"></i></a>
+                                                        <a href="#enabledData<?= $row['ID'] ?>" class="btn btn-sm btn-success" data-toggle="modal" title="Aktif Users"><i class="fas fa-user-check"></i></a>
                                                     <?php } ?>
                                                     <a href="#resignData<?= $row['ID'] ?>" class="btn btn-sm btn-secondary" data-toggle="modal" title="Resign Users"><i class="fas fa-user-minus"></i></a>
                                                 <?php } ?>
@@ -679,8 +758,8 @@ if (isset($_GET['findOne']) != '') {
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fas fa-times-circle"></i> Batal</button>
-                                                            <button type="submit" class="btn btn-dark" name="NEnabledData"><i class="fas fa-check-circle"></i> Aktif</button>
+                                                            <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
+                                                            <button type="submit" class="btn btn-success" name="NEnabledData"><i class="fas fa-user-check"></i> Aktif</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -706,8 +785,8 @@ if (isset($_GET['findOne']) != '') {
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fas fa-times-circle"></i> Batal</button>
-                                                            <button type="submit" class="btn btn-danger" name="NDisabledData"><i class="fas fa-check-circle"></i> Non-Aktif</button>
+                                                            <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
+                                                            <button type="submit" class="btn btn-dark" name="NDisabledData"><i class="fas fa-user-slash"></i> Non-Aktif</button>
                                                         </div>
                                                     </form>
                                                 </div>
