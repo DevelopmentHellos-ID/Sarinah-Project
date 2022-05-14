@@ -24471,7 +24471,7 @@ a:focus {
 
 .sidebar .nav>li.nav-header {
 	margin: 0;
-	padding: 15px 20px 3px;
+	padding: 0px 20px 0px;
 	line-height: 20px;
 	font-size: 11px;
 	color: rgba(255,255,255,.45);

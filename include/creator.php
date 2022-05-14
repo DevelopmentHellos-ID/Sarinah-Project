@@ -2,9 +2,9 @@
 <div class="footer-wrap pd-20 mb-20 card-box">
     © <a class="font-w600" href="mailto:info@hellos-id.com" target="_blank">
         <?php if ($resultSetting['company'] == NULL) { ?>
-            <b>Perusahaan - HELLOS<sup>ID</sup></b>
+            <b>Perusahaan - <font style="color:#070d2d">HELLOS<sup>ID</sup></font></b>
         <?php } else { ?>
-            <b><?= $resultSetting['company'] ?> - HELLOS<sup>ID</sup></b>
+            <b><?= $resultSetting['company'] ?> - <font style="color:#070d2d">HELLOS<sup>ID</sup></font></b>
         <?php } ?>
     </a>
     <span class="js-year-copy js-year-copy-enabled">2022 - <?= date('Y') ?></span> |

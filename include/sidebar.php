@@ -66,6 +66,7 @@ $accessSidebar = mysqli_fetch_array($roleSidebar);
 				</ul>
 			</li>
 		</ul>
+		<br>
 		<ul class="nav">
 			<li class="nav-header">NAVIGATION</li>
 			<li class="<?= $uriSegments[1] == 'index.php' ? 'active' : '' ?>">

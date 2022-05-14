@@ -167,7 +167,11 @@ $resultLoginSetting = mysqli_fetch_array($dataLoginSettting);
 						</div>
 						<!-- <div class="m-t-20 m-b-40 p-b-40 text-inverse">Not a member yet? Click <a href="register_v3.html">here</a> to register.</div> -->
 						<hr />
-						<p class="text-center text-grey-darker mb-0">&copy; Copyright <a href="https://hellos-id.com/" target="_blank"><b>HELLOS<sup>ID</sup></b></a> All Right Reserved 2022 - <?= date('Y') ?></p>
+						<p class="text-center text-grey-darker mb-0">&copy; Copyright
+							<a href="https://hellos-id.com/" target="_blank">
+								<font style="color:#070d2d"><b>HELLOS<sup>ID</sup></b></font>
+							</a> All Right Reserved 2022 - <?= date('Y') ?>
+						</p>
 						<?php if ($resultLoginSetting['version'] == NULL) { ?>
 							<p class="text-center text-grey-darker mb-0">Version 0.0.0</p>
 						<?php } else { ?>
