@@ -27,86 +27,116 @@ include "include/sidebar.php";
     </div>
     <div class="line-page"></div>
     <!-- begin row -->
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Info Aktifasi] FAQ</h4>
-                    <?php include "include/panel-row.php"; ?>
+    <div class="row" id="row-faq">
+        <div class="col-xl-4">
+            <img src="assets/img/svg/faq-animate.svg" alt="">
+        </div>
+        <div class="col-xl-8">
+            <!-- begin #accordion -->
+            <div id="accordion" class="accordion">
+                <!-- begin card -->
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-dark-darker pointer-cursor d-flex align-items-center" data-toggle="collapse" data-target="#collapseOne">
+                        <i class="fa fa-circle fa-fw text-blue mr-2 f-s-8"></i> 1. JIKA MELAKUKAN AKTIVASI KE SERVER DEVELOPMENT, APAKAH BISA MELAKUKAN PENGIRIMAN DATA KE SERVER PRODUCTION?
+                    </div>
+                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                            JAWABAN : TIDAK BISA, UNTUK MELAKUKAN PENGIRIMAN DATA KE SERVER PRODUCTION HARUS MELAKUKAN AKTIVASI KE SERVER PRODUCTION. BEGITU PULA SEBALIKNYA.
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body text-inverse">
-                    <center>
-                        1. JIKA MELAKUKAN AKTIVASI KE SERVER DEVELOPMENT, APAKAH BISA MELAKUKAN PENGIRIMAN DATA KE SERVER PRODUCTION?
-                        JAWABAN : TIDAK BISA, UNTUK MELAKUKAN PENGIRIMAN DATA KE SERVER PRODUCTION HARUS MELAKUKAN AKTIVASI KE SERVER PRODUCTION. BEGITU PULA SEBALIKNYA.
-
-                        2. BAGAIMANA SAYA MELAKUKAN AKTIVASI ULANG PADA MODUL?
-                        JAWABAN : UNTUK MELAKUKAN AKTIVASI ULANG, ANDA PERLU MELAKUKAN RESET DATABASE SEBAGAI BERIKUT:
-                        1. PILIH MENU UTILITY-SETTING
-                        2. PILIH TAB SETTING DATABASE
-                        3. TEKAN TOMBOL RESET DATABASE
-                        4. TEKAN OK APABILA ANDA YAKIN SEMUA DATA YANG ADA AKAN DIHAPUS DAN ANDA HARUS MELAKUKAN AKTIVASI ULANG. SEBELUM MENYETUJUI, PASTIKAN ANDA TELAH MELAKUKAN BACK UP DATA (DIJELASKAN PADA POIN 3).
-                        5. AKAN MUNCUL FORM AKTIVASI
-                        6. PILIH SETTING SERVER PADA FORM AKTIVASI
-                        7. PASTIKAN URL MENGARAH KE HTTPS://ESBBCEXT01.BEACUKAI.GO.ID:9082/PENERIMAANDATASVC/WSTPB
-                        8. TES KONEKSI DENGAN MENEKAN TOMBOL TES KONEKSI
-                        9. LAKUKAN AKTIVASI
-
-                        3. JIKA SUDAH AKTIVASI KE SERVER DEVELOPMENT, KEMUDIAN INGIN MENGIRIM DATA KE SERVER PRODUCTION BAGAIMANA?
-                        JAWABAN : UNTUK DAPAT MENGIRIM DATA KE SERVER PRODUCTION, ANDA PERLU MELAKUKAN AKTIVASI ULANG SEPERTI YANG TELAH DIJELASKAN PADA POIN 2. SEBELUM MELAKUKAN AKTIVASI ULANG, PASTIKAN ANDA MELAKUKAN BACK UP DATA DENGAN LANGKAH BERIKUT:
-                        1. LAKUKAN BACK UP DATA DENGAN MENGAKSES MENU UTILITY-BACK UP
-                        2. PILIH DOKUMEN YANG ANDA INGIN BACK UP
-                        3. PILIH LOKASI DAN NAMA FILE (.XLS) BACK UP DATA ANDA
-                        4. TEKAN TOMBOL BACK UP
-
-                        4. SAAT MENGIRIM DATA, SAYA MENDAPATKAN RESPON PARSING GAGAL, ID MODUL, USER PASSWORD SALAH. APA YANG HARUS SAYA LAKUKAN?
-                        JAWABAN : ADA BEBERAPA KEMUNGKINAN:
-                        1. ANDA MELAKUKAN AKTIVASI KE SERVER DEVELOPMENT NAMUN MELAKUKAN PENGIRIMAN DATA KE SERVER PRODUCTION, BEGITU PULA SEBALIKNYA
-                        2. ANDA MELAKUKAN PENGGANTIAN PASSWORD DI PORTAL PENGGUNA JASA, NAMUN TIDAK MELAKUKAN PENGGANTIAN PASSWORD PADA MODUL
-
-                        5. SAYA MENGGANTI PASSWORD DI PORTAL, BAGAIMANA SAYA BISA MENGGANTI PASSWORD DI MODUL?
-                        JAWABAN :
-                        1. PILIH MENU UTILITY-AKTIVASI INFO
-                        2. TEKAN TOMBOL EDIT
-                        3. MASUKKAN PASSWORD YANG SESUAI DENGAN PORTAL
-                        4. TEKAN TOMBOL SIMPAN
-
-                        6. SAYA MEMILIKI DATABASE MYSQL SENDIRI PADA SERVER SAYA, BAGAIMANA CARA MENGINTEGRASIKAN DENGAN MODUL?
-                        1. PADA DATABASE ANDA, BUAT USER BARU DENGAN USERNAME: BEACUKAI DAN PASS: BEACUKAI
-                        2. SETELAH ITU BUAT SKEMA DATABASE BARU DENGAN NAMA SKEMA: TPBDBBC23 (UNTUK BC 2.3)
-                        3. IMPORT DUMPFILE TPBDBBC23.SQL YANG TELAH DISEDIAKAN PADA FOLDER INSTALLASI MODUL
-                        4. TUNGGU HINGGA SELURUH SCRIPT MYSQL BERHASIL DIEKSEKUSI
-                        5. LAKUKAN TES KONEKSI DATABASE PADA MODUL
-
-                        7. SAYA MEMILIKI BANYAK PERUSAHAAN DAN SAYA INGIN MEMISAHKAN DATA PERUSAHAAN. BAGAIMANA CARANYA?
-                        JAWABAN : PEMISAHAN BISA DILAKUKAN DENGAN MEMISAHKAN SKEMA DATABASE. PEMISAHAN INI BISA MENGGUNAKAN FITUR GENERATE DATABASE
-                        1. PADA FORM LOGIN, PILIH SETTING DATABASE
-                        2. GANTI NAMA TPBDB MENJADI NAMA SKEMA BARU (MSL DATABASEBARU) 10.102.104.117:3306/DATABASEBARU
-                        3. TEKAN TOMBOL GENERATED DATABASE
-                        4. TUNGGU HINGGA MUNCUL PESAN DATABASE BERHASIL DIBUAT
-                        5. LAKUKAN TES KONEKSI DATABASE
-
-                        8. BAGAIMANA CARA MENENTUKAN ALAMAT KONEKSI DATABASE?
-                        JAWABAN : PADA SETTING DATABASE TERDAPAT TIGA BAGIAN YANG BISA DISESUAIKAN DENGAN KEBUTUHAN PERUSAHAAN. CONTOH: LOCALHOST:3306/TPBDB
-                        1. LOCALHOST : MERUPAKAN ALAMAT DATABASE. JIKA PERUSAHAAN TELAH MEMILIKI DATABASE, LOCALHOST INI BISA DIUBAH MENJADI IP
-                        2. 3306 : PORT, BISA DISESUAIKAN DENGAN PORT PERUSAHAAN
-                        3. TPBDB : NAMA SKEMA DATABASE. BISA DIGANTI SESUAI DENGAN KEBUTUHAN PERUSAHAAN.
-                        PERLU DIINGATKAN BAHWA SATU SKEMA UNTUK SATU AKTIVASI.
-
-                        9. HASIL TEST SETTING SERVER YANG SAYA DAPATKAN ADALAH 'NOT CONNECTED', APA YANG HARUS SAYA LAKUKAN?
-                        JAWABAN : ADA BEBERAPA TAHAPAN YANG DAPAT ANDA LAKUKAN:
-                        1. ANDA DAPAT MELAKUKAN COPY URL (HTTPS://ESBBCEXT01.BEACUKAI.GO.ID:9082/PENERIMAANDATASVC/WSTPB) YANG TERDAPAT PADA SETTING SERVER KEMUDIAN PASTE PADA BROWSER PC ANDA. JIKA TIDAK MENAMPILKAN SECURITY CERTIFICATE, ANDA DAPAT MELANJUTKAN KE TAHAP 2.
-                        2. ANDA DAPAT MELAKUKAN TETHERING HP, MODEM ATAU MENGGUNAKAN KONEKSI DI LUAR KANTOR ANDA. HAL TERSEBUT DILAKUKAN UNTUK MENGETAHUI APAKAH KONEKSI KE SERVER BEA CUKAI TIDAK DAPAT DILAKUKAN KARENA KEAMANAN JARINGAN KANTOR ANDA. APABILA STATUS SETTING SERVER TETAP 'NOT CONNECTED', ANDA DAPAT MELANJUTKAN KE TAHAP 3.
-                        3. APABILA 2 TAHAP DIATAS TIDAK BERHASIL MAKA DAPAT MENGHUBUNGI PIHAK BEA CUKAI.
-
-                        10. SAYA MENGINSTALL MODUL DI BERBAGAI PC, APAKAH BISA MODUL-MODUL TERSEBUT TERINTEGRASI MENGGUNAKAN SATU DATABASE SAJA?
-                        JAWABAN : BISA
-                        1. PASTIKAN PC TEMPAT DATABASE SELALU MENYALA (SERVER DATABASE)
-                        2. CEK IP DARI PC SERVER TSB (MSL 10.101.102.103)
-                        3. PADA FAQ POIN 8, GANTI ALAMAT DATABASE (LOCALHOST) MENJADI IP PC SERVER (MSL 10.101.102.103:3306/TPBDB)
-
-                    </center>
+                <!-- end card -->
+                <!-- begin card -->
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-dark-darker pointer-cursor d-flex align-items-center collapsed" data-toggle="collapse" data-target="#collapseTwo">
+                        <i class="fa fa-circle fa-fw text-indigo mr-2 f-s-8"></i> 2. BAGAIMANA SAYA MELAKUKAN AKTIVASI ULANG PADA MODUL?
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            JAWABAN : UNTUK MELAKUKAN AKTIVASI ULANG, ANDA PERLU MELAKUKAN RESET DATABASE SEBAGAI BERIKUT:
+                            <ul>
+                                <li>1. PILIH MENU UTILITY-SETTING</li>
+                                <li>2. PILIH TAB SETTING DATABASE</li>
+                                <li>3. TEKAN TOMBOL RESET DATABASE</li>
+                                <li>4. TEKAN OK APABILA ANDA YAKIN SEMUA DATA YANG ADA AKAN DIHAPUS DAN ANDA HARUS MELAKUKAN AKTIVASI ULANG. SEBELUM MENYETUJUI, PASTIKAN ANDA TELAH MELAKUKAN BACK UP DATA (DIJELASKAN PADA POIN 3).</li>
+                                <li>5. AKAN MUNCUL FORM AKTIVASI</li>
+                                <li>6. PILIH SETTING SERVER PADA FORM AKTIVASI</li>
+                                <li>7. PASTIKAN URL MENGARAH KE HTTPS://ESBBCEXT01.BEACUKAI.GO.ID:9082/PENERIMAANDATASVC/WSTPB</li>
+                                <li>8. TES KONEKSI DENGAN MENEKAN TOMBOL TES KONEKSI</li>
+                                <li>9. LAKUKAN AKTIVASI</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                <!-- end card -->
+                <!-- begin card -->
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-dark-darker pointer-cursor d-flex align-items-center collapsed" data-toggle="collapse" data-target="#collapseThree">
+                        <i class="fa fa-circle fa-fw text-teal mr-2 f-s-8"></i> 3. JIKA SUDAH AKTIVASI KE SERVER DEVELOPMENT, KEMUDIAN INGIN MENGIRIM DATA KE SERVER PRODUCTION BAGAIMANA?
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            JAWABAN : UNTUK DAPAT MENGIRIM DATA KE SERVER PRODUCTION, ANDA PERLU MELAKUKAN AKTIVASI ULANG SEPERTI YANG TELAH DIJELASKAN PADA POIN 2. SEBELUM MELAKUKAN AKTIVASI ULANG, PASTIKAN ANDA MELAKUKAN BACK UP DATA DENGAN LANGKAH BERIKUT:
+                            <ul>
+                                <li>1. LAKUKAN BACK UP DATA DENGAN MENGAKSES MENU UTILITY-BACK UP</li>
+                                <li>2. PILIH DOKUMEN YANG ANDA INGIN BACK UP</li>
+                                <li>3. PILIH LOKASI DAN NAMA FILE (.XLS) BACK UP DATA ANDA</li>
+                                <li>4. TEKAN TOMBOL BACK UP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+                <!-- begin card -->
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-dark-darker pointer-cursor d-flex align-items-center collapsed" data-toggle="collapse" data-target="#collapseFour">
+                        <i class="fa fa-circle fa-fw text-info mr-2 f-s-8"></i> Collapsible Group Item #4
+                    </div>
+                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+                <!-- begin card -->
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-dark-darker pointer-cursor d-flex align-items-center collapsed" data-toggle="collapse" data-target="#collapseFive">
+                        <i class="fa fa-circle fa-fw text-warning mr-2 f-s-8"></i> Collapsible Group Item #5
+                    </div>
+                    <div id="collapseFive" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+                <!-- begin card -->
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-dark-darker pointer-cursor d-flex align-items-center collapsed" data-toggle="collapse" data-target="#collapseSix">
+                        <i class="fa fa-circle fa-fw text-danger mr-2 f-s-8"></i> Collapsible Group Item #6
+                    </div>
+                    <div id="collapseSix" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+                <!-- begin card -->
+                <div class="card bg-dark text-white">
+                    <div class="card-header bg-dark-darker pointer-cursor d-flex align-items-center collapsed" data-toggle="collapse" data-target="#collapseSeven">
+                        <i class="fa fa-circle fa-fw text-muted mr-2 f-s-8"></i> Collapsible Group Item #7
+                    </div>
+                    <div id="collapseSeven" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
             </div>
+            <!-- end #accordion -->
         </div>
     </div>
     <!-- end row -->

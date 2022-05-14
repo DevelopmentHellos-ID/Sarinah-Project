@@ -29,15 +29,52 @@ include "include/sidebar.php";
     <!-- begin row -->
     <div class="row">
         <div class="col-xl-12">
-            <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
+            <div class="panel panel-inverse" data-sortable-id="data-table">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[Content] Coming Soon</h4>
+                    <h4 class="panel-title">[User Manajemen] User Default</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">
-                    <center>
-                        <img class="picture-w-550" src="assets/images/coming-soon/01.jpg" alt="coming-soon">
-                    </center>
+                    <?php
+                    $data = $dbcon->query("SELECT * FROM aktivasi_aplikasi");
+                    $row = mysqli_fetch_array($data);
+                    ?>
+                    <form action="/" method="POST">
+                        <fieldset>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-3 col-form-label">Username Portal</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="UsernamePortal" class="form-control" value="<?= $row['USERNAME']; ?>" placeholder="Username Portal ..." />
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-3 col-form-label">Password Portal</label>
+                                <div class="col-md-7">
+                                    <input type="password" id="PasswordPortal" class="form-control" value="<?= $row['PASSWORD']; ?>" placeholder="Password Portal ..." />
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-15">
+                                <div class="col-md-7 offset-md-3">
+                                    <div class="checkbox checkbox-css">
+                                        <input type="checkbox" id="ckb1" onclick="myFunction()" />
+                                        <label for="ckb1">Lihat Password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-3 col-form-label">Nomor Skep</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="NomorSkep" class="form-control" value="<?= $row['NOMOR_SKEP']; ?>" placeholder="Nomor Skep ..." />
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-15">
+                                <label class="col-md-3 col-form-label">Tanggal Skep</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="TanggalSkep" class="form-control" value="<?= $row['TANGGAL_SKEP']; ?>" placeholder="Tanggal Skep ..." />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
