@@ -1,15 +1,30 @@
-<style>
-	.sidebar .nav>li.nav-profile .cover {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-image: url('assets/images/sidebar/TPB-SIS.png');
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-</style>
+<?php if ($resultSetting['bg_sidebar'] == NULL) { ?>
+	<style>
+		.sidebar .nav>li.nav-profile .cover {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-image: url('assets/images/sidebar/sidebar-default.png');
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	</style>
+<?php } else { ?>
+	<style>
+		.sidebar .nav>li.nav-profile .cover {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-image: url('assets/images/sidebar/<?= $resultSetting['bg_sidebar'] ?>');
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	</style>
+<?php } ?>
 <?php
 $user = $_SESSION['username'];
 $roleSidebar = $dbcon->query("SELECT * FROM view_privileges WHERE USER_NAME='$user' ");

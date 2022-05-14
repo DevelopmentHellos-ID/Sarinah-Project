@@ -6,7 +6,18 @@ $access = mysqli_fetch_array($role);
 <div id="header" class="header navbar-default">
 	<!-- begin navbar-header -->
 	<div class="navbar-header">
-		<a href="index.php" class="navbar-brand"><span class="navbar-logo"></span> <b>TPB</b>&nbsp;Sistem</a>
+		<a href="index.php" class="navbar-brand"><span class="navbar-logo"></span>
+			<!-- QUERY -->
+			<?php
+			$dataSettting = $dbcon->query("SELECT * FROM tbl_setting");
+			$resultSetting = mysqli_fetch_array($dataSettting);
+			?>
+			<?php if ($resultSetting['sd_one'] == NULL || $resultSetting['sd_two'] == NULL) { ?>
+				<b>Name 1</b>&nbsp;Name 2
+			<?php } else { ?>
+				<b><?= $resultSetting['sd_one'] ?></b>&nbsp;<?= $resultSetting['sd_two'] ?>
+			<?php } ?>
+		</a>
 		<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>

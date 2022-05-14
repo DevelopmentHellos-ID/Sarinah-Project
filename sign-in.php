@@ -45,18 +45,33 @@ if (isset($_POST['submit'])) {
 }
 // END FUNCTION SIGN-IN
 ?>
+<!-- QUERY -->
+<?php
+$dataLoginSettting = $dbcon->query("SELECT * FROM tbl_setting");
+$resultLoginSetting = mysqli_fetch_array($dataLoginSettting);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8" />
-	<title>TPB | Sarinah Persero - Sistem Tempat Penimbunan Berikat</title>
+	<?php if ($resultLoginSetting['company'] == NULL || $resultLoginSetting['title'] == NULL) { ?>
+		<title>Sign In | Perusahaan - Title</title>
+	<?php } else { ?>
+		<title>Sign In | <?= $resultLoginSetting['company'] ?> - <?= $resultLoginSetting['title'] ?></title>
+	<?php } ?>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo/logo.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/logo.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo/logo.png">
+	<?php if ($resultLoginSetting['icon'] == NULL) { ?>
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon/icon-default.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/icon-default.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/images/icon/icon-default.png">
+	<?php } else { ?>
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon/<?= $resultLoginSetting['icon'] ?>">
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/<?= $resultLoginSetting['icon'] ?>">
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/images/icon/<?= $resultLoginSetting['icon'] ?>">
+	<?php } ?>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />
 	<link href="assets/css/tpb.css" rel="stylesheet" />
@@ -75,6 +90,17 @@ if (isset($_POST['submit'])) {
 		color: #fff;
 		font-size: 1.0625em;
 	}
+
+	.or-signin {
+		display: flex;
+		justify-content: center;
+		margin: 10px;
+	}
+
+	.google {
+		width: 20px;
+		height: 100%;
+	}
 </style>
 
 <body class="pace-top">
@@ -82,16 +108,32 @@ if (isset($_POST['submit'])) {
 	<div id="page-container" class="fade">
 		<div class="login login-with-news-feed">
 			<div class="news-feed">
-				<div class="news-image" style="background-image: url(assets/images/bg-signin/bg-01.png)"></div>
+				<?php if ($resultLoginSetting['bg_signin'] == NULL) { ?>
+					<div class="news-image" style="background-image: url(assets/images/bg-signin/signin-default.png)"></div>
+				<?php } else { ?>
+					<div class="news-image" style="background-image: url(assets/images/bg-signin/<?= $resultLoginSetting['bg_signin'] ?>)"></div>
+				<?php } ?>
 				<div class="news-caption">
-					<h4 class="caption-title"><b>TPB</b> Sarinah Persero</h4>
-					<p>Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero | Gedung Sarinah, Jl. M. H. Thamrin No. 11, RT.8/RW.4, Gondangdia, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10350.</p>
+					<?php if ($resultLoginSetting['text_signin_one'] == NULL || $resultLoginSetting['text_signin_two'] == NULL) { ?>
+						<h4 class="caption-title"><b>Text 1</b> Text 2</h4>
+					<?php } else { ?>
+						<h4 class="caption-title"><b><?= $resultLoginSetting['text_signin_one'] ?></b> <?= $resultLoginSetting['text_signin_two'] ?></h4>
+					<?php } ?>
+					<?php if ($resultLoginSetting['text_signin_detail'] == NULL) { ?>
+						<p>...</p>
+					<?php } else { ?>
+						<p><?= $resultLoginSetting['text_signin_detail'] ?></p>
+					<?php } ?>
 				</div>
 			</div>
 			<div class="right-content">
 				<div class="login-header">
 					<div class="brand">
-						<span class="logo"></span> <b>TPB</b> Sistem
+						<?php if ($resultLoginSetting['sd_one'] == NULL || $resultLoginSetting['sd_two'] == NULL) { ?>
+							<span class="logo"></span> <b>Name 1</b> Name 2
+						<?php } else { ?>
+							<span class="logo"></span> <b><?= $resultLoginSetting['sd_one'] ?></b> <?= $resultLoginSetting['sd_two'] ?>
+						<?php } ?>
 						<small>Silahkan <b>Sign In</b> untuk memulai <i>session</i> anda.</small>
 					</div>
 					<div class="icon">
@@ -116,11 +158,21 @@ if (isset($_POST['submit'])) {
 						</div>
 						<div class="login-buttons">
 							<button type="submit" name="submit" class="btn btn-success btn-block btn-lg">Sign In</button>
+							<div class="or-signin">
+								<font>OR</font>
+							</div>
+							<button type="submit" name="google" class="btn btn-default btn-block btn-lg">
+								<img src="assets/img/svg/google.svg" class="google" alt="Sigin Google">&nbsp; Google
+							</button>
 						</div>
 						<!-- <div class="m-t-20 m-b-40 p-b-40 text-inverse">Not a member yet? Click <a href="register_v3.html">here</a> to register.</div> -->
 						<hr />
-						<p class="text-center text-grey-darker mb-0">&copy; Copyright <a href="https://hellos-id.com/" target="_blank"><b>HELLOS-ID</b></a> All Right Reserved 2022 - <?= date('Y') ?></p>
-						<p class="text-center text-grey-darker mb-0">Version 1.0.01</p>
+						<p class="text-center text-grey-darker mb-0">&copy; Copyright <a href="https://hellos-id.com/" target="_blank"><b>HELLOS<sup>ID</sup></b></a> All Right Reserved 2022 - <?= date('Y') ?></p>
+						<?php if ($resultLoginSetting['version'] == NULL) { ?>
+							<p class="text-center text-grey-darker mb-0">Version 0.0.0</p>
+						<?php } else { ?>
+							<p class="text-center text-grey-darker mb-0"><?= $resultLoginSetting['version'] ?> - <?= $resultLoginSetting['release'] ?></p>
+						<?php } ?>
 					</form>
 				</div>
 			</div>
@@ -167,7 +219,7 @@ if (isset($_POST['submit'])) {
 			Swal.fire({
 				title: 'Berhasil Sign Out!',
 				icon: 'success',
-				text: 'Anda telah mengakhiri Session anda pada Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero!',
+				html: '<font style="font-size: 14px;font-weight: 500;">Anda berhasil keluar dan <b><i>session</i></b> anda telah berakhir!</font>',
 			})
 			history.replaceState({}, '', './sign-in.php');
 		}

@@ -1,15 +1,30 @@
+<!-- QUERY -->
+<?php
+$dataHeadSettting = $dbcon->query("SELECT * FROM tbl_setting");
+$resultHeadSetting = mysqli_fetch_array($dataHeadSettting);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8" />
-	<title>TPB | Sarinah Persero - Sistem Tempat Penimbunan Berikat</title>
+	<?php if ($resultHeadSetting['app_name'] == NULL || $resultHeadSetting['company'] == NULL || $resultHeadSetting['title'] == NULL) { ?>
+		<title>App Name | Perusahaan - Title</title>
+	<?php } else { ?>
+		<title><?= $resultHeadSetting['app_name'] ?> | <?= $resultHeadSetting['company'] ?> - <?= $resultHeadSetting['title'] ?></title>
+	<?php } ?>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo/logo.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/logo.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo/logo.png">
+	<?php if ($resultHeadSetting['icon'] == NULL) { ?>
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon/icon-default.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/icon-default.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/images/icon/icon-default.png">
+	<?php } else { ?>
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/images/icon/<?= $resultHeadSetting['icon'] ?>">
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/<?= $resultHeadSetting['icon'] ?>">
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/images/icon/<?= $resultHeadSetting['icon'] ?>">
+	<?php } ?>
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />

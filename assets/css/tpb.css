@@ -175,3 +175,10 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.line-dashboard {
+    height: 1.5px;
+    margin: 8px 0px -10px 0px;
+    background: #8351d7;
+    box-shadow: 2px 3px 4px rgb(0 0 0 / 52%);
+}

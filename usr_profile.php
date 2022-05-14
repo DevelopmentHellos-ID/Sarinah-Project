@@ -7,17 +7,32 @@ include "include/top-header.php";
 include "include/sidebar.php";
 ?>
 <link rel="stylesheet" href="assets/profile/css/profile.css">
+<?php if ($resultSetting['bg_profile'] == NULL) { ?>
+    <style>
+        .bg-profile-css {
+            min-height: 489px;
+            background-image: url('assets/images/profile/profile-default.png');
+            background-size: cover;
+            background-position: center top;
+            margin-top: -20px;
+            margin-left: -30px;
+            margin-right: -30px;
+        }
+    </style>
+<?php } else { ?>
+    <style>
+        .bg-profile-css {
+            min-height: 489px;
+            background-image: url('assets/images/profile/<?= $resultSetting['bg_profile']  ?>');
+            background-size: cover;
+            background-position: center top;
+            margin-top: -20px;
+            margin-left: -30px;
+            margin-right: -30px;
+        }
+    </style>
+<?php } ?>
 <style>
-    .bg-profile-css {
-        min-height: 489px;
-        background-image: url('assets/profile/img/theme/bg-01.png');
-        background-size: cover;
-        background-position: center top;
-        margin-top: -20px;
-        margin-left: -30px;
-        margin-right: -30px;
-    }
-
     @media (max-width: 767.5px) {
         .bg-profile-css {
             margin-top: -20px;
@@ -34,7 +49,11 @@ include "include/sidebar.php";
         <div class="container-fluid d-flex align-items-center">
             <div class="hello">
                 <h1 class="display-2 text-white">Hello, <?= $_SESSION['username'] ?></h1>
-                <p class="text-white mt-0 mb-5">Ini adalah tampilan halaman profile anda. Di halaman profile, anda dapat melihat biodata dan status pengguna anda pada <br><b><i>Sistem Informasi Tempat Penimbunan Berikat (SI-TPB)</i></b>.</p>
+                <?php if ($resultSetting['app_name'] == NULL) { ?>
+                    <p class="text-white mt-0 mb-5">Ini adalah tampilan halaman profile anda. Di halaman profile, anda dapat melihat biodata dan status pengguna anda pada <br><b><i>App Name</i></b>.</p>
+                <?php } else { ?>
+                    <p class="text-white mt-0 mb-5">Ini adalah tampilan halaman profile anda. Di halaman profile, anda dapat melihat biodata dan status pengguna anda pada <br><b><i><?= $resultSetting['app_name'] ?></i></b>.</p>
+                <?php } ?>
                 <a href="#!" class="btn btn-neutral-tf"><i class="icon-copy dw dw-calendar-11"></i> <span id="ct"></span></a>
             </div>
         </div>

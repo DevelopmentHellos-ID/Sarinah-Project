@@ -9,26 +9,14 @@
 	}
 </style>
 <script type="text/javascript">
-	// var handleDashboardGritterNotification = function() {
-	// 	setTimeout(function() {
-	// 		$.gritter.add({
-	// 			title: 'Selamat datang, <?= $_SESSION['username']; ?>!',
-	// 			text: 'Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero.',
-	// 			image: 'assets/img/user/user-12.jpg',
-	// 			sticky: true,
-	// 			time: '',
-	// 			class_name: 'my-sticky-class'
-	// 		});
-	// 	}, 1000);
-	// };
-
 	if (window?.location?.href?.indexOf('SignInsuccess') > -1) {
 		Swal.fire({
-			imageUrl: 'assets/images/logo/logo.png',
+			imageUrl: 'assets/images/welcome/welcome.svg',
 			imageWidth: 350,
-			imageHeight: 115,
+			imageHeight: 345,
 			imageAlt: 'Custom image',
-			html: '<font style="font-size: 20px;font-weight: 500;">Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero</font>',
+			title: 'Sign In berhasil!',
+			html: '<font style="font-size: 14px;font-weight: 500;">Anda berhasil masuk dan memulai <b><i>session</i></b> anda!</font>',
 		})
 		history.replaceState({}, '', './index.php');
 	}

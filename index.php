@@ -44,14 +44,32 @@ include "include/sidebar.php";
 				<div class="col-sm-12">
 					<!-- begin widget-card -->
 					<a href="#" class="widget-card widget-card-rounded m-b-20" data-id="widget">
-						<div class="widget-card-cover" style="background-image: url('assets/images/dahboard-bg/ds-bg.png')"></div>
+						<div class="widget-card-cover" style="background: linear-gradient(45deg, #1d2226, #1d2226);"></div>
 						<div class="widget-card-content">
-							<b class="text-white">Sistem Informasi Tempat Penimbunan Berikat (SI-TPB) Sarinah Persero.</b>
+							<?php if ($resultSetting['app_name'] == NULL) { ?>
+								<b class="text-white">App Name.</b>
+							<?php } else { ?>
+								<b class="text-white"><?= $resultSetting['app_name'] ?>.</b>
+							<?php } ?>
+							<div class="line-dashboard"></div>
 						</div>
-						<div class="widget-card-content bottom">
-							<i class="fab fa-pushed fa-5x text-indigo"></i>
-							<h4 class="text-white m-t-10"><b>TPB Sistem<br /> by Hellos-ID</b></h4>
-							<h5 class="f-s-12 text-white-transparent-7 m-b-2"><b>Dashboard TPB Sarinah Persero</b></h5>
+						<div style="display: flex;justify-content: space-between;align-items: center;">
+							<div class="widget-card-content bottom">
+								<i class="fab fa-pushed fa-5x text-indigo"></i>
+								<?php if ($resultSetting['sd_one'] == NULL || $resultSetting['sd_two'] == NULL) { ?>
+									<h4 class="text-white m-t-10"><b>Name 1 Name 2<br /> by <b>HELLOS</b><sup><b>ID</b></sup></b></h4>
+								<?php } else { ?>
+									<h4 class="text-white m-t-10"><b><?= $resultSetting['sd_one'] ?> <?= $resultSetting['sd_two'] ?><br /> by Hellos-ID</b></h4>
+								<?php } ?>
+								<?php if ($resultSetting['app_name'] == NULL || $resultSetting['company'] == NULL) { ?>
+									<h5 class="f-s-12 text-white-transparent-7 m-b-2"><b>Dashboard App Name Perusahaan</b></h5>
+								<?php } else { ?>
+									<h5 class="f-s-12 text-white-transparent-7 m-b-2"><b>Dashboard <?= $resultSetting['app_name'] ?> <?= $resultSetting['company'] ?></b></h5>
+								<?php } ?>
+							</div>
+							<div class="widget-card-content bottom">
+								<img src="assets/img/svg/data-report-animate.svg" style="width: 212px;height: 100%;" alt="Images Dasboard">
+							</div>
 						</div>
 					</a>
 					<!-- end widget-card -->
