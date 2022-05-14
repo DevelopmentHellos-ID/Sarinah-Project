@@ -66,6 +66,8 @@ $accessSidebar = mysqli_fetch_array($roleSidebar);
 			<?php include 'modules/Referensi/menu.php' ?>
 			<!-- Utility -->
 			<?php include 'modules/Utility/menu.php' ?>
+			<!-- Administrator -->
+			<?php include 'modules/Administrator/menu.php' ?>
 			<!-- Database -->
 			<?php include 'modules/Database/menu.php' ?>
 			<!-- Do not delete! "begin sidebar minify button" -->
