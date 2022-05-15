@@ -17,6 +17,6 @@
     <?php if ($resultSetting['version'] == NULL) { ?>
         <b>Version 0.0.0</b>
     <?php } else { ?>
-        <b><?= $resultSetting['version'] ?> - <?= $resultSetting['release'] ?></b>
+        <b><?= $resultSetting['version'] ?> - <?= $resultSetting['type'] ?></b>
     <?php } ?>
 </div>

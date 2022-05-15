@@ -2,13 +2,48 @@
 include "include/connection.php";
 include "include/restrict.php";
 include "include/head.php";
-include "include/alert.php";
 include "include/top-header.php";
 include "include/sidebar.php";
 ?>
-<!-- Save Setting Text -->
 <?php
+// FOR ICON
+// Save Icon
+if (isset($_POST["SaveIcon"])) {
+    $Iconnama = $_FILES['icon']['name'];
+    $file_tmp = $_FILES['icon']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/icon/' . $Iconnama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET icon='$Iconnama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputIconSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputIconFailed=true';</script>";
+    }
+}
+// Update Icon
+if (isset($_POST["EditIcon"])) {
+    $Iconnama = $_FILES['icon']['name'];
+    $file_tmp = $_FILES['icon']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/icon/' . $Iconnama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET icon='$Iconnama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputIconSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputIconFailed=true';</script>";
+    }
+}
+
+// FOR SETTING TEXT
+// Save Setting Text
 if (isset($_POST["SimpanSetting"])) {
+
     $title                 = $_POST['title'];
     $app_name              = $_POST['app_name'];
     $company               = $_POST['company'];
@@ -19,21 +54,59 @@ if (isset($_POST["SimpanSetting"])) {
     $sd_one                = $_POST['sd_one'];
     $sd_two                = $_POST['sd_two'];
     $version               = $_POST['version'];
-    $release               = $_POST['release'];
+    $type                  = $_POST['type'];
     $dev_by                = $_POST['dev_by'];
     $dev_url               = $_POST['dev_url'];
 
     $query = $dbcon->query("INSERT INTO tbl_setting
-                               (id,title,app_name,company,address,text_signin_one,text_signin_two,text_signin_detail,sd_one,sd_two,version,release,dev_by,dev_url)
-                               VALUES
-                               ('','$title','$app_name','$company','$address','$text_signin_one','$text_signin_two','$text_signin_detail','$sd_one','$sd_two','$version','$release','$dev_by','$dev_url')");
-
+                                        (id,title,app_name,company,address,text_signin_one,text_signin_two,text_signin_detail,sd_one,sd_two,version,type,dev_by,dev_url)
+                                        VALUES
+                                        ('','$title','$app_name','$company','$address','$text_signin_one','$text_signin_two','$text_signin_detail','$sd_one','$sd_two','$version','$release','$dev_by','$dev_url')");
     if ($query) {
         echo "<script>window.location.href='adm_setting.php?SaveSettingTextSuccess=true';</script>";
     } else {
         echo "<script>window.location.href='adm_setting.php?SaveSettingTextFailed=true';</script>";
     }
 }
+
+// Update Setting Text
+if (isset($_POST["EditSetting"])) {
+
+    $title                 = $_POST['title'];
+    $app_name              = $_POST['app_name'];
+    $company               = $_POST['company'];
+    $address               = $_POST['address'];
+    $text_signin_one       = $_POST['text_signin_one'];
+    $text_signin_two       = $_POST['text_signin_two'];
+    $text_signin_detail    = $_POST['text_signin_detail'];
+    $sd_one                = $_POST['sd_one'];
+    $sd_two                = $_POST['sd_two'];
+    $version               = $_POST['version'];
+    $type                  = $_POST['type'];
+    $dev_by                = $_POST['dev_by'];
+    $dev_url               = $_POST['dev_url'];
+
+    $query = $dbcon->query("UPDATE tbl_setting SET title='$title',
+                                                   app_name='$app_name',
+                                                   company='$company',
+                                                   address='$address',
+                                                   text_signin_one='$text_signin_one',
+                                                   text_signin_two='$text_signin_two',
+                                                   text_signin_detail='$text_signin_detail',
+                                                   sd_one='$sd_one',
+                                                   sd_two='$sd_two',
+                                                   version='$version',
+                                                   type='$type',
+                                                   dev_by='$dev_by',
+                                                   dev_url='$dev_url'
+                                                   WHERE id='1'");
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?UpdateSettingTextSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?UpdateSettingTextFailed=true';</script>";
+    }
+}
+// END FOR SETTING TEXT
 ?>
 <!-- End Save Setting Text -->
 <!-- begin #content -->
@@ -70,14 +143,14 @@ if (isset($_POST["SimpanSetting"])) {
                     ?>
                     <!-- Icon -->
                     <?php if ($row['icon'] == NULL) { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Icon</label>
                                     <div style="display: flex;justify-content:center;">
                                         <img src="assets/images/icon/icon-default.png" alt="Icon">
                                     </div>
-                                    <input type="file" class="form-control" name="icon" />
+                                    <input type="file" class="form-control" name="icon" required />
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" name="SaveIcon" class="btn btn-sm btn-primary"><i class="fa fa-images"></i> Upload</button>
@@ -85,7 +158,7 @@ if (isset($_POST["SimpanSetting"])) {
                             </fieldset>
                         </form>
                     <?php } else { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Icon</label>
@@ -103,14 +176,14 @@ if (isset($_POST["SimpanSetting"])) {
                     <!-- End Icon -->
                     <!-- Logo -->
                     <?php if ($row['logo'] == NULL) { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Logo</label>
                                     <div style="display: flex;justify-content:center">
                                         <img src="assets/images/logo/logo-default.png" alt="Logo">
                                     </div>
-                                    <input type="file" class="form-control" />
+                                    <input type="file" class="form-control" name="logo" required />
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" name="SaveLogo" class="btn btn-sm btn-primary"><i class="fa fa-images"></i> Upload</button>
@@ -118,7 +191,7 @@ if (isset($_POST["SimpanSetting"])) {
                             </fieldset>
                         </form>
                     <?php } else { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Logo</label>
@@ -136,14 +209,14 @@ if (isset($_POST["SimpanSetting"])) {
                     <!-- End Logo -->
                     <!-- Background Sign IN -->
                     <?php if ($row['bg_signin'] == NULL) { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Background Sign In</label>
                                     <div style="display: flex;justify-content:center; margin-bottom: 5px;">
                                         <img src="assets/images/bg-signin/signin-default.png" style="width: 160px;" alt="Background Sign In">
                                     </div>
-                                    <input type="file" class="form-control" />
+                                    <input type="file" class="form-control" name="bg_signin" required />
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" name="SaveBgSignIn" class="btn btn-sm btn-primary"><i class="fa fa-images"></i> Upload</button>
@@ -151,7 +224,7 @@ if (isset($_POST["SimpanSetting"])) {
                             </fieldset>
                         </form>
                     <?php } else { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Background Sign In</label>
@@ -169,14 +242,14 @@ if (isset($_POST["SimpanSetting"])) {
                     <!-- End Background Sign IN -->
                     <!-- Background Sidebar -->
                     <?php if ($row['bg_sidebar'] == NULL) { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Background Sidebar</label>
                                     <div style="display: flex;justify-content:center; margin-bottom: 5px;">
                                         <img src="assets/images/sidebar/sidebar-default.png" style="width: 160px;" alt="Background Sidebar">
                                     </div>
-                                    <input type="file" class="form-control" />
+                                    <input type="file" class="form-control" name="bg_sidebar" required />
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" name="SaveSidebar" class="btn btn-sm btn-primary"><i class="fa fa-images"></i> Upload</button>
@@ -184,7 +257,7 @@ if (isset($_POST["SimpanSetting"])) {
                             </fieldset>
                         </form>
                     <?php } else { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Background Sidebar</label>
@@ -202,14 +275,14 @@ if (isset($_POST["SimpanSetting"])) {
                     <!-- End Background Profile -->
                     <!-- Background Profile -->
                     <?php if ($row['bg_profile'] == NULL) { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Background Profile</label>
                                     <div style="display: flex;justify-content:center; margin-bottom: 5px;">
                                         <img src="assets/images/profile/profile-default.png" style="width: 160px;" alt="Background Profile">
                                     </div>
-                                    <input type="file" class="form-control" />
+                                    <input type="file" class="form-control" name="bg_profile" required />
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" name="SaveProfile" class="btn btn-sm btn-primary"><i class="fa fa-images"></i> Upload</button>
@@ -217,7 +290,7 @@ if (isset($_POST["SimpanSetting"])) {
                             </fieldset>
                         </form>
                     <?php } else { ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="form-group">
                                     <label>Background Profile</label>
@@ -247,7 +320,7 @@ if (isset($_POST["SimpanSetting"])) {
                     $dataTwo = $dbcon->query("SELECT * FROM tbl_setting");
                     $rowTwo = mysqli_fetch_array($dataTwo);
                     ?>
-                    <?php if ($rowTwo['title'] == NULL) { ?>
+                    <?php if ($rowTwo['id'] == NULL) { ?>
                         <form action="" method="POST">
                             <fieldset>
                                 <div class="row">
@@ -314,8 +387,8 @@ if (isset($_POST["SimpanSetting"])) {
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Type</label>
-                                            <select class="form-control" name="release" required>
-                                                <option value="" style="font-weight: 700;">-- Pilih Type --</option>
+                                            <select class="form-control" name="type" required>
+                                                <option value="">-- Pilih Type --</option>
                                                 <option value="Alpha">Alpha</option>
                                                 <option value="Beta">Beta</option>
                                                 <option value="Release candidate (RC)">Release candidate (RC)</option>
@@ -400,9 +473,9 @@ if (isset($_POST["SimpanSetting"])) {
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Type</label>
-                                            <select class="form-control" name="release" value="">
-                                                <option value="<?= $rowTwo['release'] ?>" style="font-weight: 700;"><?= $rowTwo['release'] ?></option>
-                                                <option value="" style="font-weight: 700;">-- Pilih Type --</option>
+                                            <select class="form-control" name="type" value="">
+                                                <option value="<?= $rowTwo['type'] ?>"><?= $rowTwo['type'] ?></option>
+                                                <option value="">-- Pilih Type --</option>
                                                 <option value="Alpha">Alpha</option>
                                                 <option value="Beta">Beta</option>
                                                 <option value="Release candidate (RC)">Release candidate (RC)</option>
@@ -414,7 +487,7 @@ if (isset($_POST["SimpanSetting"])) {
                                     <input type="hidden" class="form-control" name="dev_url" value="https://hellos-id.com/" />
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-sm btn-warning" name="EditSetting"><i class="fa fa-edit"></i> Update</button>
+                                            <button type="submit" class="btn btn-sm btn-primary" name="EditSetting"><i class="fa fa-save"></i> Simpan</button>
                                         </div>
                                     </div>
                                 </div>
@@ -432,7 +505,25 @@ if (isset($_POST["SimpanSetting"])) {
 <?php include "include/panel.php"; ?>
 <?php include "include/footer.php"; ?>
 <script type="text/javascript">
-    // INSERT SUCCESS
+    // SAVED ICON SUCCESS
+    if (window?.location?.href?.indexOf('InputIconSuccess') > -1) {
+        Swal.fire({
+            title: 'Icon berhasil disimpan!',
+            icon: 'success',
+            text: 'Icon berhasil disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED ICON FAILED
+    if (window?.location?.href?.indexOf('InputIconFailed') > -1) {
+        Swal.fire({
+            title: 'Icon gagal disimpan!',
+            icon: 'error',
+            text: 'Icon gagal disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED SETTING TEXT SUCCESS
     if (window?.location?.href?.indexOf('SaveSettingTextSuccess') > -1) {
         Swal.fire({
             title: 'Data berhasil disimpan!',
@@ -441,12 +532,31 @@ if (isset($_POST["SimpanSetting"])) {
         })
         history.replaceState({}, '', './adm_setting.php');
     }
-    // INSERT FAILED
+    // SAVED SETTING TEXT FAILED
     if (window?.location?.href?.indexOf('SaveSettingTextFailed') > -1) {
         Swal.fire({
             title: 'Data gagal disimpan!',
             icon: 'error',
             text: 'Data gagal disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+
+    // UPDATE SETTING TEXT SUCCESS
+    if (window?.location?.href?.indexOf('UpdateSettingTextSuccess') > -1) {
+        Swal.fire({
+            title: 'Data berhasil diupdate!',
+            icon: 'success',
+            text: 'Data berhasil diupdate didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // UPDATE SETTING TEXT FAILED
+    if (window?.location?.href?.indexOf('UpdateSettingTextFailed') > -1) {
+        Swal.fire({
+            title: 'Data gagal diupdate!',
+            icon: 'error',
+            text: 'Data gagal diupdate didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }

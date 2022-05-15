@@ -175,7 +175,7 @@ $resultLoginSetting = mysqli_fetch_array($dataLoginSettting);
 						<?php if ($resultLoginSetting['version'] == NULL) { ?>
 							<p class="text-center text-grey-darker mb-0">Version 0.0.0</p>
 						<?php } else { ?>
-							<p class="text-center text-grey-darker mb-0"><?= $resultLoginSetting['version'] ?> - <?= $resultLoginSetting['release'] ?></p>
+							<p class="text-center text-grey-darker mb-0"><?= $resultLoginSetting['version'] ?> - <?= $resultLoginSetting['type'] ?></p>
 						<?php } ?>
 					</form>
 				</div>
