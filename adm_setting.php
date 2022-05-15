@@ -9,7 +9,7 @@ include "include/sidebar.php";
 // FOR ICON
 // Save Icon
 if (isset($_POST["SaveIcon"])) {
-    $Iconnama = $_FILES['icon']['name'];
+    $Iconnama = 'icon_' . time() . "." . $_FILES['icon']['name'];
     $file_tmp = $_FILES['icon']['tmp_name'];
 
     move_uploaded_file($file_tmp, './assets/images/icon/' . $Iconnama);
@@ -23,9 +23,10 @@ if (isset($_POST["SaveIcon"])) {
         echo "<script>window.location.href='adm_setting.php?InputIconFailed=true';</script>";
     }
 }
+
 // Update Icon
 if (isset($_POST["EditIcon"])) {
-    $Iconnama = $_FILES['icon']['name'];
+    $Iconnama = 'icon_' . time() . "." . $_FILES['icon']['name'];
     $file_tmp = $_FILES['icon']['tmp_name'];
 
     move_uploaded_file($file_tmp, './assets/images/icon/' . $Iconnama);
@@ -37,6 +38,146 @@ if (isset($_POST["EditIcon"])) {
         echo "<script>window.location.href='adm_setting.php?InputIconSuccess=true';</script>";
     } else {
         echo "<script>window.location.href='adm_setting.php?InputIconFailed=true';</script>";
+    }
+}
+
+// FOR LOGO
+// Save Logo
+if (isset($_POST["SaveLogo"])) {
+    $Logonama = 'logo_' . time() . "." . $_FILES['logo']['name'];
+    $file_tmp = $_FILES['logo']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/logo/' . $Logonama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET logo='$Logonama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputLogoSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputLogoFailed=true';</script>";
+    }
+}
+
+// Update Logo
+if (isset($_POST["EditLogo"])) {
+    $Logonama = 'logo_' . time() . "." . $_FILES['logo']['name'];
+    $file_tmp = $_FILES['logo']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/logo/' . $Logonama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET logo='$Logonama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputLogoSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputLogoFailed=true';</script>";
+    }
+}
+
+// FOR BG SIGN IN
+// Save BgSignIn
+if (isset($_POST["SaveBgSignIn"])) {
+    $BgSignInnama = 'bgSignIn_' . time() . "." . $_FILES['bg_signin']['name'];
+    $file_tmp = $_FILES['bg_signin']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/bg-signin/' . $BgSignInnama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET bg_signin='$BgSignInnama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputBgSignInSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputBgSignInFailed=true';</script>";
+    }
+}
+
+// Update BgSignIn
+if (isset($_POST["EditBgSignIn"])) {
+    $BgSignInnama = 'bgSignIn_' . time() . "." . $_FILES['bg_signin']['name'];
+    $file_tmp = $_FILES['bg_signin']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/bg-signin/' . $BgSignInnama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET bg_signin='$BgSignInnama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputBgSignInSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputBgSignInFailed=true';</script>";
+    }
+}
+
+// FOR BG SIDEBAR
+// Save Sidebar
+if (isset($_POST["SaveSidebar"])) {
+    $Sidebarnama = 'Sidebar_' . time() . "." . $_FILES['bg_sidebar']['name'];
+    $file_tmp = $_FILES['bg_sidebar']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/sidebar/' . $Sidebarnama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET bg_sidebar='$Sidebarnama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputSidebarSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputSidebarFailed=true';</script>";
+    }
+}
+
+// Update Sidebar
+if (isset($_POST["EditSidebar"])) {
+    $Sidebarnama = 'Sidebar_' . time() . "." . $_FILES['bg_sidebar']['name'];
+    $file_tmp = $_FILES['bg_sidebar']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/sidebar/' . $Sidebarnama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET bg_sidebar='$Sidebarnama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputSidebarSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputSidebarFailed=true';</script>";
+    }
+}
+
+// FOR BG PROFILE
+// Save Profile
+if (isset($_POST["SaveProfile"])) {
+    $Profilenama = 'Profile_' . time() . "." . $_FILES['bg_profile']['name'];
+    $file_tmp = $_FILES['bg_profile']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/profile/' . $Profilenama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET bg_profile='$Profilenama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputProfileSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputProfileFailed=true';</script>";
+    }
+}
+
+// Update Profile
+if (isset($_POST["EditProfile"])) {
+    $Profilenama = 'Profile_' . time() . "." . $_FILES['bg_profile']['name'];
+    $file_tmp = $_FILES['bg_profile']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/profile/' . $Profilenama);
+
+    $query = $dbcon->query("UPDATE tbl_setting SET bg_profile='$Profilenama'
+                                               WHERE id='1'");
+
+    if ($query) {
+        echo "<script>window.location.href='adm_setting.php?InputProfileSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='adm_setting.php?InputProfileFailed=true';</script>";
     }
 }
 
@@ -163,7 +304,7 @@ if (isset($_POST["EditSetting"])) {
                                 <div class="form-group">
                                     <label>Icon</label>
                                     <div style="display: flex;justify-content:center;">
-                                        <img src="assets/images/icon/<?= $row['icon'] ?>" alt="Icon">
+                                        <img src="assets/images/icon/<?= $row['icon'] ?>" style="width: 230px;margin-bottom: 10px;" alt="Icon">
                                     </div>
                                     <input type="file" class="form-control" name="icon" value="<?= $row['icon'] ?>" />
                                 </div>
@@ -196,7 +337,7 @@ if (isset($_POST["EditSetting"])) {
                                 <div class="form-group">
                                     <label>Logo</label>
                                     <div style="display: flex;justify-content:center">
-                                        <img src="assets/images/logo/<?= $row['logo'] ?>" alt="Logo">
+                                        <img src="assets/images/logo/<?= $row['logo'] ?>" style="width: 300px;margin-bottom: 10px;border-color: #000;padding: 10px;background: transparent;border: outset;" alt="Logo">
                                     </div>
                                     <input type="file" class="form-control" name="logo" value="<?= $row['logo'] ?>" />
                                 </div>
@@ -267,7 +408,7 @@ if (isset($_POST["EditSetting"])) {
                                     <input type="file" class="form-control" name="bg_sidebar" value="<?= $row['bg_sidebar'] ?>" />
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" name="SaveSidebar" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Update</button>
+                                    <button type="submit" name="EditSidebar" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Update</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -300,7 +441,7 @@ if (isset($_POST["EditSetting"])) {
                                     <input type="file" class="form-control" name="bg_profile" value="<?= $row['bg_profile'] ?>" />
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" name="SaveProfile" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Update</button>
+                                    <button type="submit" name="EditProfile" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Update</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -520,6 +661,78 @@ if (isset($_POST["EditSetting"])) {
             title: 'Icon gagal disimpan!',
             icon: 'error',
             text: 'Icon gagal disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED LOGO SUCCESS
+    if (window?.location?.href?.indexOf('InputLogoSuccess') > -1) {
+        Swal.fire({
+            title: 'Logo berhasil disimpan!',
+            icon: 'success',
+            text: 'Logo berhasil disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED LOGO FAILED
+    if (window?.location?.href?.indexOf('InputLogoFailed') > -1) {
+        Swal.fire({
+            title: 'Logo gagal disimpan!',
+            icon: 'error',
+            text: 'Logo gagal disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED BG SIGN IN SUCCESS
+    if (window?.location?.href?.indexOf('InputBgSignInSuccess') > -1) {
+        Swal.fire({
+            title: 'Background Sign In berhasil disimpan!',
+            icon: 'success',
+            text: 'Background Sign In berhasil disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED BG SIGN IN FAILED
+    if (window?.location?.href?.indexOf('InputBgSignInFailed') > -1) {
+        Swal.fire({
+            title: 'Background Sign In gagal disimpan!',
+            icon: 'error',
+            text: 'Background Sign In gagal disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED SIDEBAR SUCCESS
+    if (window?.location?.href?.indexOf('InputSidebarSuccess') > -1) {
+        Swal.fire({
+            title: 'Background Sidebar berhasil disimpan!',
+            icon: 'success',
+            text: 'Background Sidebar berhasil disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED SIDEBAR FAILED
+    if (window?.location?.href?.indexOf('InputSidebarFailed') > -1) {
+        Swal.fire({
+            title: 'Background Sidebar gagal disimpan!',
+            icon: 'error',
+            text: 'Background Sidebar gagal disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED PROFILE SUCCESS
+    if (window?.location?.href?.indexOf('InputProfileSuccess') > -1) {
+        Swal.fire({
+            title: 'Background Profile berhasil disimpan!',
+            icon: 'success',
+            text: 'Background Profile berhasil disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './adm_setting.php');
+    }
+    // SAVED PROFILE FAILED
+    if (window?.location?.href?.indexOf('InputProfileFailed') > -1) {
+        Swal.fire({
+            title: 'Background Profile gagal disimpan!',
+            icon: 'error',
+            text: 'Background Profile gagal disimpan didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }

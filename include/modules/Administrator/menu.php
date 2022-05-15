@@ -12,7 +12,7 @@
             <a href="adm_setting.php">Setting App TPB</a>
         </li>
         <li class="<?= $uriSegments[1] == 'adm_time_reload.php' ? 'active' : '' ?>">
-            <a href="adm_time_reload.php">Real Time</a>
+            <a href="adm_time_reload.php">Set. Real Time Reload</a>
         </li>
     </ul>
 </li>
