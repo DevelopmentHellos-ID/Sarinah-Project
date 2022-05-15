@@ -49,7 +49,7 @@ if (isset($_POST["EditReload"])) {
             </ol>
         </div>
         <div>
-            <button class="btn btn-primary-css"><i class="icon-copy dw dw-calendar-11"></i> <span id="ct"></span></button>
+            <button class="btn btn-primary-css"><i class="fas fa-calendar-alt"></i> <span id="ct"></span></button>
         </div>
     </div>
     <div class="line-page"></div>

@@ -181,7 +181,7 @@ $resultLoginSetting = mysqli_fetch_array($dataLoginSettting);
 				</div>
 			</div>
 		</div>
-		<?php include "include/panel.php"; ?>
+		<!-- <?php include "include/panel.php"; ?> -->
 	</div>
 	<script src="assets/js/app.min.js"></script>
 	<script src="assets/js/theme/default.min.js"></script>

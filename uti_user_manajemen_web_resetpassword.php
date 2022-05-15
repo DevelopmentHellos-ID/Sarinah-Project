@@ -12,7 +12,9 @@ $result = mysqli_fetch_array($data);
 // RESET PASSWORD
 if (isset($_POST["ResetPassword"])) {
 
-    if ($_POST['othersPassword'] == NULL) {
+    $cek = $_POST['NothersPassword'];
+
+    if ($cek == NULL) {
         $NpassReset = 'changeme';
     } else {
         $NpassReset = $_POST['Nupdatepassword'];
@@ -23,6 +25,8 @@ if (isset($_POST["ResetPassword"])) {
     $queryResetPass = $dbcon->query("UPDATE tbl_users SET PASSWORD='$NpassReset'
                                                           WHERE USER_NAME='$uid'");
 
+    // var_dump($NpassReset);
+    // exit;
     if ($queryResetPass) {
         echo "<script>window.location.href='uti_user_manajemen_web.php?ResetPasswordSuccess=true';</script>";
     } else {
@@ -47,7 +51,7 @@ if (isset($_POST["ResetPassword"])) {
             </ol>
         </div>
         <div>
-            <button class="btn btn-primary-css"><i class="icon-copy dw dw-calendar-11"></i> <span id="ct"></span></button>
+            <button class="btn btn-primary-css"><i class="fas fa-calendar-alt"></i> <span id="ct"></span></button>
         </div>
     </div>
     <div class="line-page"></div>
@@ -73,7 +77,7 @@ if (isset($_POST["ResetPassword"])) {
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" onclick="myPasswordOthers()" class="custom-control-input" id="othersPassword" name="othersPassword" value="changeme">
+                                            <input type="checkbox" onclick="myPasswordOthers()" class="custom-control-input" id="othersPassword" name="NothersPassword" value="changeme">
                                             <input type="hidden" name="ID" value="<?= $result['USER_NAME'] ?>">
                                             <label class="custom-control-label" for="othersPassword"> Ceklis jika ingin merubah password bukan default! Password default: <b>"changeme"</b></label>
                                         </div>

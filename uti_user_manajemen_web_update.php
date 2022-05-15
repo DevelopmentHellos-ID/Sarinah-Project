@@ -24,6 +24,8 @@
 <?php
 include "include/connection.php";
 include "include/head.php";
+$dataSettting = $dbcon->query("SELECT * FROM tbl_setting");
+$resultSetting = mysqli_fetch_array($dataSettting);
 // <!-- Cek User For Update Password -->
 $Get_USER    = $_GET['USER'];
 $CekUserForUpdatePass = $dbcon->query("SELECT * FROM tbl_users WHERE USER_NAME='$Get_USER'");
@@ -75,7 +77,7 @@ if (isset($_POST["update_pass"])) {
             </ol>
         </div>
         <div>
-            <button class="btn btn-primary-css"><i class="icon-copy dw dw-calendar-11"></i> <span id="ct"></span></button>
+            <button class="btn btn-primary-css"><i class="fas fa-calendar-alt"></i> <span id="ct"></span></button>
         </div>
     </div>
     <div class="line-page"></div>

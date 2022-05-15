@@ -54,7 +54,7 @@ include "include/sidebar.php";
                 <?php } else { ?>
                     <p class="text-white mt-0 mb-5">Ini adalah tampilan halaman profile anda. Di halaman profile, anda dapat melihat biodata dan status pengguna anda pada <br><b><i><?= $resultSetting['app_name'] ?></i></b>.</p>
                 <?php } ?>
-                <a href="#!" class="btn btn-neutral-tf"><i class="icon-copy dw dw-calendar-11"></i> <span id="ct"></span></a>
+                <a href="#!" class="btn btn-neutral-tf"><i class="fas fa-calendar-alt"></i> <span id="ct"></span></a>
             </div>
         </div>
     </div>
