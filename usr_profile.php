@@ -169,3 +169,14 @@ include "include/sidebar.php";
 <!-- end #content -->
 <?php include "include/panel.php"; ?>
 <?php include "include/footer.php"; ?>
+<script type="text/javascript">
+    // UPDATE SUCCESS
+    if (window?.location?.href?.indexOf('UpdatePasswordSuccess') > -1) {
+        Swal.fire({
+            title: 'Password berhasil disimpan!',
+            icon: 'success',
+            text: 'Password berhasil disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './usr_profile.php');
+    }
+</script>
