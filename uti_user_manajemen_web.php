@@ -166,9 +166,8 @@ if (isset($_POST["NEnabledData"])) {
     $IDUNIQ             = $_POST['IDUNIQ'];
     $status             = $_POST['status'];
 
-    $query .= $dbcon->query("UPDATE tbl_pegawai SET status='$status'
+    $query = $dbcon->query("UPDATE tbl_pegawai SET status='$status'
                                                     WHERE IDUNIQ='$IDUNIQ'");
-
     if ($query) {
         echo "<script>window.location.href='uti_user_manajemen_web.php?EnabledSuccess=true';</script>";
     } else {
@@ -183,7 +182,7 @@ if (isset($_POST["NDisabledData"])) {
     $IDUNIQ             = $_POST['IDUNIQ'];
     $status             = $_POST['status'];
 
-    $query .= $dbcon->query("UPDATE tbl_pegawai SET status='$status'
+    $query = $dbcon->query("UPDATE tbl_pegawai SET status='$status'
                                                     WHERE IDUNIQ='$IDUNIQ'");
 
     if ($query) {
@@ -201,7 +200,7 @@ if (isset($_POST["NResignData"])) {
     $status             = $_POST['status'];
     $out_tgl            = $_POST['out_tgl'];
 
-    $query .= $dbcon->query("UPDATE tbl_pegawai SET status='$status',
+    $query = $dbcon->query("UPDATE tbl_pegawai SET status='$status',
                                                     out_tgl='$out_tgl'
                                                     WHERE IDUNIQ='$IDUNIQ'");
 
