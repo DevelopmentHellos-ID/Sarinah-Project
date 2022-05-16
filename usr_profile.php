@@ -128,14 +128,10 @@ if (isset($_POST["SaveEdit"])) {
         <span class="mask bg-gradient-default opacity-8"></span>
         <div class="container-fluid d-flex align-items-center">
             <div class="hello">
-                <?php
-                $dataProfile = $dbcon->query("SELECT * FROM view_privileges");
-                $resultProfile = mysqli_fetch_array($dataProfile);
-                ?>
-                <?php if ($resultProfile['nama_lengkap'] == NULL) { ?>
+                <?php if ($access['nama_lengkap'] == NULL) { ?>
                     <h1 class="display-2 text-white">Hi, Belum dilengkapi!</h1>
                 <?php } else { ?>
-                    <h1 class="display-2 text-white">Hi, <?= $resultProfile['nama_lengkap'] ?>!</h1>
+                    <h1 class="display-2 text-white">Hi, <?= $access['nama_lengkap'] ?>!</h1>
                 <?php } ?>
                 <?php if ($resultSetting['app_name'] == NULL) { ?>
                     <p class="text-white mt-0 mb-5">Ini adalah tampilan halaman profile anda. Di halaman profile, anda dapat melihat biodata dan status pengguna anda pada <br><b><i>App Name</i></b>.</p>
@@ -174,10 +170,10 @@ if (isset($_POST["SaveEdit"])) {
                     <div class="card-body pt-0">
                         <div class="text-center">
                             <div class="garis-bio"></div>
-                            <?php if ($resultProfile['nama_lengkap'] == NULL) { ?>
+                            <?php if ($access['nama_lengkap'] == NULL) { ?>
                                 <h5 class="h3">Belum dilengkapi!</h5>
                             <?php } else { ?>
-                                <h5 class="h3"><?= $resultProfile['nama_lengkap'] ?></h5>
+                                <h5 class="h3"><?= $access['nama_lengkap'] ?></h5>
                             <?php } ?>
                             <div class="h5 font-weight-300">
                                 <i class="ni location_pin mr-2"></i>Jakarta, Indonesia
