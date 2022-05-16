@@ -41,6 +41,86 @@ include "include/sidebar.php";
         }
     }
 </style>
+<?php
+// Save Input
+if (isset($_POST["SaveInput"])) {
+
+    $ID                      = $_SESSION['username'];
+    $InputNoHP               = $_POST['InputNoHP'];
+    $InputEmail              = $_POST['InputEmail'];
+    $InputNIK                = $_POST['InputNIK'];
+    $InputNIP                = $_POST['InputNIP'];
+    $InputNamaLengkap        = $_POST['InputNamaLengkap'];
+    $InputTempatLahir        = $_POST['InputTempatLahir'];
+    $InputTanggalLahir       = $_POST['InputTanggalLahir'];
+    $InputUsia               = $_POST['InputUsia'];
+    $InputJenisKelamin       = $_POST['InputJenisKelamin'];
+    $InputAgama              = $_POST['InputAgama'];
+    $InputAlamat             = $_POST['InputAlamat'];
+    $InputDepartemen         = $_POST['InputDepartemen'];
+    $InputJabatan            = $_POST['InputJabatan'];
+
+    $query = $dbcon->query("UPDATE tbl_pegawai SET NIP='$InputNIP',
+                                                   NIK='$InputNIK',
+                                                   nama_lengkap='$InputNamaLengkap',
+                                                   tempat_lahir='$InputTempatLahir',
+                                                   tgl_lahir='$InputTanggalLahir',
+                                                   usia='$InputUsia',
+                                                   jenis_kelamin='$InputJenisKelamin',
+                                                   agama='$InputAgama',
+                                                   alamat='$InputAlamat',
+                                                   no_hp='$InputNoHP',
+                                                   email='$InputEmail',
+                                                   departemen='$InputDepartemen',
+                                                   jabatan='$InputJabatan'
+                                                   WHERE username='$ID'");
+    if ($query) {
+        echo "<script>window.location.href='usr_profile.php?SaveInputSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='usr_profile.php?SaveInputFailed=true';</script>";
+    }
+}
+
+// Save Edit
+if (isset($_POST["SaveEdit"])) {
+
+    $ID                     = $_SESSION['username'];
+    $EditNoHP               = $_POST['EditNoHP'];
+    $EditEmail              = $_POST['EditEmail'];
+    $EditNIK                = $_POST['EditNIK'];
+    $EditNIP                = $_POST['EditNIP'];
+    $EditNamaLengkap        = $_POST['EditNamaLengkap'];
+    $EditTempatLahir        = $_POST['EditTempatLahir'];
+    $EditTanggalLahir       = $_POST['EditTanggalLahir'];
+    $EditUsia               = $_POST['EditUsia'];
+    $EditJenisKelamin       = $_POST['EditJenisKelamin'];
+    $EditAgama              = $_POST['EditAgama'];
+    $EditAlamat             = $_POST['EditAlamat'];
+    $EditDepartemen         = $_POST['EditDepartemen'];
+    $EditJabatan            = $_POST['EditJabatan'];
+
+    $query = $dbcon->query("UPDATE tbl_pegawai SET NIP='$EditNIP',
+                                                   NIK='$EditNIK',
+                                                   nama_lengkap='$EditNamaLengkap',
+                                                   tempat_lahir='$EditTempatLahir',
+                                                   tgl_lahir='$EditTanggalLahir',
+                                                   usia='$EditUsia',
+                                                   jenis_kelamin='$EditJenisKelamin',
+                                                   agama='$EditAgama',
+                                                   alamat='$EditAlamat',
+                                                   no_hp='$EditNoHP',
+                                                   email='$EditEmail',
+                                                   departemen='$EditDepartemen',
+                                                   jabatan='$EditJabatan'
+                                                   WHERE username='$ID'");
+
+    if ($query) {
+        echo "<script>window.location.href='usr_profile.php?SaveEditSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='usr_profile.php?SaveEditFailed=true';</script>";
+    }
+}
+?>
 <!-- begin #content -->
 <div id="content" class="content">
     <!-- Profile Content -->
@@ -128,14 +208,37 @@ include "include/sidebar.php";
                                 </h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="#!" class="btn btn-sm btn-primary-profile"><i class="fas fa-edit"></i> Edit</a>
+                                <!-- <a href="#!" class="btn btn-sm btn-primary-profile"><i class="fas fa-edit"></i> Edit</a> -->
                                 <a href="#!" class="btn btn-sm btn-danger-pdf"><i class="fas fa-file-pdf"></i> PDF</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- Alert -->
+                                <?php if ($access['nama_lengkap'] == NULL) { ?>
+                                    <div class="note note-danger">
+                                        <div class="note-icon"><i class="fas fa-id-badge"></i></div>
+                                        <div class="note-content">
+                                            <h4><b>Lengkapi Profile Anda!</b></h4>
+                                            <p> Anda belum melengkapi profile anda!</p>
+                                        </div>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="note note-success">
+                                        <div class="note-icon"><i class="fas fa-id-badge"></i></div>
+                                        <div class="note-content">
+                                            <h4><b>Profile dilengkapi!</b></h4>
+                                            <p> Anda sudah melengkapi profile anda!</p>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                                <!-- End Alert -->
+                            </div>
+                        </div>
                         <?php if ($access['nama_lengkap'] == NULL) { ?>
-                            <form action="#!" method="POST">
+                            <form action="" method="POST">
                                 <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -273,7 +376,7 @@ include "include/sidebar.php";
                                 <button type="submit" class="btn btn-primary" name="SaveInput" id="btn-sisi"><i class="fa fa-save"></i> Simpan</button>
                             </form>
                         <?php } else { ?>
-                            <form action="#!" method="POST">
+                            <form action="" method="POST">
                                 <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -295,7 +398,7 @@ include "include/sidebar.php";
                                                 <span class="input-group-btn input-group-append">
                                                     <a href="#!" class="btn btn-secondary" type="button" data-toggle="tooltip" data-placement="top" title="Isi No. Handphone">+62</a>
                                                 </span>
-                                                <input type="text" class="form-control" name="EditNoHP" id="edit-no-handphone" placeholder="No. Handphone ..." disabled>
+                                                <input type="text" class="form-control" name="EditNoHP" id="edit-no-handphone" placeholder="No. Handphone ..." value="<?= $access['no_hp'] ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -303,7 +406,7 @@ include "include/sidebar.php";
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-email">Email</label>
                                             <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
-                                                <input type="email" class="form-control" name="EditEmail" id="edit-email" placeholder="Email ..." value="<?= $access['email'] ?>" disabled>
+                                                <input type="email" class="form-control" name="EditEmail" id="edit-email" placeholder="Email ..." value="<?= $access['email'] ?>">
                                                 <span class="input-group-btn input-group-append">
                                                     <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
                                                 </span>
@@ -315,44 +418,45 @@ include "include/sidebar.php";
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-NIK">NIK</label>
-                                            <input type="text" class="form-control" name="EditNIK" id="edit-NIK" placeholder="NIK ..." disabled>
+                                            <label class="form-control-label" for="edit-NIK">NIK</label>
+                                            <input type="text" class="form-control" name="EditNIK" id="edit-NIK" placeholder="NIK ..." value="<?= $access['NIK'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-NIP">NIP</label>
-                                            <input type="text" class="form-control" name="EditNIP" id="edit-NIP" placeholder="NIP ..." disabled>
+                                            <label class="form-control-label" for="edit-NIP">NIP</label>
+                                            <input type="text" class="form-control" name="EditNIP" id="edit-NIP" placeholder="NIP ..." value="<?= $access['NIP'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-nama-lengkap">Nama Lengkap</label>
-                                            <input type="text" class="form-control" name="EditNamaLengkap" id="edit-nama-lengkap" placeholder="Nama Lengkap ..." disabled>
+                                            <label class="form-control-label" for="edit-nama-lengkap">Nama Lengkap</label>
+                                            <input type="text" class="form-control" name="EditNamaLengkap" id="edit-nama-lengkap" placeholder="Nama Lengkap ..." value="<?= $access['nama_lengkap'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-tempat-lahir">Tempat Lahir</label>
-                                            <input type="text" class="form-control" name="EditTempatLahir" id="edit-tempat-lahir" placeholder="Tempat Lahir ..." disabled>
+                                            <label class="form-control-label" for="edit-tempat-lahir">Tempat Lahir</label>
+                                            <input type="text" class="form-control" name="EditTempatLahir" id="edit-tempat-lahir" placeholder="Tempat Lahir ..." value="<?= $access['tempat_lahir'] ?>">
                                         </div>
                                     </div>
                                     <div class=" col-lg-4">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-tanggal-lahir">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" name="EditTanggalLahir" id="edit-tanggal-lahir" placeholder="Tanggal Lahir ..." disabled>
+                                            <label class="form-control-label" for="edit-tanggal-lahir">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" name="EditTanggalLahir" id="edit-tanggal-lahir" placeholder="Tanggal Lahir ..." value="<?= $access['tgl_lahir'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-usia">Usia</label>
-                                            <input type="text" class="form-control" name="EditUsia" id="edit-usia" placeholder="Usia" disabled>
+                                            <label class="form-control-label" for="edit-usia">Usia</label>
+                                            <input type="text" class="form-control" name="EditUsia" id="edit-usia" placeholder="Usia" value="<?= $access['usia'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-jenis-kelamin">Jenis Kelamin</label>
-                                            <select class="form-control" name="EditJenisKelamin" id="edit-jenis-kelamin" disabled>
+                                            <label class="form-control-label" for="edit-jenis-kelamin">Jenis Kelamin</label>
+                                            <select class="form-control" name="EditJenisKelamin" id="edit-jenis-kelamin">
+                                                <option value="<?= $access['jenis_kelamin'] ?>"><?= $access['jenis_kelamin'] ?></option>
                                                 <option value="">-- Pilih Jenis Kelamin --</option>
                                                 <option value="Pria">Pria</option>
                                                 <option value="Wanita">Wanita</option>
@@ -361,8 +465,9 @@ include "include/sidebar.php";
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-agama">Agama</label>
-                                            <select class="form-control" name="EditAgama" id="edit-agama" disabled>
+                                            <label class="form-control-label" for="edit-agama">Agama</label>
+                                            <select class="form-control" name="EditAgama" id="edit-agama">
+                                                <option value="<?= $access['agama'] ?>"><?= $access['agama'] ?></option>
                                                 <option value="">-- Pilih Agama --</option>
                                                 <option value="Islam">Islam</option>
                                                 <option value="Kristen Protestan">Kristen Protestan</option>
@@ -375,14 +480,15 @@ include "include/sidebar.php";
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-alamat">Alamat</label>
-                                            <textarea type="text" class="form-control" name="EditAlamat" id="edit-alamat" placeholder="Alamat ..." disabled></textarea>
+                                            <label class="form-control-label" for="edit-alamat">Alamat</label>
+                                            <textarea type="text" class="form-control" name="EditAlamat" id="edit-alamat" placeholder="Alamat ..."><?= $access['alamat'] ?></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-departmen">Departmen</label>
-                                            <select class="form-control" name="EditDepartemen" id="edit-departmen" disabled>
+                                            <label class="form-control-label" for="edit-departmen">Departmen</label>
+                                            <select class="form-control" name="EditDepartemen" id="edit-departmen">
+                                                <option value="<?= $access['departemen'] ?>"><?= $access['departemen'] ?></option>
                                                 <option value="">-- Pilih Departemen --</option>
                                                 <?php
                                                 $resultDepartment = $dbcon->query("SELECT department FROM tbl_department ORDER BY department ASC");
@@ -395,8 +501,9 @@ include "include/sidebar.php";
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-jabatan">Jabatan</label>
-                                            <select class="form-control" name="EditJabatan" id="edit-jabatan" disabled>
+                                            <label class="form-control-label" for="edit-jabatan">Jabatan</label>
+                                            <select class="form-control" name="EditJabatan" id="edit-jabatan">
+                                                <option value="<?= $access['jabatan'] ?>"><?= $access['jabatan'] ?></option>
                                                 <option value="">-- Pilih Jabatan --</option>
                                                 <?php
                                                 $resultJabatan = $dbcon->query("SELECT jabatan FROM tbl_jabatan ORDER BY jabatan ASC");
@@ -422,6 +529,30 @@ include "include/sidebar.php";
 <!-- end #content -->
 <?php include "include/panel.php"; ?>
 <?php include "include/footer.php"; ?>
+<script src="https://unpkg.com/imask"></script>
+<script type="text/javascript">
+    // NIK
+    var numberMask = IMask(
+        document.getElementById('input-NIK'), {
+            mask: '0000-0000-0000-0000',
+        });
+    // NO HANDPHONE
+    var numberMask = IMask(
+        document.getElementById('input-no-handphone'), {
+            mask: '000-0000-0000',
+        });
+
+    // Edit NIK
+    var numberMask = IMask(
+        document.getElementById('edit-NIK'), {
+            mask: '0000-0000-0000-0000',
+        });
+    // Edit NO HANDPHONE
+    var numberMask = IMask(
+        document.getElementById('edit-no-handphone'), {
+            mask: '000-0000-0000',
+        });
+</script>
 <script type="text/javascript">
     // UPDATE SUCCESS
     if (window?.location?.href?.indexOf('UpdatePasswordSuccess') > -1) {
@@ -431,5 +562,79 @@ include "include/sidebar.php";
             text: 'Password berhasil disimpan didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './usr_profile.php');
+    }
+    // SAVE INPUT SUCCESS
+    if (window?.location?.href?.indexOf('SaveInputSuccess') > -1) {
+        Swal.fire({
+            title: 'Data berhasil disimpan!',
+            icon: 'success',
+            text: 'Data berhasil disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './usr_profile.php');
+    }
+    // SAVE INPUT FAILED
+    if (window?.location?.href?.indexOf('SaveInputFailed') > -1) {
+        Swal.fire({
+            title: 'Data gagal disimpan!',
+            icon: 'error',
+            text: 'Data gagal disimpan didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './usr_profile.php');
+    }
+
+    // SAVE EDIT SUCCESS
+    if (window?.location?.href?.indexOf('SaveEditSuccess') > -1) {
+        Swal.fire({
+            title: 'Data berhasil diupdate!',
+            icon: 'success',
+            text: 'Data berhasil diupdate didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './usr_profile.php');
+    }
+    // SAVE EDIT FAILED
+    if (window?.location?.href?.indexOf('SaveEditFailed') > -1) {
+        Swal.fire({
+            title: 'Data gagal diupdate!',
+            icon: 'error',
+            text: 'Data gagal diupdate didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './usr_profile.php');
+    }
+</script>
+
+<!-- Cek Usia -->
+<!-- <link href="assets/otomatic/jquery-ui.css" rel="stylesheet"> -->
+<!-- <script src="assets/otomatic/jquery-ui.js"></script> -->
+<script type="text/javascript">
+    $(function() {
+        $("#input-tanggal-lahir").date({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+    window.onload = function() {
+        $('#input-tanggal-lahir').on('change', function() {
+
+            var dob = new Date(this.value);
+            var today = new Date();
+            var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+            $('#input-usia').val(age);
+        });
+    }
+
+    $(function() {
+        $("#edit-tanggal-lahir").date({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+    window.onload = function() {
+        $('#edit-tanggal-lahir').on('change', function() {
+
+            var dob = new Date(this.value);
+            var today = new Date();
+            var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+            $('#edit-usia').val(age);
+        });
     }
 </script>
