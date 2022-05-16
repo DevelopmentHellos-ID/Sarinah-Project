@@ -134,138 +134,283 @@ include "include/sidebar.php";
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="#!" method="POST">
-                            <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-username">Username</label>
-                                        <input type="text" class="form-control" placeholder="Username" name="user_name" id="input-username" value="<?= $access['USER_NAME'] ?>" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Hak Akses TPB</label>
-                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Hak Akses TPB" value="<?= $access['role'] ?>" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">No. Handphone <font style="color: red;">*</font></label>
-                                        <!-- Jika Email Diisi telah diverifikasi menunggu verifikasi dari token -->
-                                        <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
-                                            <span class="input-group-btn input-group-append">
-                                                <a href="#!" class="btn btn-secondary" type="button" data-toggle="tooltip" data-placement="top" title="Isi No. Handphone">+62</a>
-                                            </span>
-                                            <input type="email" class="form-control" name="user_email" id="input-email" value="<?= $access['email'] ?>" placeholder="No. Handphone ...">
+                        <?php if ($access['nama_lengkap'] == NULL) { ?>
+                            <form action="#!" method="POST">
+                                <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">Username</label>
+                                            <input type="text" class="form-control" placeholder="Username" id="input-username" value="<?= $access['USER_NAME'] ?>" disabled>
                                         </div>
-                                        <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Email <font style="color: red;">*</font></label>
-                                        <!-- Jika Email Diisi telah diverifikasi menunggu verifikasi dari token -->
-                                        <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
-                                            <input type="email" class="form-control" name="user_email" id="input-email" value="<?= $access['email'] ?>" placeholder="Email ...">
-                                            <span class="input-group-btn input-group-append">
-                                                <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
-                                            </span>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-akses-tpb">Hak Akses TPB</label>
+                                            <input type="text" class="form-control" placeholder="Hak Akses TPB ..." id="input-akses-tpb" value="<?= $access['role'] ?>" disabled>
                                         </div>
-                                        <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-email">No. Handphone <font style="color: red;">*</font></label>
+                                            <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
+                                                <span class="input-group-btn input-group-append">
+                                                    <a href="#!" class="btn btn-secondary" type="button" data-toggle="tooltip" data-placement="top" title="Isi No. Handphone">+62</a>
+                                                </span>
+                                                <input type="text" class="form-control" name="InputNoHP" id="input-no-handphone" placeholder="No. Handphone ..." required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-email">Email <font style="color: red;">*</font></label>
+                                            <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
+                                                <input type="email" class="form-control" name="InputEmail" id="input-email" placeholder="Email ..." value="<?= $access['email'] ?>" required>
+                                                <span class="input-group-btn input-group-append">
+                                                    <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
+                                                </span>
+                                            </div>
+                                            <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-nama-lengkap">NIK</label>
-                                        <input type="text" class="form-control" name="nama" id="input-nama-lengkap" value="<?= $access['nama_lengkap'] ?>" placeholder="Nama Lengkap ...">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-NIK">NIK <font style="color: red;">*</font></label>
+                                            <input type="text" class="form-control" name="InputNIK" id="input-NIK" placeholder="NIK ..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-NIP">NIP <font style="color: red;">*</font></label>
+                                            <input type="text" class="form-control" name="InputNIP" id="input-NIP" placeholder="NIP ..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-nama-lengkap">Nama Lengkap <font style="color: red;">*</font></label>
+                                            <input type="text" class="form-control" name="InputNamaLengkap" id="input-nama-lengkap" placeholder="Nama Lengkap ..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-tempat-lahir">Tempat Lahir <font style="color: red;">*</font></label>
+                                            <input type="text" class="form-control" name="InputTempatLahir" id="input-tempat-lahir" placeholder="Tempat Lahir ..." required>
+                                        </div>
+                                    </div>
+                                    <div class=" col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-tanggal-lahir">Tanggal Lahir <font style="color: red;">*</font></label>
+                                            <input type="date" class="form-control" name="InputTanggalLahir" id="input-tanggal-lahir" placeholder="Tanggal Lahir ..." required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-usia">Usia <font style="color: red;">*</font></label>
+                                            <input type="text" class="form-control" name="InputUsia" id="input-usia" placeholder="Usia" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-jenis-kelamin">Jenis Kelamin <font style="color: red;">*</font></label>
+                                            <select class="form-control" name="InputJenisKelamin" id="input-jenis-kelamin" required>
+                                                <option value="">-- Pilih Jenis Kelamin --</option>
+                                                <option value="Pria">Pria</option>
+                                                <option value="Wanita">Wanita</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-agama">Agama <font style="color: red;">*</font></label>
+                                            <select class="form-control" name="InputAgama" id="input-agama" required>
+                                                <option value="">-- Pilih Agama --</option>
+                                                <option value="Islam">Islam</option>
+                                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                                <option value="Katolik">Katolik</option>
+                                                <option value="Hindu">Hindu</option>
+                                                <option value="Buddha">Buddha</option>
+                                                <option value="Kong Hu Cu">Kong Hu Cu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-alamat">Alamat <font style="color: red;">*</font></label>
+                                            <textarea type="text" class="form-control" name="InputAlamat" id="input-alamat" placeholder="Alamat ..." required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-departmen">Departmen <font style="color: red;">*</font></label>
+                                            <select class="form-control" name="InputDepartemen" id="input-departmen" required>
+                                                <option value="">-- Pilih Departemen --</option>
+                                                <?php
+                                                $resultDepartment = $dbcon->query("SELECT department FROM tbl_department ORDER BY department ASC");
+                                                foreach ($resultDepartment as $RowDepartment) {
+                                                ?>
+                                                    <option value="<?= $RowDepartment['department'] ?>"><?= $RowDepartment['department'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-jabatan">Jabatan <font style="color: red;">*</font></label>
+                                            <select class="form-control" name="InputJabatan" id="input-jabatan" required>
+                                                <option value="">-- Pilih Jabatan --</option>
+                                                <?php
+                                                $resultJabatan = $dbcon->query("SELECT jabatan FROM tbl_jabatan ORDER BY jabatan ASC");
+                                                foreach ($resultJabatan as $RowJabatan) {
+                                                ?>
+                                                    <option value="<?= $RowJabatan['jabatan'] ?>"><?= $RowJabatan['jabatan'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">NIP</label>
-                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Hak Akses TPB" value="<?= $access['role'] ?>" disabled>
+                                <button type="submit" class="btn btn-primary" name="SaveInput" id="btn-sisi"><i class="fa fa-save"></i> Simpan</button>
+                            </form>
+                        <?php } else { ?>
+                            <form action="#!" method="POST">
+                                <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">Username</label>
+                                            <input type="text" class="form-control" placeholder="Username" id="edit-username" value="<?= $access['USER_NAME'] ?>" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-akses-tpb">Hak Akses TPB</label>
+                                            <input type="text" class="form-control" placeholder="Hak Akses TPB ..." id="edit-akses-tpb" value="<?= $access['role'] ?>" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-email">No. Handphone</label>
+                                            <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
+                                                <span class="input-group-btn input-group-append">
+                                                    <a href="#!" class="btn btn-secondary" type="button" data-toggle="tooltip" data-placement="top" title="Isi No. Handphone">+62</a>
+                                                </span>
+                                                <input type="text" class="form-control" name="EditNoHP" id="edit-no-handphone" placeholder="No. Handphone ..." disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-email">Email</label>
+                                            <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
+                                                <input type="email" class="form-control" name="EditEmail" id="edit-email" placeholder="Email ..." value="<?= $access['email'] ?>" disabled>
+                                                <span class="input-group-btn input-group-append">
+                                                    <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
+                                                </span>
+                                            </div>
+                                            <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-nama-lengkap">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama" id="input-nama-lengkap" value="<?= $access['nama_lengkap'] ?>" placeholder="Nama Lengkap ...">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-NIK">NIK</label>
+                                            <input type="text" class="form-control" name="EditNIK" id="edit-NIK" placeholder="NIK ..." disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-NIP">NIP</label>
+                                            <input type="text" class="form-control" name="EditNIP" id="edit-NIP" placeholder="NIP ..." disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-nama-lengkap">Nama Lengkap</label>
+                                            <input type="text" class="form-control" name="EditNamaLengkap" id="edit-nama-lengkap" placeholder="Nama Lengkap ..." disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-tempat-lahir">Tempat Lahir</label>
+                                            <input type="text" class="form-control" name="EditTempatLahir" id="edit-tempat-lahir" placeholder="Tempat Lahir ..." disabled>
+                                        </div>
+                                    </div>
+                                    <div class=" col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-tanggal-lahir">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" name="EditTanggalLahir" id="edit-tanggal-lahir" placeholder="Tanggal Lahir ..." disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-usia">Usia</label>
+                                            <input type="text" class="form-control" name="EditUsia" id="edit-usia" placeholder="Usia" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-jenis-kelamin">Jenis Kelamin</label>
+                                            <select class="form-control" name="EditJenisKelamin" id="edit-jenis-kelamin" disabled>
+                                                <option value="">-- Pilih Jenis Kelamin --</option>
+                                                <option value="Pria">Pria</option>
+                                                <option value="Wanita">Wanita</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-agama">Agama</label>
+                                            <select class="form-control" name="EditAgama" id="edit-agama" disabled>
+                                                <option value="">-- Pilih Agama --</option>
+                                                <option value="Islam">Islam</option>
+                                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                                <option value="Katolik">Katolik</option>
+                                                <option value="Hindu">Hindu</option>
+                                                <option value="Buddha">Buddha</option>
+                                                <option value="Kong Hu Cu">Kong Hu Cu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-alamat">Alamat</label>
+                                            <textarea type="text" class="form-control" name="EditAlamat" id="edit-alamat" placeholder="Alamat ..." disabled></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-departmen">Departmen</label>
+                                            <select class="form-control" name="EditDepartemen" id="edit-departmen" disabled>
+                                                <option value="">-- Pilih Departemen --</option>
+                                                <?php
+                                                $resultDepartment = $dbcon->query("SELECT department FROM tbl_department ORDER BY department ASC");
+                                                foreach ($resultDepartment as $RowDepartment) {
+                                                ?>
+                                                    <option value="<?= $RowDepartment['department'] ?>"><?= $RowDepartment['department'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-jabatan">Jabatan</label>
+                                            <select class="form-control" name="EditJabatan" id="edit-jabatan" disabled>
+                                                <option value="">-- Pilih Jabatan --</option>
+                                                <?php
+                                                $resultJabatan = $dbcon->query("SELECT jabatan FROM tbl_jabatan ORDER BY jabatan ASC");
+                                                foreach ($resultJabatan as $RowJabatan) {
+                                                ?>
+                                                    <option value="<?= $RowJabatan['jabatan'] ?>"><?= $RowJabatan['jabatan'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Tempat Lahir</label>
-                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Tempat Lahir" value="<?= $access['role'] ?>" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Tanggal Lahir</label>
-                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Tanggal Lahir" value="<?= $access['role'] ?>" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Usia</label>
-                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Usia" value="<?= $access['role'] ?>" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Jenis Kelamin</label>
-                                        <select class="form-control" name="" id="">
-                                            <option value="">-- Pilih Jenis Kelamin --</option>
-                                            <option value="Pria">Pria</option>
-                                            <option value="Wanita">Wanita</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Agama</label>
-                                        <select class="form-control" name="" id="">
-                                            <option value="">-- Pilih Agama --</option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Kristen Protestan">Kristen Protestan</option>
-                                            <option value="Katolik">Katolik</option>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Buddha">Buddha</option>
-                                            <option value="Kong Hu Cu">Kong Hu Cu</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Alamat</label>
-                                        <textarea type="text" class="form-control" name="" id="" placeholder="Alamat ..."></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Department</label>
-                                        <select class="form-control" name="" id="">
-                                            <option value="">-- Pilih Department --</option>
-                                            <option value="Pria">Pria</option>
-                                            <option value="Wanita">Wanita</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-akses-dias">Jabatan</label>
-                                        <select class="form-control" name="" id="">
-                                            <option value="">-- Pilih Jabatan --</option>
-                                            <option value="Pria">Pria</option>
-                                            <option value="Wanita">Wanita</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="btn-sisi"><i class="fa fa-save"></i> Simpan</button>
-                        </form>
+                                <button type="submit" class="btn btn-warning" name="SaveEdit" id="btn-sisi"><i class="fa fa-edit"></i> Edit</button>
+                            </form>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
