@@ -42,6 +42,26 @@ include "include/sidebar.php";
     }
 </style>
 <?php
+// Change Prictures
+if (isset($_POST["ChangePictures"])) {
+
+    $ID                     = $_SESSION['username'];
+
+    $nama = 'users_' . time() . "." . $_FILES['foto']['name'];
+    $file_tmp = $_FILES['foto']['tmp_name'];
+
+    move_uploaded_file($file_tmp, './assets/images/users/' . $nama);
+
+    $query = $dbcon->query("UPDATE tbl_pegawai SET foto='$nama'
+                                               WHERE username='$ID'");
+
+    if ($query) {
+        echo "<script>window.location.href='usr_profile.php?PicturesSuccess=true';</script>";
+    } else {
+        echo "<script>window.location.href='usr_profile.php?PicturesFailed=true';</script>";
+    }
+}
+
 // Save Input
 if (isset($_POST["SaveInput"])) {
 
@@ -164,7 +184,41 @@ if (isset($_POST["SaveEdit"])) {
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                         <div class="d-flex justify-content-between">
                             <a href="usr_password.php" class="btn btn-sm btn-info-profile mr-4" target="_blank"><i class="fas fa-lock"></i> Ganti Password</a>
-                            <a href="#!" target="_blank" class="btn btn-sm btn-default float-right"><i class="fas fa-user-circle"></i> Pictures</a>
+                            <a href="#modal-profile" class="btn btn-sm btn-default float-right" data-toggle="modal" title="Change Pictures"><i class="fas fa-user-circle"></i> Pictures</a>
+                            <div class="modal fade" id="modal-profile">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">[Pictures] Profile</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <?php if ($access['foto'] == NULL) { ?>
+                                                                <img src="assets/images/users/default-user-imge.jpeg" class="rounded-circle" style="width: 165px;height: 165px;background: transparent;border-style: groove;margin-bottom: 10px" alt="Foto Profile" />
+                                                            <?php } else { ?>
+                                                                <img src="assets/images/users/<?= $access['foto'] ?>" class="rounded-circle" style="width: 165px;height: 165px;background: transparent;border-style: groove;margin-bottom: 10px" alt="Foto Profile" />
+                                                            <?php } ?>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input type="file" class="form-control" name="foto" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="javascript:;" class="btn btn-white" data-dismiss="modal"><i class="fas fa-times-circle"></i> Tutup</a>
+                                                <button type="submit" name="ChangePictures" class="btn btn-default float-right"><i class="fas fa-user-circle"></i> Pictures</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body pt-0">
@@ -593,6 +647,25 @@ if (isset($_POST["SaveEdit"])) {
             title: 'Data gagal diupdate!',
             icon: 'error',
             text: 'Data gagal diupdate didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './usr_profile.php');
+    }
+
+    // PicturesSuccess
+    if (window?.location?.href?.indexOf('PicturesSuccess') > -1) {
+        Swal.fire({
+            title: 'Pictures berhasil diupdate!',
+            icon: 'success',
+            text: 'Pictures berhasil diupdate didalam sistem TPB Sarinah Persero!'
+        })
+        history.replaceState({}, '', './usr_profile.php');
+    }
+    // PicturesFailed
+    if (window?.location?.href?.indexOf('PicturesFailed') > -1) {
+        Swal.fire({
+            title: 'Pictures gagal diupdate!',
+            icon: 'error',
+            text: 'Pictures gagal diupdate didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './usr_profile.php');
     }
