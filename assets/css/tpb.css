@@ -182,3 +182,17 @@
     background: #8351d7;
     box-shadow: 2px 3px 4px rgb(0 0 0 / 52%);
 }
+
+.btn-primary-profile {
+    color: #348fe2;
+    border: 2px solid #348fe2;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+}
+
+.btn-primary-profile:hover {
+    color: #fff;
+    border: 2px solid #348fe2;
+    background-color: #348fe2;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+}

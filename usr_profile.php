@@ -48,7 +48,15 @@ include "include/sidebar.php";
         <span class="mask bg-gradient-default opacity-8"></span>
         <div class="container-fluid d-flex align-items-center">
             <div class="hello">
-                <h1 class="display-2 text-white">Hello, <?= $_SESSION['username'] ?></h1>
+                <?php
+                $dataProfile = $dbcon->query("SELECT * FROM view_privileges");
+                $resultProfile = mysqli_fetch_array($dataProfile);
+                ?>
+                <?php if ($resultProfile['nama_lengkap'] == NULL) { ?>
+                    <h1 class="display-2 text-white">Hi, Belum dilengkapi!</h1>
+                <?php } else { ?>
+                    <h1 class="display-2 text-white">Hi, <?= $resultProfile['nama_lengkap'] ?>!</h1>
+                <?php } ?>
                 <?php if ($resultSetting['app_name'] == NULL) { ?>
                     <p class="text-white mt-0 mb-5">Ini adalah tampilan halaman profile anda. Di halaman profile, anda dapat melihat biodata dan status pengguna anda pada <br><b><i>App Name</i></b>.</p>
                 <?php } else { ?>
@@ -79,15 +87,18 @@ include "include/sidebar.php";
                     <br><br><br>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                         <div class="d-flex justify-content-between">
-                            <a href="#!" class="btn btn-sm btn-info-profile  mr-4 "><i class="icon-copy dw dw-password"></i> Ubah Password</a>
-                            <a href="#!" target="_blank" class="btn btn-sm btn-default float-right"><i class="icon-copy dw dw-chat-4"></i> ...</a>
+                            <a href="usr_password.php" class="btn btn-sm btn-info-profile mr-4" target="_blank"><i class="fas fa-lock"></i> Ganti Password</a>
+                            <a href="#!" target="_blank" class="btn btn-sm btn-default float-right"><i class="fas fa-user-circle"></i> Pictures</a>
                         </div>
                     </div>
                     <div class="card-body pt-0">
                         <div class="text-center">
                             <div class="garis-bio"></div>
-                            <h5 class="h3">
-                                <?= $_SESSION['username'] ?>. </h5>
+                            <?php if ($resultProfile['nama_lengkap'] == NULL) { ?>
+                                <h5 class="h3">Belum dilengkapi!</h5>
+                            <?php } else { ?>
+                                <h5 class="h3"><?= $resultProfile['nama_lengkap'] ?></h5>
+                            <?php } ?>
                             <div class="h5 font-weight-300">
                                 <i class="ni location_pin mr-2"></i>Jakarta, Indonesia
                             </div>
@@ -96,7 +107,12 @@ include "include/sidebar.php";
                                 <i class="ni business_briefcase-24 mr-2"></i>...
                             </div>
                             <div>
-                                <i class="ni education_hat mr-2"></i>Sarinah Persero
+                                <i class="fas fa-building"></i>
+                                <?php if ($resultSetting['company'] == NULL) { ?>
+                                    Perusahaan
+                                <?php } else { ?>
+                                    <?= $resultSetting['company'] ?>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -112,51 +128,143 @@ include "include/sidebar.php";
                                 </h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="#!" class="btn btn-sm btn-danger-pdf"><i class="icon-copy fi-page-export-pdf"></i> PDF</a>
+                                <a href="#!" class="btn btn-sm btn-primary-profile"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="#!" class="btn btn-sm btn-danger-pdf"><i class="fas fa-file-pdf"></i> PDF</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <form action="#!" method="POST">
-                            <div class="pl-lg-4">
-                                <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-username">Username</label>
-                                            <input type="text" class="form-control" placeholder="Username" name="user_name" id="input-username" value="<?= $access['USER_NAME'] ?>" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-email">Email <font style="color: red;">*</font></label>
-                                            <!-- Jika Email Diisi telah diverifikasi menunggu verifikasi dari token -->
-                                            <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
-                                                <input type="email" class="form-control" name="user_email" id="input-email" value="<?= $access['email'] ?>" placeholder="Email ...">
-                                                <span class="input-group-btn input-group-append">
-                                                    <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
-                                                </span>
-                                            </div>
-                                            <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
-                                        </div>
+                            <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-username">Username</label>
+                                        <input type="text" class="form-control" placeholder="Username" name="user_name" id="input-username" value="<?= $access['USER_NAME'] ?>" disabled>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-nama-lengkap">Nama Lengkap</label>
-                                            <input type="text" class="form-control" name="nama" id="input-nama-lengkap" value="<?= $access['nama_lengkap'] ?>" placeholder="Nama Lengkap ..." disabled>
-                                        </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Hak Akses TPB</label>
+                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Hak Akses TPB" value="<?= $access['role'] ?>" disabled>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-akses-dias">Hak Akses TPB</label>
-                                            <input type="text" class="form-control" id="input-akses-dias" placeholder="Hak Akses TPB" value="<?= $access['role'] ?>" disabled>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">No. Handphone <font style="color: red;">*</font></label>
+                                        <!-- Jika Email Diisi telah diverifikasi menunggu verifikasi dari token -->
+                                        <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
+                                            <span class="input-group-btn input-group-append">
+                                                <a href="#!" class="btn btn-secondary" type="button" data-toggle="tooltip" data-placement="top" title="Isi No. Handphone">+62</a>
+                                            </span>
+                                            <input type="email" class="form-control" name="user_email" id="input-email" value="<?= $access['email'] ?>" placeholder="No. Handphone ...">
                                         </div>
+                                        <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Email <font style="color: red;">*</font></label>
+                                        <!-- Jika Email Diisi telah diverifikasi menunggu verifikasi dari token -->
+                                        <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
+                                            <input type="email" class="form-control" name="user_email" id="input-email" value="<?= $access['email'] ?>" placeholder="Email ...">
+                                            <span class="input-group-btn input-group-append">
+                                                <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
+                                            </span>
+                                        </div>
+                                        <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" id="btn-sisi" disabled><i class="fa fa-save"></i> Simpan</button>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-nama-lengkap">NIK</label>
+                                        <input type="text" class="form-control" name="nama" id="input-nama-lengkap" value="<?= $access['nama_lengkap'] ?>" placeholder="Nama Lengkap ...">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">NIP</label>
+                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Hak Akses TPB" value="<?= $access['role'] ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-nama-lengkap">Nama Lengkap</label>
+                                        <input type="text" class="form-control" name="nama" id="input-nama-lengkap" value="<?= $access['nama_lengkap'] ?>" placeholder="Nama Lengkap ...">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Tempat Lahir</label>
+                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Tempat Lahir" value="<?= $access['role'] ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Tanggal Lahir</label>
+                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Tanggal Lahir" value="<?= $access['role'] ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Usia</label>
+                                        <input type="text" class="form-control" id="input-akses-dias" placeholder="Usia" value="<?= $access['role'] ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Jenis Kelamin</label>
+                                        <select class="form-control" name="" id="">
+                                            <option value="">-- Pilih Jenis Kelamin --</option>
+                                            <option value="Pria">Pria</option>
+                                            <option value="Wanita">Wanita</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Agama</label>
+                                        <select class="form-control" name="" id="">
+                                            <option value="">-- Pilih Agama --</option>
+                                            <option value="Islam">Islam</option>
+                                            <option value="Kristen Protestan">Kristen Protestan</option>
+                                            <option value="Katolik">Katolik</option>
+                                            <option value="Hindu">Hindu</option>
+                                            <option value="Buddha">Buddha</option>
+                                            <option value="Kong Hu Cu">Kong Hu Cu</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Alamat</label>
+                                        <textarea type="text" class="form-control" name="" id="" placeholder="Alamat ..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Department</label>
+                                        <select class="form-control" name="" id="">
+                                            <option value="">-- Pilih Department --</option>
+                                            <option value="Pria">Pria</option>
+                                            <option value="Wanita">Wanita</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-akses-dias">Jabatan</label>
+                                        <select class="form-control" name="" id="">
+                                            <option value="">-- Pilih Jabatan --</option>
+                                            <option value="Pria">Pria</option>
+                                            <option value="Wanita">Wanita</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="btn-sisi"><i class="fa fa-save"></i> Simpan</button>
                         </form>
                     </div>
                 </div>
