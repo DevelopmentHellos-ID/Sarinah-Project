@@ -620,30 +620,6 @@ if (isset($_POST["SaveEdit"])) {
 </script>
 <?php include "include/panel.php"; ?>
 <?php include "include/footer.php"; ?>
-<script src="https://unpkg.com/imask"></script>
-<script type="text/javascript">
-    // NIK
-    var numberMask = IMask(
-        document.getElementById('input-NIK'), {
-            mask: '0000-0000-0000-0000',
-        });
-    // NO HANDPHONE
-    var numberMask = IMask(
-        document.getElementById('input-no-handphone'), {
-            mask: '000-0000-0000',
-        });
-
-    // Edit NIK
-    var numberMask = IMask(
-        document.getElementById('edit-NIK'), {
-            mask: '0000-0000-0000-0000',
-        });
-    // Edit NO HANDPHONE
-    var numberMask = IMask(
-        document.getElementById('edit-no-handphone'), {
-            mask: '000-0000-0000',
-        });
-</script>
 <script type="text/javascript">
     // UPDATE SUCCESS
     if (window?.location?.href?.indexOf('UpdatePasswordSuccess') > -1) {
