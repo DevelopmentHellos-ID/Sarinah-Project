@@ -22,7 +22,8 @@ if (isset($_POST["ResetPassword"])) {
 
     $uid       = $_POST['ID'];
 
-    $queryResetPass = $dbcon->query("UPDATE tbl_users SET PASSWORD='$NpassReset'
+    $queryResetPass = $dbcon->query("UPDATE tbl_users SET PASSWORD='$NpassReset',
+                                                          NEW_USER=NULL
                                                           WHERE USER_NAME='$uid'");
 
     // var_dump($NpassReset);

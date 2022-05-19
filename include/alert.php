@@ -20,14 +20,4 @@
 		})
 		history.replaceState({}, '', './index.php');
 	}
-
-	// UPDATE PASSWORD SUCCESS
-	if (window?.location?.href?.indexOf('SUpdatePasswordSuccessCC') > -1) {
-		Swal.fire({
-			title: 'Password berhasil diupdate!',
-			icon: 'success',
-			text: 'Password berhasil diupdate didalam <?= $alertAppName ?>!'
-		})
-		history.replaceState({}, '', './index.php');
-	}
 </script>

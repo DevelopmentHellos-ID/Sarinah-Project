@@ -5,6 +5,7 @@ include "include/head.php";
 include "include/alert.php";
 include "include/top-header.php";
 include "include/sidebar.php";
+include "include/cssDatatables.php";
 ?>
 <!-- begin #content -->
 <div id="content" class="content">
@@ -40,9 +41,20 @@ include "include/sidebar.php";
 			<!-- End Alert -->
 		</div>
 		<div class="col-xl-8 col-md-8">
-			<div class="announcement">
-				<marquee class="text-announcement"><b><i class="fas fa-bullhorn"></i> Informasi TPB:</b> ...</marquee>
-			</div>
+			<?php
+			$dataForInfo = $dbcon->query("SELECT * FROM tbl_informasi WHERE id='1'");
+			$resultForInfo = mysqli_fetch_array($dataForInfo);
+			?>
+			<?php if ($resultForInfo['info_tipe'] == 'Text Berjalan') { ?>
+				<div style="background: <?= $resultForInfo['info_bg'] ?>;padding: 5px;border-radius: 5px;margin-bottom: 10px;">
+					<marquee style="color: <?= $resultForInfo['info_color'] ?>" class="text-announcement-m"><b><i class="<?= $resultForInfo['info_icon'] ?>"></i> <?= $resultForInfo['info_title'] ?></b> <?= $resultForInfo['info_isi'] ?></marquee>
+				</div>
+			<?php } else if ($resultForInfo['info_tipe'] == 'Blink') { ?>
+				<div style="background: <?= $resultForInfo['info_bg'] ?>;padding: 5px;border-radius: 5px;margin-bottom: 10px;">
+					<p style="color: <?= $resultForInfo['info_color'] ?>" class="text-announcement blink_me"><b><i class="<?= $resultForInfo['info_icon'] ?>"></i> <?= $resultForInfo['info_title'] ?></b> <?= $resultForInfo['info_isi'] ?></p>
+				</div>
+			<?php } else { ?>
+			<?php } ?>
 			<div class="row">
 				<div class="col-sm-12">
 					<!-- begin widget-card -->
@@ -117,7 +129,7 @@ include "include/sidebar.php";
 	<!-- end row -->
 	<!-- begin row -->
 	<div class="row">
-		<div class="col-xl-12">
+		<div class="col-xl-6">
 			<div class="panel panel-inverse" data-sortable-id="ui-icons-1">
 				<div class="panel-heading">
 					<h4 class="panel-title">[Content] Coming Soon</h4>
@@ -125,8 +137,20 @@ include "include/sidebar.php";
 				</div>
 				<div class="panel-body text-inverse">
 					<center>
-						<img class="picture-w-550" src="assets/images/coming-soon/01.jpg" alt="coming-soon">
 					</center>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-6">
+			<div class="panel panel-inverse" data-sortable-id="aktifitas-sistem">
+				<div class="panel-heading">
+					<h4 class="panel-title"><i class="fas fa-chart-line"></i> Aktifitas Sistem</h4>
+					<?php include "include/panel-row.php"; ?>
+				</div>
+				<div class="panel-body text-inverse">
+					<div class="table-responsive">
+						<div id="data-aktifitas-sistem"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -137,3 +161,35 @@ include "include/sidebar.php";
 <!-- end #content -->
 <?php include "include/panel.php"; ?>
 <?php include "include/footer.php"; ?>
+<?php include "include/jsDatatables.php"; ?>
+
+<script type="text/javascript">
+	// UPDATE PASSWORD SUCCESS
+	if (window?.location?.href?.indexOf('SUpdatePasswordSuccessCC') > -1) {
+		Swal.fire({
+			title: 'Password berhasil diupdate!',
+			icon: 'success',
+			text: 'Password berhasil diupdate didalam <?= $alertAppName ?>!'
+		})
+		history.replaceState({}, '', './index.php');
+	}
+</script>
+<script>
+	function loadXMLDoc() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("data-aktifitas-sistem").innerHTML =
+					this.responseText;
+			}
+		};
+		xhttp.open("GET", "realtime/index_aktifitas_sistem.php", true);
+		xhttp.send();
+	}
+	setInterval(function() {
+		loadXMLDoc();
+		// Time
+	}, 1000);
+
+	window.onload = loadXMLDoc;
+</script>
