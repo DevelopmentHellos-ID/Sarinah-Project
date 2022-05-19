@@ -166,8 +166,8 @@ if (isset($_POST["SaveEdit"])) {
         <div class="row">
             <div class="col-xl-4 order-xl-2">
                 <div class="card card-profile">
-                    <img src="assets/images/users/001.jpg" alt="Image placeholder" class="card-img-top">
-                    <div class="row justify-content-center">
+                    <img src="assets/images/users/6tnE.gif" alt="Image placeholder" class="card-img-top">
+                    <div class="row justify-content-center" style="margin-top: -40px;">
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
