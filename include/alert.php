@@ -26,7 +26,7 @@
 		Swal.fire({
 			title: 'Password berhasil diupdate!',
 			icon: 'success',
-			text: 'Password berhasil diupdate didalam sistem TPB Sarinah Persero!'
+			text: 'Password berhasil diupdate didalam <?= $alertAppName ?>!'
 		})
 		history.replaceState({}, '', './index.php');
 	}

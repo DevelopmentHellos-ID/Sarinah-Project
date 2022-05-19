@@ -866,7 +866,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data berhasil disimpan!',
             icon: 'success',
-            text: 'Data berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -875,7 +875,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data gagal disimpan!',
             icon: 'error',
-            text: 'Data gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -885,7 +885,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data berhasil diupdate!',
             icon: 'success',
-            text: 'Data berhasil diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -894,7 +894,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data gagal diupdate!',
             icon: 'error',
-            text: 'Data gagal diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -904,7 +904,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data berhasil dihapus!',
             icon: 'success',
-            text: 'Data berhasil dihapus didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil dihapus didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -913,7 +913,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data gagal dihapus!',
             icon: 'error',
-            text: 'Data gagal dihapus didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal dihapus didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -923,7 +923,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Password berhasil direset!',
             icon: 'success',
-            text: 'Password berhasil direset didalam sistem TPB Sarinah Persero!'
+            text: 'Password berhasil direset didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -932,7 +932,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Password gagal direset!',
             icon: 'error',
-            text: 'Password gagal direset didalam sistem TPB Sarinah Persero!'
+            text: 'Password gagal direset didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -942,7 +942,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data berhasil diaktifkan!',
             icon: 'success',
-            text: 'Data berhasil diaktifkan didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil diaktifkan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -951,7 +951,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data gagal diaktifkan!',
             icon: 'error',
-            text: 'Data gagal diaktifkan didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal diaktifkan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -961,7 +961,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data berhasil dinon-aktifkan!',
             icon: 'success',
-            text: 'Data berhasil dinon-aktifkan didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil dinon-aktifkan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -970,7 +970,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Data gagal dinon-aktifkan!',
             icon: 'error',
-            text: 'Data gagal dinon-aktifkan didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal dinon-aktifkan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -980,7 +980,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Status Resign user berhasil disimpan!',
             icon: 'success',
-            text: 'Data Resign user berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data Resign user berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }
@@ -989,7 +989,7 @@ if (isset($_GET['findOne']) != '') {
         Swal.fire({
             title: 'Status Resign user gagal disimpan!',
             icon: 'error',
-            text: 'Data Resign user gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data Resign user gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web.php');
     }

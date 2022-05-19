@@ -660,7 +660,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Icon gagal disimpan!',
             icon: 'error',
-            text: 'Icon gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Icon gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -669,7 +669,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Logo berhasil disimpan!',
             icon: 'success',
-            text: 'Logo berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Logo berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -678,7 +678,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Logo gagal disimpan!',
             icon: 'error',
-            text: 'Logo gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Logo gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -687,7 +687,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Background Sign In berhasil disimpan!',
             icon: 'success',
-            text: 'Background Sign In berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Background Sign In berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -696,7 +696,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Background Sign In gagal disimpan!',
             icon: 'error',
-            text: 'Background Sign In gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Background Sign In gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -705,7 +705,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Background Sidebar berhasil disimpan!',
             icon: 'success',
-            text: 'Background Sidebar berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Background Sidebar berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -714,7 +714,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Background Sidebar gagal disimpan!',
             icon: 'error',
-            text: 'Background Sidebar gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Background Sidebar gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -723,7 +723,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Background Profile berhasil disimpan!',
             icon: 'success',
-            text: 'Background Profile berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Background Profile berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -732,7 +732,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Background Profile gagal disimpan!',
             icon: 'error',
-            text: 'Background Profile gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Background Profile gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -741,7 +741,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Data berhasil disimpan!',
             icon: 'success',
-            text: 'Data berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -750,7 +750,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Data gagal disimpan!',
             icon: 'error',
-            text: 'Data gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -760,7 +760,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Data berhasil diupdate!',
             icon: 'success',
-            text: 'Data berhasil diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }
@@ -769,7 +769,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Data gagal diupdate!',
             icon: 'error',
-            text: 'Data gagal diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }

@@ -169,7 +169,7 @@ if (isset($_POST["update_pass"])) {
         Swal.fire({
             title: 'Password gagal disimpan!',
             icon: 'error',
-            text: 'Password gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Password gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './usr_password.php');
     }

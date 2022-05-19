@@ -11,6 +11,13 @@ $access = mysqli_fetch_array($role);
 			<?php
 			$dataSettting = $dbcon->query("SELECT * FROM tbl_setting");
 			$resultSetting = mysqli_fetch_array($dataSettting);
+
+			$cekforAppName = $resultSetting['app_name'];
+			if ($cekforAppName == NULL) {
+				$alertAppName = 'App Name';
+			} else {
+				$alertAppName = $resultSetting['app_name'];
+			}
 			?>
 			<?php if ($resultSetting['sd_one'] == NULL || $resultSetting['sd_two'] == NULL) { ?>
 				<b>Name 1</b>&nbsp;Name 2

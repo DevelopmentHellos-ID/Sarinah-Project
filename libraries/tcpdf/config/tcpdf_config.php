@@ -109,12 +109,12 @@ define('PDF_AUTHOR', 'TCPDF');
 /**
  * Header title.
  */
-define('PDF_HEADER_TITLE', "Sarinah Persero - Tempat Penimbunan Berikat (TPB)");
+define('PDF_HEADER_TITLE', "PT. Sarinah (Persero) - Tempat Penimbunan Berikat (TPB)");
 
 /**
  * Header description string.
  */
-define('PDF_HEADER_STRING', "Gedung Sarinah, Jl. M. H. Thamrin No. 11, RT.8/RW.4, Gondangdia, Kec. Menteng, Kota Jakarta Pusat\nDaerah Khusus Ibukota Jakarta 10350\nTelp. (021) 31923008\nwebsite: www.sarinah.co.id, email: info@poltekpos.ac.id");
+define('PDF_HEADER_STRING', "Gedung Sarinah, Jl. M. H. Thamrin No. 11, RT.8/RW.4, Gondangdia, Kec. Menteng, Kota Jakarta Pusat\nDaerah Khusus Ibukota Jakarta 10350 Telp. (021) 31923008\nwebsite: www.sarinah.co.id\nemail: info@sarinah.co.id");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
@@ -124,7 +124,7 @@ define('PDF_UNIT', 'mm');
 /**
  * Header margin.
  */
-define('PDF_MARGIN_HEADER', 5);
+define('PDF_MARGIN_HEADER', 3);
 
 /**
  * Footer margin.
@@ -134,7 +134,7 @@ define('PDF_MARGIN_FOOTER', 10);
 /**
  * Top margin.
  */
-define('PDF_MARGIN_TOP', 27);
+define('PDF_MARGIN_TOP', 30);
 
 /**
  * Bottom margin.

@@ -165,7 +165,7 @@ if (isset($_POST["update_pass"])) {
         Swal.fire({
             title: 'Data berhasil disimpan!',
             icon: 'success',
-            text: 'Data berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web_update.php');
     }
@@ -174,7 +174,7 @@ if (isset($_POST["update_pass"])) {
         Swal.fire({
             title: 'Data gagal disimpan!',
             icon: 'error',
-            text: 'Data gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './uti_user_manajemen_web_update.php');
     }

@@ -115,7 +115,7 @@ if (isset($_POST["EditReload"])) {
         Swal.fire({
             title: 'Data berhasil disimpan!',
             icon: 'success',
-            text: 'Data berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_time_reload.php');
     }
@@ -124,7 +124,7 @@ if (isset($_POST["EditReload"])) {
         Swal.fire({
             title: 'Data gagal disimpan!',
             icon: 'error',
-            text: 'Data gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_time_reload.php');
     }
@@ -134,7 +134,7 @@ if (isset($_POST["EditReload"])) {
         Swal.fire({
             title: 'Data berhasil diupdate!',
             icon: 'success',
-            text: 'Data berhasil diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_time_reload.php');
     }
@@ -143,7 +143,7 @@ if (isset($_POST["EditReload"])) {
         Swal.fire({
             title: 'Data gagal diupdate!',
             icon: 'error',
-            text: 'Data gagal diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './adm_time_reload.php');
     }

@@ -259,7 +259,11 @@ if (isset($_POST["SaveEdit"])) {
                             </div>
                             <div class="col-4 text-right">
                                 <!-- <a href="#!" class="btn btn-sm btn-primary-profile"><i class="fas fa-edit"></i> Edit</a> -->
-                                <a href="usr_profile_pdf.php" class="btn btn-sm btn-danger-pdf" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                                <?php if ($access['nama_lengkap']  == NULL) { ?>
+                                    <a href="#LengkapiProfileAnda!" class="btn btn-sm btn-danger-pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                <?php } else { ?>
+                                    <a href="usr_profile_pdf.php?USER=<?= $_SESSION['username'] ?>" class="btn btn-sm btn-danger-pdf" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -279,8 +283,8 @@ if (isset($_POST["SaveEdit"])) {
                                     <div class="note note-success">
                                         <div class="note-icon"><i class="fas fa-id-badge"></i></div>
                                         <div class="note-content">
-                                            <h4><b>Profile dilengkapi!</b></h4>
-                                            <p> Anda sudah melengkapi profile anda!</p>
+                                            <h4><b>Profile telah dilengkapi!</b></h4>
+                                            <p> Anda telah melengkapi profile anda!</p>
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -646,7 +650,7 @@ if (isset($_POST["SaveEdit"])) {
         Swal.fire({
             title: 'Password berhasil disimpan!',
             icon: 'success',
-            text: 'Password berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Password berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './usr_profile.php');
     }
@@ -655,7 +659,7 @@ if (isset($_POST["SaveEdit"])) {
         Swal.fire({
             title: 'Data berhasil disimpan!',
             icon: 'success',
-            text: 'Data berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './usr_profile.php');
     }
@@ -664,7 +668,7 @@ if (isset($_POST["SaveEdit"])) {
         Swal.fire({
             title: 'Data gagal disimpan!',
             icon: 'error',
-            text: 'Data gagal disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal disimpan didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './usr_profile.php');
     }
@@ -674,7 +678,7 @@ if (isset($_POST["SaveEdit"])) {
         Swal.fire({
             title: 'Data berhasil diupdate!',
             icon: 'success',
-            text: 'Data berhasil diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Data berhasil diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './usr_profile.php');
     }
@@ -683,7 +687,7 @@ if (isset($_POST["SaveEdit"])) {
         Swal.fire({
             title: 'Data gagal diupdate!',
             icon: 'error',
-            text: 'Data gagal diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Data gagal diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './usr_profile.php');
     }
@@ -693,7 +697,7 @@ if (isset($_POST["SaveEdit"])) {
         Swal.fire({
             title: 'Pictures berhasil diupdate!',
             icon: 'success',
-            text: 'Pictures berhasil diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Pictures berhasil diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './usr_profile.php');
     }
@@ -702,7 +706,7 @@ if (isset($_POST["SaveEdit"])) {
         Swal.fire({
             title: 'Pictures gagal diupdate!',
             icon: 'error',
-            text: 'Pictures gagal diupdate didalam sistem TPB Sarinah Persero!'
+            text: 'Pictures gagal diupdate didalam <?= $alertAppName ?>!'
         })
         history.replaceState({}, '', './usr_profile.php');
     }
