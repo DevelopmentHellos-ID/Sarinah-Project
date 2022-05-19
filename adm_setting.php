@@ -651,7 +651,7 @@ if (isset($_POST["EditSetting"])) {
         Swal.fire({
             title: 'Icon berhasil disimpan!',
             icon: 'success',
-            text: 'Icon berhasil disimpan didalam sistem TPB Sarinah Persero!'
+            text: 'Icon berhasil disimpan didalam sistem TPB!'
         })
         history.replaceState({}, '', './adm_setting.php');
     }

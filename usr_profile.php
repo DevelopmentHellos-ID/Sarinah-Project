@@ -259,7 +259,7 @@ if (isset($_POST["SaveEdit"])) {
                             </div>
                             <div class="col-4 text-right">
                                 <!-- <a href="#!" class="btn btn-sm btn-primary-profile"><i class="fas fa-edit"></i> Edit</a> -->
-                                <a href="#!" class="btn btn-sm btn-danger-pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                <a href="usr_profile_pdf.php" class="btn btn-sm btn-danger-pdf" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
                             </div>
                         </div>
                     </div>
@@ -320,7 +320,7 @@ if (isset($_POST["SaveEdit"])) {
                                             <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
                                                 <input type="email" class="form-control" name="InputEmail" id="input-email" placeholder="Email ..." value="<?= $access['email'] ?>" required>
                                                 <span class="input-group-btn input-group-append">
-                                                    <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
+                                                    <a href="#!" class="btn btn-warning bootstrap-touchspin-profil" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></a>
                                                 </span>
                                             </div>
                                             <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
@@ -458,7 +458,7 @@ if (isset($_POST["SaveEdit"])) {
                                             <div class="input-group bootstrap-NULL bootstrap-touchspin-injected">
                                                 <input type="email" class="form-control" name="EditEmail" id="edit-email" placeholder="Email ..." value="<?= $access['email'] ?>">
                                                 <span class="input-group-btn input-group-append">
-                                                    <button class="btn btn-warning bootstrap-touchspin-profil" type="submit" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></button>
+                                                    <a href="#!" class="btn btn-warning bootstrap-touchspin-profil" data-toggle="tooltip" data-placement="top" title="Silahkan verifikasi link diemail anda"><i class="fas fa-paper-plane"></i></a>
                                                 </span>
                                             </div>
                                             <p class="email-wait"><i>* Silahkan verifikasi link di email anda</i></p>
@@ -577,6 +577,43 @@ if (isset($_POST["SaveEdit"])) {
     <?php include "include/creator.php"; ?>
 </div>
 <!-- end #content -->
+
+<!-- Cek Usia -->
+<!-- <link href="assets/otomatic/jquery-ui.css" rel="stylesheet"> -->
+<!-- <script src="assets/otomatic/jquery-ui.js"></script> -->
+<script type="text/javascript">
+    $(function() {
+        $("#input-tanggal-lahir").date({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+    window.onload = function() {
+        $('#input-tanggal-lahir').on('change', function() {
+
+            var dob = new Date(this.value);
+            var today = new Date();
+            var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+            $('#input-usia').val(age);
+        });
+    }
+
+    $(function() {
+        $("#edit-tanggal-lahir").date({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+    window.onload = function() {
+        $('#edit-tanggal-lahir').on('change', function() {
+
+            var dobb = new Date(this.value);
+            var todayy = new Date();
+            var agee = Math.floor((todayy - dobb) / (365.25 * 24 * 60 * 60 * 1000));
+            $('#edit-usia').val(agee);
+        });
+    }
+</script>
 <?php include "include/panel.php"; ?>
 <?php include "include/footer.php"; ?>
 <script src="https://unpkg.com/imask"></script>
@@ -668,42 +705,5 @@ if (isset($_POST["SaveEdit"])) {
             text: 'Pictures gagal diupdate didalam sistem TPB Sarinah Persero!'
         })
         history.replaceState({}, '', './usr_profile.php');
-    }
-</script>
-
-<!-- Cek Usia -->
-<!-- <link href="assets/otomatic/jquery-ui.css" rel="stylesheet"> -->
-<!-- <script src="assets/otomatic/jquery-ui.js"></script> -->
-<script type="text/javascript">
-    $(function() {
-        $("#input-tanggal-lahir").date({
-            changeMonth: true,
-            changeYear: true
-        });
-    });
-    window.onload = function() {
-        $('#input-tanggal-lahir').on('change', function() {
-
-            var dob = new Date(this.value);
-            var today = new Date();
-            var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
-            $('#input-usia').val(age);
-        });
-    }
-
-    $(function() {
-        $("#edit-tanggal-lahir").date({
-            changeMonth: true,
-            changeYear: true
-        });
-    });
-    window.onload = function() {
-        $('#edit-tanggal-lahir').on('change', function() {
-
-            var dob = new Date(this.value);
-            var today = new Date();
-            var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
-            $('#edit-usia').val(age);
-        });
     }
 </script>
