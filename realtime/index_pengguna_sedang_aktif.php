@@ -14,10 +14,11 @@ include "../include/restrict.php";
     </thead>
     <tbody>
         <?php
-        $dataTable = $dbcon->query("SELECT log.id,peg.foto,log.log_username AS userUSE,log_agent,log_date,log.log_type
+        $dataTable = $dbcon->query("SELECT log.id,peg.foto,log.log_username AS userUSE,log_agent,log_date,log.log_type,log.out_type
                                     FROM tbl_log AS log
                                     LEFT JOIN tbl_pegawai AS peg ON log.log_username=peg.username
-                                    WHERE log.log_type='Sign In'
+                                    WHERE log.out_type IS NULL
+                                    AND log.id=(SELECT max(id) FROM tbl_log)
                                     GROUP BY log.log_username
                                     ORDER BY log.id DESC");
         if (mysqli_num_rows($dataTable) > 0) {
