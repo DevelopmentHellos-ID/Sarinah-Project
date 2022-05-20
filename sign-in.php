@@ -18,6 +18,7 @@ if (isset($_POST['submit'])) {
 	$log_user = $_POST['username'];
 	$log_type = "Sign In";
 	$log_date = date('Y-m-d H:i:m');
+	$log_agent = $agent;
 	$log_device = $devicename;
 	$log_ip = $IP;
 	$log_browser = $detailbrowser;
@@ -31,15 +32,27 @@ if (isset($_POST['submit'])) {
 		// END START SESSION
 
 		$query = $dbcon->query("INSERT INTO tbl_log 
-								(id,log_username,log_type,log_date,log_devicename,log_ip,log_browser)
-								VALUES
-								('','$log_user','$log_type','$log_date','$log_device','$log_ip','$log_browser')");
+											(id,log_username,log_type,log_date,log_agent,log_devicename,log_ip,log_browser)
+											VALUES
+											('','$log_user','$log_type','$log_date','$log_agent','$log_device','$log_ip','$log_browser')");
 		if ($query) {
 			header("Location: ./index.php?SignInsuccess=true");
 		} else {
 			echo "<h4>" . "log error" . mysqli_connect_errno() . "</h4>";
 		}
 	} else {
+		$flog_user = $_POST['username'];
+		$flog_type = "Sign In Failed";
+		$flog_date = date('Y-m-d H:i:m');
+		$flog_agent = $agent;
+		$flog_device = $devicename;
+		$flog_ip = $IP;
+		$flog_browser = $detailbrowser;
+
+		$query = $dbcon->query("INSERT INTO tbl_log 
+											(id,log_username,log_type,log_date,log_agent,log_devicename,log_ip,log_browser)
+											VALUES
+											('','$flog_user','$flog_type','$flog_date','$flog_agent','$flog_device','$flog_ip','$flog_browser')");
 		header("Location: ./sign-in.php?error=true");
 	}
 }

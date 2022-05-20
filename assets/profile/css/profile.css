@@ -156,13 +156,20 @@
         box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
     }
 
-
-
     .hello {
         position: relative;
         width: 100%;
         padding-right: 15px;
-        padding-left: 50px;
+        padding-left: 26px;
+    }
+
+    @media (max-width: 767px) {
+        .hello {
+            position: relative;
+            width: 100%;
+            padding-right: -10px;
+            padding-left: 17px;
+        }
     }
 
     .card {

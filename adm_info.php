@@ -39,7 +39,7 @@ if (isset($_POST["SaveInfo"])) {
     $InputModul               = 'Administrator Tools/Setting Informasi';
     $InputDescription         = 'Update Informasi Dashboard';
     $InputAction              = 'Insert';
-    $InputDate                = date('Y-m-d h:m:a');
+    $InputDate                = date('Y-m-d h:m:i');
 
     $query = $dbcon->query("UPDATE tbl_informasi SET info_bg='$InputBackground',
                                                      info_color='$InputColor',

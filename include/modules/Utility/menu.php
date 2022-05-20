@@ -89,9 +89,7 @@
         <li class="has-sub <?=
                             // User Manajemen
                             $uriSegments[1] == 'uti_user_manajemen_desktop.php' ||
-                                $uriSegments[1] == 'uti_user_manajemen_web.php' ||
-                                $uriSegments[1] == 'uti_set_database.php' ||
-                                $uriSegments[1] == 'uti_set_server.php'
+                                $uriSegments[1] == 'uti_user_manajemen_web.php'
                                 ? 'active' : '' ?>">
             <a href="javascript:;"><b class="caret"></b> User Manajemen</a>
             <ul class="sub-menu">
