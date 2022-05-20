@@ -59,7 +59,7 @@ if (isset($_POST["add_manajemen_user_web"])) {
         $able_send            = $able_send;
         $able_password        = $able_password;
         // tbl_pegawai
-        $foto                 = 'default-user-imge.jpeg';
+        $foto                 = 'default-user-images.jpeg';
         $username             = $_POST['username'];
         $role                 = $_POST['HakAkses'];
         $status               = '0';
@@ -545,8 +545,8 @@ if (isset($_GET['findOne']) != '') {
                                         <tr class="odd gradeX">
                                             <td width="1%" class="f-s-600 text-inverse"><?= $no ?>.</td>
                                             <td width="1%" class="with-img">
-                                                <?php if ($row['foto'] == NULL || $row['foto'] == 'default-user-imge.jpeg') { ?>
-                                                    <img src="assets/images/users/default-user-imge.jpeg" alt="Foto Profile" class="img-rounded height-30" />
+                                                <?php if ($row['foto'] == NULL || $row['foto'] == 'default-user-images.jpeg') { ?>
+                                                    <img src="assets/images/users/default-user-images.jpeg" alt="Foto Profile" class="img-rounded height-30" />
                                                 <?php } else { ?>
                                                     <img src="assets/images/users/<?= $row['foto'] ?>" alt="Foto Profile" class="img-rounded height-30" />
                                                 <?php } ?>

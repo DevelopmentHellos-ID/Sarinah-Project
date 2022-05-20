@@ -107,8 +107,8 @@ $access = mysqli_fetch_array($role);
 		</li> -->
 		<li class="dropdown navbar-user">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<?php if ($access['foto'] == NULL || $access['foto'] == 'default-user-imge.jpeg') { ?>
-					<img src="assets/images/users/default-user-imge.jpeg" alt="Foto Profile" />
+				<?php if ($access['foto'] == NULL || $access['foto'] == 'default-user-images.jpeg') { ?>
+					<img src="assets/images/users/default-user-images.jpeg" alt="Foto Profile" />
 				<?php } else { ?>
 					<img src="assets/images/users/<?= $access['foto'] ?>" alt="Foto Profile" />
 				<?php } ?>

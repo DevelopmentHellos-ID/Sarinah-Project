@@ -38,8 +38,8 @@ $accessSidebar = mysqli_fetch_array($roleSidebar);
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
 					<div class="image">
-						<?php if ($accessSidebar['foto'] == NULL || $accessSidebar['foto'] == 'default-user-imge.jpeg') { ?>
-							<img src="assets/images/users/default-user-imge.jpeg" alt="Foto Profile" />
+						<?php if ($accessSidebar['foto'] == NULL || $accessSidebar['foto'] == 'default-user-images.jpeg') { ?>
+							<img src="assets/images/users/default-user-images.jpeg" alt="Foto Profile" />
 						<?php } else { ?>
 							<img src="assets/images/users/<?= $accessSidebar['foto'] ?>" alt="Foto Profile" />
 						<?php } ?>

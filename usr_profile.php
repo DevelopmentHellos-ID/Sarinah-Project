@@ -171,8 +171,8 @@ if (isset($_POST["SaveEdit"])) {
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <?php if ($accessSidebar['foto'] == NULL || $accessSidebar['foto'] == 'default-user-imge.jpeg') { ?>
-                                        <img src="assets/images/users/default-user-imge.jpeg" class="rounded-circle" alt="Foto Profile" />
+                                    <?php if ($accessSidebar['foto'] == NULL || $accessSidebar['foto'] == 'default-user-images.jpeg') { ?>
+                                        <img src="assets/images/users/default-user-images.jpeg" class="rounded-circle" alt="Foto Profile" />
                                     <?php } else { ?>
                                         <img src="assets/images/users/<?= $accessSidebar['foto'] ?>" class="rounded-circle" alt="Foto Profile" />
                                     <?php } ?>
@@ -198,7 +198,7 @@ if (isset($_POST["SaveEdit"])) {
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <?php if ($access['foto'] == NULL) { ?>
-                                                                <img src="assets/images/users/default-user-imge.jpeg" class="rounded-circle" style="width: 165px;height: 165px;background: transparent;border-style: groove;margin-bottom: 10px" alt="Foto Profile" />
+                                                                <img src="assets/images/users/default-user-images.jpeg" class="rounded-circle" style="width: 165px;height: 165px;background: transparent;border-style: groove;margin-bottom: 10px" alt="Foto Profile" />
                                                             <?php } else { ?>
                                                                 <img src="assets/images/users/<?= $access['foto'] ?>" class="rounded-circle" style="width: 165px;height: 165px;background: transparent;border-style: groove;margin-bottom: 10px" alt="Foto Profile" />
                                                             <?php } ?>

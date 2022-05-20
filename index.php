@@ -130,14 +130,15 @@ include "include/cssDatatables.php";
 	<!-- begin row -->
 	<div class="row">
 		<div class="col-xl-6">
-			<div class="panel panel-inverse" data-sortable-id="ui-icons-1">
+			<div class="panel panel-inverse" data-sortable-id="pengguna-sedang-aktif">
 				<div class="panel-heading">
-					<h4 class="panel-title">[Content] Coming Soon</h4>
+					<h4 class="panel-title blink_me"><i class="fas fa-circle" style="color: #54f954;"></i> Pengguna Sedang Aktif</h4>
 					<?php include "include/panel-row.php"; ?>
 				</div>
 				<div class="panel-body text-inverse">
-					<center>
-					</center>
+					<div class="table-responsive">
+						<div id="data-pengguna-sedang-aktif"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -175,7 +176,27 @@ include "include/cssDatatables.php";
 	}
 </script>
 <script>
-	function loadXMLDoc() {
+	// data-pengguna-sedang-aktif
+	function PenggunaSedangAktif() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("data-pengguna-sedang-aktif").innerHTML =
+					this.responseText;
+			}
+		};
+		xhttp.open("GET", "realtime/index_pengguna_sedang_aktif.php", true);
+		xhttp.send();
+	}
+	setInterval(function() {
+		PenggunaSedangAktif();
+		// Time
+	}, 1000);
+
+	window.onload = PenggunaSedangAktif;
+
+	// data-aktifitas-sistem
+	function AktifitasSistem() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -187,9 +208,9 @@ include "include/cssDatatables.php";
 		xhttp.send();
 	}
 	setInterval(function() {
-		loadXMLDoc();
+		AktifitasSistem();
 		// Time
 	}, 1000);
 
-	window.onload = loadXMLDoc;
+	window.onload = AktifitasSistem;
 </script>

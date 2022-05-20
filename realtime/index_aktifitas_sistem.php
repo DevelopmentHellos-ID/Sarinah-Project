@@ -15,7 +15,7 @@ include "../include/restrict.php";
     </thead>
     <tbody>
         <?php
-        $dataTable = $dbcon->query("SELECT * FROM tbl_aktifitas ORDER BY id DESC");
+        $dataTable = $dbcon->query("SELECT * FROM tbl_aktifitas ORDER BY id DESC LIMIT 10");
         if (mysqli_num_rows($dataTable) > 0) {
             $no = 0;
             while ($row = mysqli_fetch_array($dataTable)) {
