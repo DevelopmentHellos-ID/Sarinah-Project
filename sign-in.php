@@ -14,14 +14,14 @@ if (isset($_POST['submit'])) {
 	$pass = $_POST['password'];
 	// END SIGN-IN
 
-	// IF FAILED SIGN-IN
+	// SIGN-IN
 	$log_user = $_POST['username'];
-	$log_type = "Sign In Error";
+	$log_type = "Sign In";
 	$log_date = date('Y-m-d H:i:m');
 	$log_device = $devicename;
 	$log_ip = $IP;
 	$log_browser = $detailbrowser;
-	// END IF FAILED SIGN-IN
+	// END SIGN-IN
 
 	$query_signin = $dbcon->query("SELECT * FROM view_privileges WHERE USER_NAME='$user' AND PASSWORD='$pass'");
 	if (mysqli_num_rows($query_signin) == 1) {
