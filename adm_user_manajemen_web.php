@@ -15,7 +15,7 @@ if (isset($_POST["add_manajemen_user_web"])) {
     $vald_d = mysqli_fetch_array($cekQuery);
 
     if ($vald_d != NULL) {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?UUMWInputFailed=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?UUMWInputFailed=true';</script>";
     } else {
         if ($_POST['able_add'] != 'Y') {
             $able_add = 'N';
@@ -77,9 +77,9 @@ if (isset($_POST["add_manajemen_user_web"])) {
                                ('','$foto','$UNIQ','$username','$role','$status','$created_by','$created_date')");
 
         if ($query) {
-            echo "<script>window.location.href='uti_user_manajemen_web.php?UUMWInputSuccess=true';</script>";
+            echo "<script>window.location.href='adm_user_manajemen_web.php?UUMWInputSuccess=true';</script>";
         } else {
-            echo "<script>window.location.href='uti_user_manajemen_web.php?UUMWInputFailed=true';</script>";
+            echo "<script>window.location.href='adm_user_manajemen_web.php?UUMWInputFailed=true';</script>";
         }
     }
 }
@@ -136,9 +136,9 @@ if (isset($_POST["NUpdateData"])) {
     $query .= $dbcon->query("UPDATE tbl_pegawai SET role='$role'
                                                     WHERE IDUNIQ='$IDUNIQ'");
     if ($query) {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?UpdateSuccess=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?UpdateSuccess=true';</script>";
     } else {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?UpdateFailed=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?UpdateFailed=true';</script>";
     }
 }
 // END UPDATE NEW USER WEB
@@ -153,9 +153,9 @@ if (isset($_POST["NDeleteData"])) {
     $query .= $dbcon->query("DELETE FROM tbl_pegawai WHERE IDUNIQ='$IDUNIQ'");
 
     if ($query) {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?DeleteSuccess=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?DeleteSuccess=true';</script>";
     } else {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?DeleteFailed=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?DeleteFailed=true';</script>";
     }
 }
 // END DELETE NEW USER WEB
@@ -169,9 +169,9 @@ if (isset($_POST["NEnabledData"])) {
     $query = $dbcon->query("UPDATE tbl_pegawai SET status='$status'
                                                     WHERE IDUNIQ='$IDUNIQ'");
     if ($query) {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?EnabledSuccess=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?EnabledSuccess=true';</script>";
     } else {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?EnabledFailed=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?EnabledFailed=true';</script>";
     }
 }
 // END ENABLED NEW USER WEB
@@ -186,9 +186,9 @@ if (isset($_POST["NDisabledData"])) {
                                                     WHERE IDUNIQ='$IDUNIQ'");
 
     if ($query) {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?DisabledSuccess=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?DisabledSuccess=true';</script>";
     } else {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?DisabledFailed=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?DisabledFailed=true';</script>";
     }
 }
 // END DISABLED NEW USER WEB
@@ -205,9 +205,9 @@ if (isset($_POST["NResignData"])) {
                                                     WHERE IDUNIQ='$IDUNIQ'");
 
     if ($query) {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?ResignSuccess=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?ResignSuccess=true';</script>";
     } else {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?ResignFailed=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?ResignFailed=true';</script>";
     }
 }
 // END RESIGN NEW USER WEB
@@ -319,7 +319,7 @@ if (isset($_GET['findOne']) != '') {
                                     <button type="submit" class="btn btn-sm btn-info m-r-5" name="findOne">
                                         <i class="fa fa-search"></i> Search
                                     </button>
-                                    <a href="uti_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow m-r-5">
+                                    <a href="adm_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow m-r-5">
                                         <i class="fa fa-refresh"></i> Reset
                                     </a>
                                 </div>
@@ -352,7 +352,7 @@ if (isset($_GET['findOne']) != '') {
                                     <button type="submit" class="btn btn-sm btn-info m-r-5" name="findTwo">
                                         <i class="fa fa-search"></i> Search
                                     </button>
-                                    <a href="uti_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow m-r-5">
+                                    <a href="adm_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow m-r-5">
                                         <i class="fa fa-refresh"></i> Reset
                                     </a>
                                 </div>
@@ -378,7 +378,7 @@ if (isset($_GET['findOne']) != '') {
                             <?php } ?>
                         </div>
                         <button type="submit" class="btn btn-sm btn-info m-r-5" name="findThree"><i class="fa fa-search"></i> Search</button>
-                        <a href="uti_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow"><i class="fa fa-refresh"></i> Reset</a>
+                        <a href="adm_user_manajemen_web.php" type="button" class="btn btn-sm btn-yellow"><i class="fa fa-refresh"></i> Reset</a>
                     </form>
                 </div>
             </div>
@@ -399,7 +399,7 @@ if (isset($_GET['findOne']) != '') {
                 <div class="panel-body">
                     <!-- css-button -->
                     <div class="css-button">
-                        <?php include "modal/m_uti_user_manajemen_web.php"; ?>
+                        <?php include "modal/m_adm_user_manajemen_web.php"; ?>
                     </div>
                     <!-- end css-button -->
                     <!-- Alert -->
@@ -587,7 +587,7 @@ if (isset($_GET['findOne']) != '') {
                                                 <?php } else { ?>
                                                     <a href="#updateData<?= $row['ID'] ?>" class="btn btn-sm btn-warning" data-toggle="modal" title="Update Data"><i class="fas fa-edit"></i></a>
                                                     <a href="#deleteData<?= $row['ID'] ?>" class="btn btn-sm btn-danger" data-toggle="modal" title="Hapus Data"><i class="fas fa-trash"></i></a>
-                                                    <a href="uti_user_manajemen_web_resetpassword.php?USER=<?= $row['USER_NAME'] ?>" class="btn btn-sm btn-info" target="_blank" title="Reset Password"><i class="fas fa-lock"></i></a>
+                                                    <a href="adm_user_manajemen_web_resetpassword.php?USER=<?= $row['USER_NAME'] ?>" class="btn btn-sm btn-info" target="_blank" title="Reset Password"><i class="fas fa-lock"></i></a>
                                                     <?php if ($row['status'] == 0) { ?>
                                                         <a href="#disabledData<?= $row['ID'] ?>" class="btn btn-sm btn-inverse" data-toggle="modal" title="Non-Aktif Users"><i class="fas fa-user-slash"></i></a>
                                                     <?php } else if ($row['status'] == 1) { ?>
@@ -868,7 +868,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'success',
             text: 'Data berhasil disimpan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
     // INSERT FAILED
     if (window?.location?.href?.indexOf('UUMWInputFailed') > -1) {
@@ -877,7 +877,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'error',
             text: 'Data gagal disimpan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
 
     // UPDATE SUCCESS
@@ -887,7 +887,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'success',
             text: 'Data berhasil diupdate didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
     // UPDATE FAILED
     if (window?.location?.href?.indexOf('UpdateFailed') > -1) {
@@ -896,7 +896,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'error',
             text: 'Data gagal diupdate didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
 
     // DELETE SUCCESS
@@ -906,7 +906,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'success',
             text: 'Data berhasil dihapus didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
     // DELETE FAILED
     if (window?.location?.href?.indexOf('DeleteFailed') > -1) {
@@ -915,7 +915,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'error',
             text: 'Data gagal dihapus didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
 
     // RESET PASSWORD SUCCESS
@@ -925,7 +925,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'success',
             text: 'Password berhasil direset didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
     // RESET PASSWORD FAILED
     if (window?.location?.href?.indexOf('ResetPasswordFailed') > -1) {
@@ -934,7 +934,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'error',
             text: 'Password gagal direset didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
 
     // ENABLED SUCCESS
@@ -944,7 +944,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'success',
             text: 'Data berhasil diaktifkan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
     // ENABLED FAILED
     if (window?.location?.href?.indexOf('EnabledFailed') > -1) {
@@ -953,7 +953,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'error',
             text: 'Data gagal diaktifkan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
 
     // DISABLED SUCCESS
@@ -963,7 +963,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'success',
             text: 'Data berhasil dinon-aktifkan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
     // DISABLED FAILED
     if (window?.location?.href?.indexOf('DisabledFailed') > -1) {
@@ -972,7 +972,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'error',
             text: 'Data gagal dinon-aktifkan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
 
     // RESIGN SUCCESS
@@ -982,7 +982,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'success',
             text: 'Data Resign user berhasil disimpan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
     // RESIGN FAILED
     if (window?.location?.href?.indexOf('ResignFailed') > -1) {
@@ -991,7 +991,7 @@ if (isset($_GET['findOne']) != '') {
             icon: 'error',
             text: 'Data Resign user gagal disimpan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web.php');
+        history.replaceState({}, '', './adm_user_manajemen_web.php');
     }
 </script>
 

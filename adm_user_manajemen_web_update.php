@@ -157,7 +157,7 @@ if (isset($_POST["update_pass"])) {
             icon: 'info',
             text: 'Silahkan update password anda untuk meningkatkan keamanan!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web_update.php');
+        history.replaceState({}, '', './adm_user_manajemen_web_update.php');
     }
 
     // UPDATE SUCCESS
@@ -167,7 +167,7 @@ if (isset($_POST["update_pass"])) {
             icon: 'success',
             text: 'Data berhasil disimpan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web_update.php');
+        history.replaceState({}, '', './adm_user_manajemen_web_update.php');
     }
     // UPDATE FAILED
     if (window?.location?.href?.indexOf('UUMWInputFailed') > -1) {
@@ -176,7 +176,7 @@ if (isset($_POST["update_pass"])) {
             icon: 'error',
             text: 'Data gagal disimpan didalam <?= $alertAppName ?>!'
         })
-        history.replaceState({}, '', './uti_user_manajemen_web_update.php');
+        history.replaceState({}, '', './adm_user_manajemen_web_update.php');
     }
 </script>
 <!-- Script Show Hidden Password -->

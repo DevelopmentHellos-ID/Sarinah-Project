@@ -17,8 +17,8 @@ include "include/sidebar.php";
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="javascript:;">Utility</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">Setting</a></li>
-                <li class="breadcrumb-item active">Dokumen</li>
+                <li class="breadcrumb-item"><a href="javascript:;">BC27 Pemasukan</a></li>
+                <li class="breadcrumb-item active">Data Tesimpan di Modul</li>
             </ol>
         </div>
         <div>
@@ -29,9 +29,9 @@ include "include/sidebar.php";
     <!-- begin row -->
     <div class="row">
         <div class="col-xl-12">
-            <div class="panel panel-inverse" data-sortable-id="ui-dokumen">
+            <div class="panel panel-inverse" data-sortable-id="ui-data-tesimpan-di-modul">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[Setting] Dokumen</h4>
+                    <h4 class="panel-title">[BC27 Pemasukan] Data Tesimpan di Modul</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">

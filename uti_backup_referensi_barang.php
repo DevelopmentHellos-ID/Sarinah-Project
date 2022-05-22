@@ -17,24 +17,26 @@ include "include/sidebar.php";
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="javascript:;">Utility</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">Setting</a></li>
-                <li class="breadcrumb-item active">Dokumen</li>
+                <li class="breadcrumb-item"><a href="javascript:;">Backup</a></li>
+                <li class="breadcrumb-item active">Backup Referensi Barang</li>
             </ol>
         </div>
         <div>
-            <button class="btn btn-primary-css"><i class="fas fa-calendar-alt"></i> <span id="ct"></span></button>
+            <button class="btn btn-primary-css"><i class="icon-copy dw dw-calendar-11"></i> <span id="ct"></span></button>
         </div>
     </div>
     <div class="line-page"></div>
     <!-- begin row -->
     <div class="row">
         <div class="col-xl-12">
-            <div class="panel panel-inverse" data-sortable-id="ui-dokumen">
+            <div class="panel panel-inverse" data-sortable-id="ui-backup-referensi-barang">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[Setting] Dokumen</h4>
+                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Backup] Referensi Barang</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">
+                    <center>
+                    </center>
                 </div>
             </div>
         </div>

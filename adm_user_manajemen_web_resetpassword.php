@@ -29,9 +29,9 @@ if (isset($_POST["ResetPassword"])) {
     // var_dump($NpassReset);
     // exit;
     if ($queryResetPass) {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?ResetPasswordSuccess=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?ResetPasswordSuccess=true';</script>";
     } else {
-        echo "<script>window.location.href='uti_user_manajemen_web.php?ResetPasswordFailed=true';</script>";
+        echo "<script>window.location.href='adm_user_manajemen_web.php?ResetPasswordFailed=true';</script>";
     }
 }
 // END RESET PASSWORD
