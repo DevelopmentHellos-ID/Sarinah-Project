@@ -94,34 +94,10 @@ include "include/cssDatatables.php";
 		<div class="col-xl-4 col-md-4">
 			<div class="row rowGrid">
 				<div class="col-xl-12 col-md-12">
-					<div class="widget widget-stats bg-teal">
-						<div class="stats-icon stats-icon-lg"><i class="fa fa-database fa-fw"></i></div>
-						<div class="stats-content">
-							<div class="stats-title">TOTAL TABEL TPB</div>
-							<div class="stats-number"><?= $jt_query['view_tables'] ?> Tabel</div>
-							<div class="stats-progress progress">
-								<div class="progress-bar" style="width: <?= $jt_query['view_tables'] ?>%;"></div>
-							</div>
-							<div class="stats-desc">Update Data: <?= date_indo(date('Y-m-d'), true) ?></div>
-						</div>
-					</div>
+					<div id="data-total-tabel"></div>
 				</div>
 				<div class="col-xl-12 col-md-12">
-					<div class="widget widget-stats bg-blue">
-						<div class="stats-icon stats-icon-lg"><i class="fa fa-users fa-fw"></i></div>
-						<div class="stats-content">
-							<div class="stats-title">TOTAL PENGGUNA</div>
-							<?php
-							$jumlah_pengguna = $dbcon->query("SELECT COUNT(*) pengguna FROM view_privileges");
-							$jp_query = mysqli_fetch_array($jumlah_pengguna);
-							?>
-							<div class="stats-number"><?= $jp_query['pengguna'] ?> Pengguna</div>
-							<div class="stats-progress progress">
-								<div class="progress-bar" style="width: <?= $jp_query['pengguna'] ?>%;"></div>
-							</div>
-							<div class="stats-desc">Persentase Pengguna (<?= $jp_query['pengguna'] ?>%)</div>
-						</div>
-					</div>
+					<div id="data-total-pengguna"></div>
 				</div>
 			</div>
 		</div>
@@ -176,6 +152,42 @@ include "include/cssDatatables.php";
 	}
 </script>
 <script>
+	// data-total-tabel
+	function TotalTabel() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("data-total-tabel").innerHTML =
+					this.responseText;
+			}
+		};
+		xhttp.open("GET", "realtime/index_total_tabel.php", true);
+		xhttp.send();
+	}
+	setInterval(function() {
+		TotalTabel();
+		// Time
+	}, 1000);
+	window.onload = TotalTabel;
+
+	// data-total-pengguna
+	function TotalPengguna() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("data-total-pengguna").innerHTML =
+					this.responseText;
+			}
+		};
+		xhttp.open("GET", "realtime/index_total_pengguna.php", true);
+		xhttp.send();
+	}
+	setInterval(function() {
+		TotalPengguna();
+		// Time
+	}, 1000);
+	window.onload = TotalPengguna;
+
 	// data-pengguna-sedang-aktif
 	function PenggunaSedangAktif() {
 		var xhttp = new XMLHttpRequest();
@@ -192,7 +204,6 @@ include "include/cssDatatables.php";
 		PenggunaSedangAktif();
 		// Time
 	}, 1000);
-
 	window.onload = PenggunaSedangAktif;
 
 	// data-aktifitas-sistem
@@ -211,6 +222,5 @@ include "include/cssDatatables.php";
 		AktifitasSistem();
 		// Time
 	}, 1000);
-
 	window.onload = AktifitasSistem;
 </script>
