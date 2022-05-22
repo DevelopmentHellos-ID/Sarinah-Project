@@ -28,15 +28,12 @@ include "include/sidebar.php";
     <!-- begin row -->
     <div class="row">
         <div class="col-xl-12">
-            <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
+            <div class="panel panel-inverse" data-sortable-id="ui-tempat-penimbunan">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[Content] Coming Soon</h4>
+                    <h4 class="panel-title">[Referensi] Tempat Penimbunan</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">
-                    <center>
-                        <img class="picture-w-550" src="assets/images/coming-soon/01.jpg" alt="coming-soon">
-                    </center>
                 </div>
             </div>
         </div>

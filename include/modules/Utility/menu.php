@@ -1,11 +1,11 @@
 <li class="nav-header">UTILITY</li>
 <li class="has-sub <?=
-                    // Info Aktifasi
+                    // About
                     $uriSegments[1] == 'uti_ak_user.php' ||
                         $uriSegments[1] == 'uti_ak_version.php' ||
                         $uriSegments[1] == 'uti_ak_faq.php' ||
                         $uriSegments[1] == 'uti_ak_about.php' ||
-                        // Back up
+                        // Backup
                         $uriSegments[1] == 'uti_backup_dokumen.php' ||
                         $uriSegments[1] == 'uti_backup_referensi_barang.php' ||
                         // Restore
@@ -56,7 +56,7 @@
             </ul>
         </li>
         <li class="has-sub <?=
-                            // Back Up
+                            // Backup
                             $uriSegments[1] == 'uti_backup_dokumen.php' ||
                                 $uriSegments[1] == 'uti_backup_referensi_barang.php'
                                 ? 'active' : '' ?>">
