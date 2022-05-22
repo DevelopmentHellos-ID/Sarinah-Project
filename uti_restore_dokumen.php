@@ -61,7 +61,7 @@ include "include/cssDatatables.php";
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="ui-restore-dokumen">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Restore] Dokumen</h4>
+                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Restore] Restore Dokumen</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">

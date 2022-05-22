@@ -17,8 +17,7 @@ include "include/sidebar.php";
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="javascript:;">Utility</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">User Manajemen</a></li>
-                <li class="breadcrumb-item active">User Default</li>
+                <li class="breadcrumb-item active">User Manajemen</li>
             </ol>
         </div>
         <div>
@@ -29,9 +28,9 @@ include "include/sidebar.php";
     <!-- begin row -->
     <div class="row">
         <div class="col-xl-12">
-            <div class="panel panel-inverse" data-sortable-id="data-table">
+            <div class="panel panel-inverse" data-sortable-id="data-user-manajemen">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[User Manajemen] User Default</h4>
+                    <h4 class="panel-title">[Utility] User Manajemen</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">

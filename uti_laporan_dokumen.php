@@ -17,8 +17,7 @@ include "include/sidebar.php";
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="javascript:;">Utility</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">Setting</a></li>
-                <li class="breadcrumb-item active">Setting Server</li>
+                <li class="breadcrumb-item active">Laporan Dokumen</li>
             </ol>
         </div>
         <div>
@@ -29,9 +28,9 @@ include "include/sidebar.php";
     <!-- begin row -->
     <div class="row">
         <div class="col-xl-12">
-            <div class="panel panel-inverse" data-sortable-id="ui-setting-server">
+            <div class="panel panel-inverse" data-sortable-id="ui-laporan-dokumen">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[Setting] Setting Server</h4>
+                    <h4 class="panel-title">[Utility] Laporan Dokumen</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">

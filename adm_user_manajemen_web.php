@@ -271,14 +271,13 @@ if (isset($_GET['findOne']) != '') {
     <div class="page-title-css">
         <div>
             <h1 class="page-header-css">
-                <i class="fab fa-medapps icon-page"></i>
-                <font class="text-page">Utility</font>
+                <i class="fab fa-adn icon-page"></i>
+                <font class="text-page">Administrator Tools</font>
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">Utility</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">User Manajemen</a></li>
-                <li class="breadcrumb-item active">User Web System</li>
+                <li class="breadcrumb-item"><a href="javascript:;">Administrator Tools</a></li>
+                <li class="breadcrumb-item active">User Manajemen Web</li>
             </ol>
         </div>
         <div>
@@ -292,7 +291,7 @@ if (isset($_GET['findOne']) != '') {
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fas fa-filter"></i> Filter User Web System - by
+                    <h4 class="panel-title"><i class="fas fa-filter"></i> Filter User Manajemen Web - by
                         <select type="text" id="findby" style="background: transparent;border-color: transparent;color:#fff;">
                             <option value="opone" style="color: #1d2226;" <?= $selectOne ?>>Username</option>
                             <option value="optwo" style="color: #1d2226;" <?= $selectTwo ?>>Hak Akses</option>
@@ -393,7 +392,7 @@ if (isset($_GET['findOne']) != '') {
             <!-- begin panel -->
             <div class="panel panel-inverse" data-sortable-id="ui-modal-notification-2">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [User Manajemen] User Web System</h4>
+                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Administrator Tools] User Manajemen Web</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body">
@@ -445,7 +444,7 @@ if (isset($_GET['findOne']) != '') {
                                                                 ORDER BY usr.ID DESC");
                                 $result_qct = mysqli_fetch_array($q_count_total);
                                 ?>
-                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qct['total_qct'] ?> User Web System</font>
+                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qct['total_qct'] ?> User Manajemen Web</font>
                             </div>
                             <div class="all-record-detail">
                                 <font style="font-size: 16px;font-weight: 600;"><?= date('Y') ?></font>
@@ -462,7 +461,7 @@ if (isset($_GET['findOne']) != '') {
                                                                 ORDER BY usr.ID DESC");
                                 $result_qca = mysqli_fetch_array($q_count_aktif);
                                 ?>
-                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qca['total_qca'] ?> User Web System</font>
+                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qca['total_qca'] ?> User Manajemen Web</font>
                             </div>
                             <div class="all-record-detail">
                                 <font style="font-size: 25px;font-weight: 600;"><i class="fas fa-user-slash" style="font-weight: 800;"></i> Non-Aktif</font>
@@ -474,7 +473,7 @@ if (isset($_GET['findOne']) != '') {
                                                                 ORDER BY usr.ID DESC");
                                 $result_qcn = mysqli_fetch_array($q_count_nonaktif);
                                 ?>
-                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qcn['total_qcn'] ?> User Web System</font>
+                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qcn['total_qcn'] ?> User Manajemen Web</font>
                             </div>
                             <div class="all-record-detail">
                                 <font style="font-size: 25px;font-weight: 600;"><i class="fas fa-user-minus" style="font-weight: 800;"></i> Resign</font>
@@ -485,7 +484,7 @@ if (isset($_GET['findOne']) != '') {
                                                                 ORDER BY usr.ID DESC");
                                 $result_qcr = mysqli_fetch_array($q_count_resign);
                                 ?>
-                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qcr['total_qcr'] ?> User Web System</font>
+                                <font style="font-size: 16px;font-weight: 300;"><?= $result_qcr['total_qcr'] ?> User Manajemen Web</font>
                             </div>
                         </div>
                     </div>
@@ -603,7 +602,7 @@ if (isset($_GET['findOne']) != '') {
                                                 <div class="modal-content">
                                                     <form action="" method="POST">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">[Update Data] User Web System - <?= $row['ID'] ?></h4>
+                                                            <h4 class="modal-title">[Update Data] User Manajemen Web - <?= $row['ID'] ?></h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
@@ -719,7 +718,7 @@ if (isset($_GET['findOne']) != '') {
                                                 <div class="modal-content">
                                                     <form action="" method="POST">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">[Hapus Data] User Web System - <?= $row['ID'] ?></h4>
+                                                            <h4 class="modal-title">[Hapus Data] User Manajemen Web - <?= $row['ID'] ?></h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
@@ -745,7 +744,7 @@ if (isset($_GET['findOne']) != '') {
                                                 <div class="modal-content">
                                                     <form action="" method="POST">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">[Aktif Data] User Web System - <?= $row['ID'] ?></h4>
+                                                            <h4 class="modal-title">[Aktif Data] User Manajemen Web - <?= $row['ID'] ?></h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
@@ -772,7 +771,7 @@ if (isset($_GET['findOne']) != '') {
                                                 <div class="modal-content">
                                                     <form action="" method="POST">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">[Non-Aktif Data] User Web System - <?= $row['ID'] ?></h4>
+                                                            <h4 class="modal-title">[Non-Aktif Data] User Manajemen Web - <?= $row['ID'] ?></h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">
@@ -799,7 +798,7 @@ if (isset($_GET['findOne']) != '') {
                                                 <div class="modal-content">
                                                     <form action="" method="POST">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">[Resign Users] User Web System - <?= $row['ID'] ?></h4>
+                                                            <h4 class="modal-title">[Resign Users] User Manajemen Web - <?= $row['ID'] ?></h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                         </div>
                                                         <div class="modal-body">

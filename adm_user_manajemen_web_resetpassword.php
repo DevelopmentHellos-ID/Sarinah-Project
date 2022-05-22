@@ -41,14 +41,13 @@ if (isset($_POST["ResetPassword"])) {
     <div class="page-title-css">
         <div>
             <h1 class="page-header-css">
-                <i class="fab fa-medapps icon-page"></i>
-                <font class="text-page">Utility</font>
+                <i class="fab fa-adn icon-page"></i>
+                <font class="text-page">Administrator Tools</font>
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">Utility</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">User Manajemen</a></li>
-                <li class="breadcrumb-item active">User Web System</li>
+                <li class="breadcrumb-item"><a href="javascript:;">Administrator Tools</a></li>
+                <li class="breadcrumb-item active">User Manajemen Web</li>
             </ol>
         </div>
         <div>
@@ -61,7 +60,7 @@ if (isset($_POST["ResetPassword"])) {
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="ui-icons-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Reset Password] User Web System - <?= $result['ID'] ?></h4>
+                    <h4 class="panel-title"><i class="fas fa-info-circle"></i> [Reset Password] User Manajemen Web - <?= $result['ID'] ?></h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">

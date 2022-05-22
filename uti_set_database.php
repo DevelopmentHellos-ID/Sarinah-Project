@@ -31,7 +31,7 @@ include "include/sidebar.php";
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="ui-setting-database">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[Setting] Database</h4>
+                    <h4 class="panel-title">[Setting] Setting Database</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">

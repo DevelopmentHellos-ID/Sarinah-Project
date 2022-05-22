@@ -24,7 +24,9 @@
                         $uriSegments[1] == 'uti_set_database.php' ||
                         $uriSegments[1] == 'uti_set_server.php' ||
                         // User Manajemen
-                        $uriSegments[1] == 'uti_user_manajemen_desktop.php'
+                        $uriSegments[1] == 'uti_user_manajemen_desktop.php' ||
+                        // Laporan Dokumen
+                        $uriSegments[1] == 'uti_laporan_dokumen.php'
                         ? 'active' : '' ?>">
     <a href="javascript:;">
         <b class="caret"></b>
@@ -131,6 +133,9 @@
         </li>
         <li class="<?= $uriSegments[1] == 'uti_user_manajemen_desktop.php' ? 'active' : '' ?>">
             <a href="uti_user_manajemen_desktop.php">User Manajemen</a>
+        </li>
+        <li class="<?= $uriSegments[1] == 'uti_laporan_dokumen.php' ? 'active' : '' ?>">
+            <a href="uti_laporan_dokumen.php">Laporan Dokumen</a>
         </li>
     </ul>
 </li>

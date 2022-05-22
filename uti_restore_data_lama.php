@@ -30,7 +30,7 @@ include "include/sidebar.php";
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="ui-restore-data-lama">
                 <div class="panel-heading">
-                    <h4 class="panel-title">[Restore] Data Lama</h4>
+                    <h4 class="panel-title">[Utility] Restore Data Lama</h4>
                     <?php include "include/panel-row.php"; ?>
                 </div>
                 <div class="panel-body text-inverse">

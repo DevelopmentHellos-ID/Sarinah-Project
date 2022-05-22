@@ -3,9 +3,9 @@
 <div class="modal fade" id="modal-User-Web-System">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="uti_user_manajemen_web.php" method="POST">
+            <form action="adm_user_manajemen_web.php" method="POST">
                 <div class="modal-header">
-                    <h4 class="modal-title">[Tambah Data] User Web System</h4>
+                    <h4 class="modal-title">[Tambah Data] User Manajemen Web</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
